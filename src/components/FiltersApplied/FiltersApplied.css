@@ -1,0 +1,23 @@
+.chip {
+  justify-content: space-around;
+  align-items: center;
+  padding: 2px 8px;
+  background-color: var(--light-300);
+  margin: 0.5rem;
+  border-radius: 4px;
+  box-shadow: 0px 1px 4px 2px var(--box-shadow-color);
+}
+
+.chip:hover {
+  transform: scale(1.01);
+}
+
+.close-icon {
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 1.3rem;
+}
+
+.close-icon:hover {
+  color: var(--danger-300);
+}
