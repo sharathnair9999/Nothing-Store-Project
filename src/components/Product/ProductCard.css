@@ -1,0 +1,28 @@
+.action-btn.primary{
+  background-color: var(--sky-600);
+}
+.product.saved .corner-btns .save{
+  color: var(--danger-300);
+}
+
+.product{
+  width: 18rem;
+}
+
+.product a{
+  color: var(--black);
+}
+
+.card-image{
+  width: 100%;
+  max-width: 18rem;
+  height: 15rem;
+}
+
+.card-action-btns{
+  padding: 0 8px 8px 8px;
+}
+
+.product:hover{
+  box-shadow: 2px 4px 4px 2px var(--box-shadow-color);
+}
