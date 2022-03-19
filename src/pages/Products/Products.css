@@ -1,10 +1,12 @@
 .products-section{
   display: flex;
   gap: 1rem;
-  justify-content:flex-start;
+  justify-content:center;
   align-items: flex-start;
 }
 
 .products-section > div{
   flex-grow: 1;
 }
+
+
