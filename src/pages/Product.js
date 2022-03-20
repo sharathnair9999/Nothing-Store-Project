@@ -1,6 +1,6 @@
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-import { useProducts } from "../contexts/product-context";
+import { useProducts } from "../index/index";
 
 
 const Product = () => {
