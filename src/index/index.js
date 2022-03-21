@@ -22,7 +22,10 @@ import {
   filterData,
   productsReducer,
 } from "../contexts/Products/utils";
-import { ProductProvider,useProducts } from "../contexts/Products/product-context";
+import {
+  ProductProvider,
+  useProducts,
+} from "../contexts/Products/product-context";
 import { UserProvider, userDetails } from "../contexts/user-context";
 import FiltersApplied from "../components/FiltersApplied/FiltersApplied";
 import ProductCard from "../components/Product/ProductCard";
@@ -59,6 +62,5 @@ export {
   ProductCard,
   userDetails,
   Filters,
-  ProductSection
-
+  ProductSection,
 };

@@ -1,14 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useProducts } from "../../index/index";
 import "./Navbar.css";
 
 const Navbar = () => {
+  const {productDispatch} = useProducts()
   return (
     <div className="top-navbar">
       <input type="checkbox" id="check" />
       <nav className="header">
         <div className="icon flex-and-center">
-            <Link to="/" className="flex-and-center">
+            <Link to="/" className="flex-and-center" onClick={()=>{productDispatch({type:"RESET_FILTERS"})}}>
               <img
                 src="https://res.cloudinary.com/sharath-media-library/image/upload/v1647446845/nothing-store-project/Nothing_1_zikesp.png"
                 alt="logo"
