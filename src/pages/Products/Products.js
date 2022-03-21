@@ -18,7 +18,7 @@ const Products = () => {
   const getProducts = async () => {
     try {
       productDispatch({ type: "LOADING", payload: true });
-      const data = await axios.get("https://localhost:3000/api/products");
+      const data = await axios.get("/api/products");
       productDispatch({ type: "PRODUCTS", payload: data.data.products });
       productDispatch({ type: "LOADING", payload: false });
       productDispatch({ type: "ERROR_MSG", payload: "" });
