@@ -38,6 +38,18 @@
   flex-direction: column;
   gap: 0.5rem;
   margin-top: 1rem;
+  padding: 1rem;
+}
+
+@media screen and (max-width:768px) {
+  .empty-data-section{
+    padding: 5rem;
+  }
+
+  .empty-data-section h3{
+    font-size: 1rem;
+  }
+
 }
 
 .empty-data-section img{

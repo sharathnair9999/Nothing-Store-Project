@@ -198,4 +198,20 @@ export const products = [
     description:
       " Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel accusantium culpa consectetur? Iste, voluptatum. Neque dolor inventore commodi repellendus veniam?",
   },
+  {
+    _id: 1123,
+    title: `Oculus Touch VR Console`,
+    company: "Meta",
+    rating: 4,
+    inStock: true,
+    price: 250000,
+    discountPercent: 10,
+    unitsLeft: 9,
+    inWishlist: false,
+    categoryName: "Gaming",
+    imgUrl:
+      "https://res.cloudinary.com/sharath-media-library/image/upload/v1647877379/nothing-store-project/oculus-touch_idtp0w.jpg",
+    description:
+      " Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel accusantium culpa consectetur? Iste, voluptatum. Neque dolor inventore commodi repellendus veniam?",
+  },
 ];
