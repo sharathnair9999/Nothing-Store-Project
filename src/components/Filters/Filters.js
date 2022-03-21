@@ -2,13 +2,18 @@ import React from "react";
 import { useProducts } from "../../contexts/Products/product-context";
 import "./Filters.css";
 
-const Filters = ({ showFilters, products }) => {
+const Filters = ({ products }) => {
   const { productState, productDispatch } = useProducts();
 
   const { filters } = productState;
 
-  const { priceSort, filterByBrand, filterByCategory, filterByRating, filterByRange } =
-    filters;
+  const {
+    priceSort,
+    filterByBrand,
+    filterByCategory,
+    filterByRating,
+    filterByRange,
+  } = filters;
 
   const uniqueElements = (value, index, self) => {
     return self.indexOf(value) === index;
@@ -23,7 +28,9 @@ const Filters = ({ showFilters, products }) => {
     .filter(uniqueElements);
 
   return (
-    <aside className={`filter-section sticky p-1 top-0`}>
+    <aside
+      className={`filter-section sticky p-1 top-0`}
+    >
       <div className="flex items-center">
         <h3 className="property-header">Filter</h3>
         <span
@@ -34,16 +41,24 @@ const Filters = ({ showFilters, products }) => {
         </span>
       </div>
       <section className="pt-1">
-        <section className="flex justify-space-btw items-center w-100"><h4 className="property-header">Price</h4><p>{filterByRange}</p></section>
+        <section className="flex justify-space-btw items-center w-100">
+          <h4 className="property-header">Price</h4>
+          <p>{filterByRange}</p>
+        </section>
         <input
           type="range"
           name="price-filter"
           id="price-filter"
           min={2000}
-          max={150000}
-          step={100}
+          max={500000}
+          step={500}
           value={filterByRange}
-          onChange={(e) => productDispatch({type:"FILTER_BY_RANGE" , payload:e.target.value})}
+          onChange={(e) =>
+            productDispatch({
+              type: "FILTER_BY_RANGE",
+              payload: e.target.value,
+            })
+          }
         />
       </section>
       <section>
@@ -92,8 +107,13 @@ const Filters = ({ showFilters, products }) => {
               id={id}
               name="rating-filter"
               value={4 - id}
-              checked={Number(filterByRating) === Number(4-id)}
-              onChange={(e) => {productDispatch({type:"FILTER_BY_RATING" , payload:Number(4-id)})}}
+              checked={Number(filterByRating) === Number(4 - id)}
+              onChange={(e) => {
+                productDispatch({
+                  type: "FILTER_BY_RATING",
+                  payload: Number(4 - id),
+                });
+              }}
             />
             <label htmlFor={id}>{`${4 - id} star & above`}</label>
           </div>

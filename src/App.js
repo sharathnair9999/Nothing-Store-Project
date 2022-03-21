@@ -2,7 +2,7 @@ import {  Route, Routes } from "react-router-dom";
 import "./App.css";
 import Mockman from "mockman-js";
 
-import {HomePage} from "./index/index";
+import {Footer, HomePage} from "./index/index";
 import {Products} from "./index/index";
 import {Product} from "./index/index";
 import {ErrorPage} from "./index/index";
@@ -46,11 +46,10 @@ function App() {
             <Route path="cart" element={<Cart />}></Route>
           </Route>
           <Route path="*" element={<ErrorPage />} />
-        </Routes>
-      </div>
-      <Routes>
         <Route path="mockapi" element={<Mockman />} />
-      </Routes>
+        </Routes>
+      <Footer/>
+      </div>
     </>
   );
 }

@@ -22,13 +22,14 @@
 
 #filter-toggle[type="checkbox"] {
   -webkit-appearance: none;
-  display: none;
+  opacity: 0;
 }
+
 .filter-btn {
   display: none;
 }
 
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 600px) {
   .filter-section {
     border: none;
     display: none;
@@ -49,13 +50,27 @@
     font-size: 1rem;
   }
 
-  .hide {
-    display: none;
-    transform: all 0.3s ease-out;
+  #filter-toggle + .filter-btn #filter-btn-text::after {
+    content: "Filters";
+  }
+  #filter-toggle[type="checkbox"]:checked
+    + .filter-btn
+    #filter-btn-text::after {
+    content: "Apply";
   }
 
-  .show {
-    transform: all 0.3s ease-out;
-    display: block;
+  #filter-toggle[type="checkbox"]:not(:checked) ~ .filter-section {
+    display: none;
+  }
+
+  #filter-toggle[type="checkbox"]:not(:checked) ~ .products-wrapper {
+    display: inline-block;
+  }
+
+  #filter-toggle[type="checkbox"]:checked ~ .filter-section {
+    display: inline-block;
+  }
+  #filter-toggle[type="checkbox"]:checked ~ .products-wrapper {
+    display: none;
   }
 }

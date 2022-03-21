@@ -6,7 +6,7 @@ import "./ProductsSection.css";
 
 const ProductSection = ({ products, isLoading, error }) => {
   return (
-    <>
+    <div className={`flex-and-center w-100 products-wrapper`}>
       {isLoading ? (
         <div className="loader flex-and-center w-100">
           <img
@@ -46,7 +46,7 @@ const ProductSection = ({ products, isLoading, error }) => {
           )}
         </div>
       )}
-    </>
+    </div>
   );
 };
 

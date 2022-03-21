@@ -6,23 +6,23 @@ const Categories = () => {
   const categoryURLs = [
     {
       category: "Phones",
-      url: "https://res.cloudinary.com/sharath-media-library/image/upload/v1647439297/nothing-store-project/phone_wznqan.jpg",
+      url: "https://res.cloudinary.com/sharath-media-library/image/upload/v1647877224/nothing-store-project/phone-min1_eya8h3.jpg",
     },
     {
       category: "Desktops",
-      url: "https://res.cloudinary.com/sharath-media-library/image/upload/v1647439382/nothing-store-project/desktop_zqwap1.jpg",
+      url: "https://res.cloudinary.com/sharath-media-library/image/upload/v1647877097/nothing-store-project/laptop-min_towiqk.jpg",
     },
     {
       category: "Laptops",
-      url: "https://res.cloudinary.com/sharath-media-library/image/upload/v1647439379/nothing-store-project/laptop_hlcvqj.jpg",
+      url: "https://res.cloudinary.com/sharath-media-library/image/upload/v1647875506/nothing-store-project/laptop-min_rte74b.jpg",
     },
     {
       category: "Audio",
-      url: "https://res.cloudinary.com/sharath-media-library/image/upload/v1647439381/nothing-store-project/headphones_n7sbey.jpg",
+      url: "https://res.cloudinary.com/sharath-media-library/image/upload/v1647522801/nothing-store-project/sony-xm4_b534or.png",
     },
     {
       category: "Accessories",
-      url: "https://res.cloudinary.com/sharath-media-library/image/upload/v1647439384/nothing-store-project/accessories_mrs1mj.jpg",
+      url: "https://res.cloudinary.com/sharath-media-library/image/upload/v1647875631/nothing-store-project/accessories_igz18f.jpg",
     },
   ];
   return (
