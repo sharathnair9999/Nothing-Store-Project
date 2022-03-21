@@ -38,7 +38,7 @@ const Footer = () => {
           <p>
             You can Contribute&nbsp;
             <a
-              href="https://github.com/sharathnair9999/nothing-store"
+              href="https://github.com/sharathnair9999/Nothing-Store-Project"
               target="_blank"
             >
               Here <i className="fa-brands fa-github fa-lg"></i>
