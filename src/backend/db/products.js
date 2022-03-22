@@ -18,7 +18,7 @@ export const products = [
     inWishlist: false,
     inStock: false,
     imgUrl:
-      "https://res.cloudinary.com/sharath-media-library/image/upload/v1647442070/nothing-store-project/ps5_bo64cw.jpg",
+      "https://res.cloudinary.com/sharath-media-library/image/upload/v1647875427/nothing-store-project/ps5_cgta4o.jpg",
     description:
       " The PlayStation 5 (PS5) is a home video game console developed by Sony Interactive Entertainment. Announced in 2019 as the successor to the PlayStation 4, the PS5 was released on November 12, 2020, in Australia, Japan, New Zealand, North America, and South Korea, with worldwide release following a week later.",
   },
@@ -66,7 +66,7 @@ export const products = [
     inStock: true,
     categoryName: "Laptop",
     imgUrl:
-      "https://res.cloudinary.com/sharath-media-library/image/upload/v1647523455/nothing-store-project/c8aea820-28a0-11eb-9f89-5ddd62987703_jjt6sz.webp",
+      "https://res.cloudinary.com/sharath-media-library/image/upload/v1647875506/nothing-store-project/laptop-min_rte74b.jpg",
     description:
       " Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel accusantium culpa consectetur? Iste, voluptatum. Neque dolor inventore commodi repellendus veniam?",
   },
@@ -122,7 +122,7 @@ export const products = [
     _id: 1118,
     title: "Mi-Fit Band 5",
     company: "Xiaomi",
-    rating: 5,
+    rating: 2,
     inStock: true,
     price: 2999,
     discountPercent: 5,
@@ -163,6 +163,54 @@ export const products = [
     categoryName: "Laptop",
     imgUrl:
       "https://res.cloudinary.com/sharath-media-library/image/upload/v1647524947/nothing-store-project/galaxy_book_atq5lk.jpg",
+    description:
+      " Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel accusantium culpa consectetur? Iste, voluptatum. Neque dolor inventore commodi repellendus veniam?",
+  },
+  {
+    _id: 1121,
+    title: `iMac M1 Max Pro 27" 4TB`,
+    company: "Apple",
+    rating: 5,
+    inStock: true,
+    price: 429000,
+    discountPercent: 10,
+    unitsLeft: 118,
+    inWishlist: false,
+    categoryName: "Desktop",
+    imgUrl:
+      "https://res.cloudinary.com/sharath-media-library/image/upload/v1647877927/nothing-store-project/imac_jad6lu.jpg",
+    description:
+      " Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel accusantium culpa consectetur? Iste, voluptatum. Neque dolor inventore commodi repellendus veniam?",
+  },
+  {
+    _id: 1122,
+    title: `HP All-in-One 24" PC`,
+    company: "HP",
+    rating: 5,
+    inStock: true,
+    price: 51000,
+    discountPercent: 10,
+    unitsLeft: 34,
+    inWishlist: false,
+    categoryName: "Desktop",
+    imgUrl:
+      "https://res.cloudinary.com/sharath-media-library/image/upload/v1647880872/nothing-store-project/hp-desktop_fzjxns.webp",
+    description:
+      " Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel accusantium culpa consectetur? Iste, voluptatum. Neque dolor inventore commodi repellendus veniam?",
+  },
+  {
+    _id: 1123,
+    title: `Oculus Touch VR Console`,
+    company: "Meta",
+    rating: 4,
+    inStock: true,
+    price: 250000,
+    discountPercent: 10,
+    unitsLeft: 9,
+    inWishlist: false,
+    categoryName: "Gaming",
+    imgUrl:
+      "https://res.cloudinary.com/sharath-media-library/image/upload/v1647877379/nothing-store-project/oculus-touch_idtp0w.jpg",
     description:
       " Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel accusantium culpa consectetur? Iste, voluptatum. Neque dolor inventore commodi repellendus veniam?",
   },

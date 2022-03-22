@@ -1,19 +1,25 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import {Filters} from '../../index/index';
+import { Filters, Footer } from "../../index/index";
 import "../../components/Filters/Filters.css";
 import "./Products.css";
-import {ProductSection} from "../../index/index";
+import { ProductSection } from "../../index/index";
 import { useProducts } from "../../index/index";
 
 const Products = () => {
-  const [showFilters, setShowFilters] = useState(true);
+  const [showFilters, setShowFilters] = useState(false);
 
   const { productState, productDispatch, sortData, filterData } = useProducts();
 
   const { products, loading, filters, error } = productState;
 
-  const {priceSort, filterByBrand, filterByCategory, filterByRating, filterByRange} = filters;
+  const {
+    priceSort,
+    filterByBrand,
+    filterByCategory,
+    filterByRating,
+    filterByRange,
+  } = filters;
 
   const getProducts = async () => {
     try {
@@ -28,10 +34,15 @@ const Products = () => {
     }
   };
 
-  const sortedData = sortData(products, priceSort)
+  const sortedData = sortData(products, priceSort);
 
-
-  const filteredData = filterData(sortedData, filterByBrand, filterByCategory, filterByRating, filterByRange)
+  const filteredData = filterData(
+    sortedData,
+    filterByBrand,
+    filterByCategory,
+    filterByRating,
+    filterByRange
+  );
 
   useEffect(() => {
     getProducts();
@@ -39,22 +50,30 @@ const Products = () => {
 
   return (
     <div className="products-section">
-      <Filters showFilters={showFilters} products={products} />
-
-      <ProductSection products={filteredData} isLoading={loading} error={error} />
       <input
         type="checkbox"
         name="filter-toggle"
         id="filter-toggle"
         value={showFilters}
-        onChange={(e) => setShowFilters(e.target.checked)}
+        onChange={(e)=>setShowFilters()}
       />
-      <label htmlFor="filter-toggle" className="btn filter-btn">
-        <span id="open-filter flex-and-center">
+      <label
+        htmlFor="filter-toggle"
+        className="btn filter-btn"
+      >
+        <span id="flex-and-center">
           <i className="fa-solid fa-arrow-down-short-wide fa-lg pr-1"></i>
-          <span id="filter-btn-text">Filter</span>
+          <span id="filter-btn-text"></span>
         </span>
       </label>
+      <Filters showFilters={showFilters} products={products} />
+
+      <ProductSection
+        products={filteredData}
+        showProducts={showFilters}
+        isLoading={loading}
+        error={error}
+      />
     </div>
   );
 };

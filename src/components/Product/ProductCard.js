@@ -57,10 +57,10 @@ const ProductCard = ({ product }) => {
         ))}
       </div>
       <div className="rate-section">
-        <span className="curr-price">{`₹ ${price}`}</span>
+        <span className="curr-price">{`₹ ${price.toLocaleString()}`}</span>
         <span className="mrp-price">{`₹ ${
-          price + (price * discountPercent) / 100
-        } `}</span>
+          (price + (price * discountPercent) / 100
+          ).toLocaleString()} `}</span>
         <span className="percent-off">{`(${discountPercent}% off)`}</span>
       </div>
       <div className="card-action-btns">

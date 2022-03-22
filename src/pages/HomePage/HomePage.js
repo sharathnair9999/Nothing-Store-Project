@@ -20,7 +20,6 @@ const HomePage = () => {
     </div>
     <Categories/>
     <NewLaunches/>
-    <Footer/>
     </div>
   );
 };

@@ -6,11 +6,11 @@ const NewLaunches = () => {
   const newLaunches = [
     {
       product: "Oculus Touch",
-      url: "https://res.cloudinary.com/sharath-media-library/image/upload/v1647442073/nothing-store-project/oculus-touch_mtie4m.jpg",
+      url: "https://res.cloudinary.com/sharath-media-library/image/upload/v1647877379/nothing-store-project/oculus-touch_idtp0w.jpg",
     },
     {
       product: "PlayStation 5",
-      url: "https://res.cloudinary.com/sharath-media-library/image/upload/v1647442070/nothing-store-project/ps5_bo64cw.jpg",
+      url: "https://res.cloudinary.com/sharath-media-library/image/upload/v1647875427/nothing-store-project/ps5_cgta4o.jpg",
     },
   ];
   return (

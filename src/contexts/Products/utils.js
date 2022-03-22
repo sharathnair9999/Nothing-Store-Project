@@ -95,12 +95,9 @@ const filterData = (
     .filter(({ rating }) => (ratingFilter > 0 ? rating >= ratingFilter : true))
     .filter(({ price }) =>
       rangeFilter > 2000
-        ? parseInt(price) >= rangeFilter && parseInt(price) <= 150000
+        ? parseInt(price) >= rangeFilter && parseInt(price) <= 500000
         : true
     );
-  // .filter(
-  //   ({ price }) => parseFloat(price) > range && parseFloat(price) < 10000
-  // );
 };
 
 export { initialState, sortData, filterData, productsReducer };
