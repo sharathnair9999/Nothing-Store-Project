@@ -35,6 +35,10 @@
   gap: 5px;
 }
 
+.login-container .btn, .signup-container .btn{
+  width: 100%;
+}
+
 .aside-image {
   max-width: 25rem;
   height: 25rem;
