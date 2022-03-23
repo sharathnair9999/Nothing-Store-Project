@@ -1,6 +1,6 @@
 import HomePage from "../pages/HomePage/HomePage";
 import Products from "../pages/Products/Products";
-import Product from "../pages/Product";
+import Product from "../pages/Product/Product";
 import ErrorPage from "../pages/ErrorPage";
 import Navbar from "../components/Navbar/Navbar";
 import Login from "../pages/Login";
@@ -31,6 +31,9 @@ import FiltersApplied from "../components/FiltersApplied/FiltersApplied";
 import ProductCard from "../components/Product/ProductCard";
 import Filters from "../components/Filters/Filters";
 import ProductSection from "../components/ProductsSection/ProductSection";
+import Rating from "../components/Rating/Rating";
+import Loader from "../components/Loader/Loader";
+import EmptyData from "../components/ProductsSection/EmptyData";
 
 export {
   HomePage,
@@ -63,4 +66,7 @@ export {
   userDetails,
   Filters,
   ProductSection,
+  Rating,
+  Loader,
+  EmptyData
 };

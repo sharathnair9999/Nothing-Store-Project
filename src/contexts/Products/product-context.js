@@ -8,7 +8,7 @@ const ProductProvider = ({ children }) => {
     productsReducer,
     initialState
   );
-  const findProduct = (id) => products?.find((product) => product.id === id);
+  const findProduct = (id, products) => products?.find((product) => product._id === id);
   return (
     <ProductContext.Provider
       value={{ productState, productDispatch, findProduct , sortData, filterData }}
