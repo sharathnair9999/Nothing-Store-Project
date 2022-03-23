@@ -41,7 +41,7 @@ const ProductCard = ({ product }) => {
         </div>
       </div>
       <div className="text-section">
-        <Link to={"/"}>
+        <Link to={`/products/${_id}`}>
           <h4>{title}</h4>
         </Link>
         <small>{company}</small>
