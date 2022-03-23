@@ -1,8 +1,26 @@
-import {  Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Mockman from "mockman-js";
 
-import {Footer, HomePage,Products,Product,ErrorPage,Navbar,Login,Signup,Wishlist,Cart,Profile,UserInfo,Addresses,Address,Orders,Order} from "./index/index";
+import {
+  Footer,
+  HomePage,
+  Products,
+  Product,
+  ErrorPage,
+  Navbar,
+  Login,
+  Signup,
+  Wishlist,
+  Cart,
+  Profile,
+  UserInfo,
+  Addresses,
+  Address,
+  Orders,
+  Order,
+  ResetPass,
+} from "./index/index";
 
 function App() {
   return (
@@ -13,6 +31,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
+          <Route path="reset-password" element={<ResetPass />} />
           <Route path="products" element={<Products />} />
           <Route path="products">
             <Route path=":productId" element={<Product />} />
@@ -32,9 +51,9 @@ function App() {
             <Route path="cart" element={<Cart />}></Route>
           </Route>
           <Route path="*" element={<ErrorPage />} />
-        <Route path="mockapi" element={<Mockman />} />
+          <Route path="mockapi" element={<Mockman />} />
         </Routes>
-      <Footer/>
+        <Footer />
       </div>
     </>
   );
