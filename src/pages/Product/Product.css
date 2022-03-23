@@ -162,3 +162,15 @@
   align-items: center;
   cursor: pointer;
 }
+
+
+@media screen and (max-width:768px) {
+  .image-modal img{
+    max-width: 22rem;
+  }
+
+  .close-modal{
+    height: 1rem;
+    width: 1rem;
+  }
+}
