@@ -1,4 +1,5 @@
 const initialState = {
+  product : {},
   products: [],
   loading: false,
   filters: {
@@ -15,7 +16,8 @@ const productsReducer = (state, action) => {
   switch (action.type) {
     case "PRODUCTS":
       return { ...state, products: action.payload };
-
+    case "PRODUCT":
+      return { ...state, product: action.payload };
     case "LOADING":
       return { ...state, loading: action.payload };
     case "ERROR_MSG":

@@ -7,7 +7,6 @@ import { ProductSection } from "../../index/index";
 import { useProducts } from "../../index/index";
 
 const Products = () => {
-  const [showFilters, setShowFilters] = useState(false);
 
   const { productState, productDispatch, sortData, filterData } = useProducts();
 
@@ -54,8 +53,6 @@ const Products = () => {
         type="checkbox"
         name="filter-toggle"
         id="filter-toggle"
-        value={showFilters}
-        onChange={(e)=>setShowFilters()}
       />
       <label
         htmlFor="filter-toggle"
@@ -66,11 +63,10 @@ const Products = () => {
           <span id="filter-btn-text"></span>
         </span>
       </label>
-      <Filters showFilters={showFilters} products={products} />
+      <Filters products={products} />
 
       <ProductSection
         products={filteredData}
-        showProducts={showFilters}
         isLoading={loading}
         error={error}
       />

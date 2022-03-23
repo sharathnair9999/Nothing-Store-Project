@@ -1,6 +1,16 @@
 .action-btn.primary{
   background-color: var(--sky-600);
 }
+
+.action-btn.disabled{
+  background-color: var(--nav-hover);
+  color: var(--black);
+}
+.action-btn.disabled:hover{
+  background-color: var(--nav-hover);
+  color: var(--black);
+}
+
 .product.saved .corner-btns .save{
   color: var(--danger-300);
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./ProductCard.css";
+import {Rating} from "../../index/index"
 
 const ProductCard = ({ product }) => {
   const {
@@ -14,16 +15,13 @@ const ProductCard = ({ product }) => {
     discountPercent,
     categoryName,
     imgUrl,
-    inWishlist,
   } = product;
   return (
     <div
-      className={`product ${
-        inStock ? "vertical-card" : "vertical-card-text-overlay flex"
-      } ${inWishlist && "saved"}`}
+      className={`product vertical-card`}
     >
       <div className="image-container">
-        <Link to={`/`}>
+        <Link to={`/products/${_id}`}>
           <img
             src={`${imgUrl}`}
             alt={title}
@@ -43,19 +41,12 @@ const ProductCard = ({ product }) => {
         </div>
       </div>
       <div className="text-section">
-        <Link to={"/"}>
+        <Link to={`/products/${_id}`}>
           <h4>{title}</h4>
         </Link>
         <small>{company}</small>
-      </div>
-      <div className="rating-section">
-        {[...Array(5)].map((_, id) => (
-          <i
-            key={id}
-            className={`fas fa-star ${id < rating && "checked"} `}
-          ></i>
-        ))}
-      </div>
+      </div>  
+        <Rating rating = {rating}/>
       <div className="rate-section">
         <span className="curr-price">{`₹ ${price.toLocaleString()}`}</span>
         <span className="mrp-price">{`₹ ${
@@ -65,9 +56,8 @@ const ProductCard = ({ product }) => {
       </div>
       <div className="card-action-btns">
         {/* <button className="action-btn primary">Buy now</button> */}
-        <button className="action-btn primary">Add to Cart</button>
+        <button className={`${!inStock ? "secondary":"primary"} action-btn`} disabled={!inStock} onClick={()=>console.log("click")}>{inStock ? 'Add to Cart':"Out of Stock"}</button>
       </div>
-      {!inStock && <div className="text-overlay-section flex-and-center"><span className="text">Sold Out!</span></div>}
     </div>
   );
 };
