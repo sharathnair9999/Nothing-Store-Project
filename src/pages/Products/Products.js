@@ -29,7 +29,7 @@ const Products = () => {
       productDispatch({ type: "ERROR_MSG", payload: "" });
     } catch (err) {
       productDispatch({ type: "LOADING", payload: false });
-      productDispatch({ type: "ERROR_MSG", payload: "BAD REQUEST" });
+      productDispatch({ type: "ERROR_MSG", payload: "Loading Failed" });
     }
   };
 

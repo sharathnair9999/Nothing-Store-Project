@@ -1,7 +1,16 @@
 import React from 'react'
-import Navbar from '../components/Navbar/Navbar'
+import { userDetails } from '../index/index'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Wishlist = () => {
+  const {userState} = userDetails();
+  const {encodedToken} = userState;
+  const navigate = useNavigate()
+  useEffect(() => {
+    !encodedToken && navigate("/login")
+  }, [])
+  
   return (
     <div>
       <h3>

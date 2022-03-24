@@ -35,6 +35,7 @@ import Rating from "../components/Rating/Rating";
 import Loader from "../components/Loader/Loader";
 import EmptyData from "../components/ProductsSection/EmptyData";
 import ResetPass from "../pages/ResetPass/ResetPass";
+import { testUser } from "../contexts/User/utils";
 
 export {
   HomePage,
@@ -70,5 +71,6 @@ export {
   Rating,
   Loader,
   EmptyData,
-  ResetPass
+  ResetPass,
+  testUser
 };

@@ -7,7 +7,7 @@ const ResetPass = () => {
     <div className="login-container flex-and-center">
       <div className="form-controls">
         <div className="required-text">
-          <label for="email" className="required-title" id="email">
+          <label htmlFor="email" className="required-title" id="email">
             Registered E-mail
           </label>
           <input
