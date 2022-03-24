@@ -16,7 +16,6 @@ const Product = () => {
     try {
       productDispatch({ type: "LOADING", payload: true });
       const productData = await axios.get(`/api/products/${parseInt(id)}`);
-      console.log(productData);
       productDispatch({ type: "PRODUCT", payload: productData.data.product });
       productDispatch({ type: "LOADING", payload: false });
     } catch (error) {
