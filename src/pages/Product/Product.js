@@ -29,6 +29,17 @@ const Product = () => {
   };
 
   useEffect(() => {
+
+    (async()=>{
+      try{
+        const res = await axios.post("/api/auth/login", {email:"adarshbalika@gmail.com", password:"adarshbalika"})
+        console.log("login",res);
+      }
+      catch(err){
+        console.log(err);
+      }
+    })()
+
     window.scrollTo(0, 0)
     getProduct(productId);
   }, [productId]);

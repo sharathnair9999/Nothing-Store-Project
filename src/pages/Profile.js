@@ -1,10 +1,8 @@
 import React from "react";
 import { Link, Outlet, useParams } from "react-router-dom";
-import { userDetails } from "../contexts/user-context";
+import { userDetails } from "../contexts/User/user-context";
 
 const Profile = () => {
-  const {initialState} = userDetails()
-  const {id} = initialState
   return (
     <div style={{display:"flex" , justifyContent:'flex-start', alignItems:"center", gap:"2rem"}}>
 
