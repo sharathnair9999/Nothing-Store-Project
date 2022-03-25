@@ -1,29 +1,36 @@
+const userData = JSON.parse(localStorage.getItem("authToken"));
 const initialState = {
-  userId: null,
-  userName: null,
-  isLoggedIn: false,
-  cartItems: [],
-  wishlistItems: [],
+  encodedToken: userData ? userData.encodedToken : null,
+  firstName: userData ? userData.firstName : null,
+  lastName: userData ? userData.lastName : null,
+};
+
+const testUser = {
+  email: "adarshbalika@gmail.com",
+  password: "adarshbalika",
 };
 
 const userReducer = (state, action) => {
-  const { type, payload } = action; 
+  const { type, payload } = action;
   switch (type) {
-    case "LOGIN":
+    case "SET_USER":
       return {
-        userId : payload.userId,
-        isLoggedIn: true,
-        userName: payload.userName,
-        cartItems: payload.cartItems,
-        wishlistItems: payload.wishlistItems,
+        ...state,
+        encodedToken: payload.encodedToken,
+        firstName: payload.firstName,
+        lastName: payload.lastName,
       };
     case "LOGOUT":
-      return initialState;
+      return { encodedToken: null, firstName: null, lastName: null };
     case "SIGNUP":
-      return {};
+      return {
+        firstName: payload.firstName,
+        lastName: payload.lastName,
+        password: payload.password,
+      };
     default:
       return state;
   }
 };
 
-export { initialState, userReducer };
+export { testUser, initialState, userReducer };

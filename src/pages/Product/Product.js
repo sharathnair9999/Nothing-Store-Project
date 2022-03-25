@@ -10,13 +10,12 @@ const Product = () => {
   const { productId } = useParams();
   const { productState, productDispatch } = useProducts();
   const { product, loading, error } = productState;
-  const [openDialog, setOpenDialog] = useState(false)
+  const [openDialog, setOpenDialog] = useState(false);
 
   const getProduct = async (id) => {
     try {
       productDispatch({ type: "LOADING", payload: true });
       const productData = await axios.get(`/api/products/${parseInt(id)}`);
-      console.log(productData);
       productDispatch({ type: "PRODUCT", payload: productData.data.product });
       productDispatch({ type: "LOADING", payload: false });
     } catch (error) {
@@ -29,18 +28,7 @@ const Product = () => {
   };
 
   useEffect(() => {
-
-    (async()=>{
-      try{
-        const res = await axios.post("/api/auth/login", {email:"adarshbalika@gmail.com", password:"adarshbalika"})
-        console.log("login",res);
-      }
-      catch(err){
-        console.log(err);
-      }
-    })()
-
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
     getProduct(productId);
   }, [productId]);
 
@@ -68,7 +56,7 @@ const Product = () => {
                   src={product.imgUrl}
                   alt={product.title}
                   className="responsive-img"
-                  onClick={()=>setOpenDialog(true)}
+                  onClick={() => setOpenDialog(true)}
                 />
                 <div className="absolute corner-btns">
                   <button className="btn flex-and-center">
@@ -112,7 +100,9 @@ const Product = () => {
               <h3>Manufactured at</h3>
               <p>{product.company}</p>
             </div>
-            {openDialog && <ImageDialog setOpenDialog={setOpenDialog} img={product.imgUrl}  />}
+            {openDialog && (
+              <ImageDialog setOpenDialog={setOpenDialog} img={product.imgUrl} />
+            )}
           </main>
         )}
       </div>

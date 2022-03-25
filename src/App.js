@@ -20,12 +20,13 @@ import {
   Orders,
   Order,
   ResetPass,
+  userDetails,
 } from "./index/index";
 
 function App() {
   return (
     <>
-      <div>
+      <div className="relative">
         <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />

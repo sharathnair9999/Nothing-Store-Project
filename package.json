@@ -2,6 +2,9 @@
   "name": "e-commerce-app",
   "version": "0.1.0",
   "private": true,
+  "devDependencies": {
+    "react-error-overlay": "6.0.9"
+  },
   "dependencies": {
     "axios": "^0.21.4",
     "dayjs": "^1.10.7",

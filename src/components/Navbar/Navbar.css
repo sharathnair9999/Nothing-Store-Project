@@ -258,6 +258,10 @@ nav .nav-actions {
     justify-content: flex-start;
     align-items: center;
   }
+
+  .logout-btn{
+    top: 4rem;
+  }
 }
 
 .nav-actions i:hover {
@@ -273,4 +277,33 @@ nav .nav-actions {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
+
+.user-icon a{
+  padding: 0px 5px;
+}
+
+.logout-btn{
+position: absolute;
+opacity: 0;
+transition: opacity 0.2s ease;
+top: 2.5rem;
+padding: 2px 4px;
+font-size: 0.8rem;
+box-shadow: none;
+}
+
+.user-icon:hover .logout-btn{
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+.user-icon{
+  border: 2px solid var(--all-white);
+  color: var(--all-white);
+  background-color: transparent;
+  padding: 2px;
+  border-radius: 50%;
+}
+
