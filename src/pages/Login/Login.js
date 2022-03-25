@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Login.css";
 import { testUser, userDetails } from "../../index/index";
 import axios from "axios";
@@ -30,6 +30,7 @@ const Login = () => {
 
   const handleSubmit = async (event, credentials) => {
     event.preventDefault();
+    let from = location.state?.from?.pathname || "/";
 
     try {
       const { data } = await axios.post("/api/auth/login", credentials);
@@ -37,7 +38,9 @@ const Login = () => {
       const { firstName, lastName } = foundUser;
       setAlert({
         type: "success",
-        message: `Hi ${capitalize(firstName)} ${capitalize(lastName)} !! You are successfully logged in.`,
+        message: `Hi ${capitalize(firstName)} ${capitalize(
+          lastName
+        )} !! You are successfully logged in.`,
         showAlert: true,
       });
       localStorage.setItem(
@@ -50,7 +53,9 @@ const Login = () => {
       });
       setTimeout(() => {
         setAlert({ type: "", message: "", showAlert: false });
-        navigate("/");
+      }, 1500);
+      setTimeout(() => {
+        navigate(from, { replace: true });
       }, 3000);
     } catch (error) {
       setAlert({
@@ -68,83 +73,80 @@ const Login = () => {
     <div className="relative">
       {alert.showAlert && <Alert type={alert.type} message={alert.message} />}
 
-    <div className="login-container flex-and-center">
-      <form
-        className="form-controls"
-        onSubmit={(e) => handleSubmit(e, userCredentials)}
-      >
-        <div className="required-text">
-          <label htmlFor="email" className="required-title" id="email">
-            E-mail
-          </label>
-          <input
-            value={userCredentials.email}
-            onChange={(e) => onChange(e)}
-            autoFocus
-            type="email"
-            className="input-box"
-            id="email"
-            name="email"
-            placeholder="Type your e-mail here..."
-            required
-          />
-        </div>
-        <div className="required-text">
-          <label htmlFor="password" className="required-title">
-            Password
-          </label>
-          <input
-            onChange={(e) => onChange(e)}
-            value={userCredentials.password}
-            type="password"
-            required
-            className="input-box"
-            id="password"
-            name="password"
-            placeholder="Type your password here..."
-          />
-        </div>
-        <div className="checkbox">
-          <input type="checkbox" id="remember" />
-          <label htmlFor="remember">Remember Me</label>
-        </div>
-        <button type="submit" className="btn btn-primary submit-btn">
-          Login
-        </button>
-        <button
-          className="btn btn-light submit-btn"
-          onClick={(e) => {
-            setUserCredentials(testUser);
-            setTimeout(() => {
-              
-              handleSubmit(e, testUser);
-            }, 1000);
-          }}
+      <div className="login-container flex-and-center">
+        <form
+          className="form-controls"
+          onSubmit={(e) => handleSubmit(e, userCredentials)}
         >
-          Login w/ Test Credentials
-        </button>
-        <div className="password-mgmt">
-          <p className="text-section">
-            <span>New User?</span>
-            <Link to={"/signup"} className="link">
-              Signup here
-            </Link>
-          </p>
-          <p className="text-section">
-            <span>Forgot Password?</span>
-            <Link to={"/reset-password"} className="link">
-              Change here
-            </Link>
-          </p>
-        </div>
-      </form>
+          <div className="required-text">
+            <label htmlFor="email" className="required-title" id="email">
+              E-mail
+            </label>
+            <input
+              value={userCredentials.email}
+              onChange={(e) => onChange(e)}
+              autoFocus
+              type="email"
+              className="input-box"
+              id="email"
+              name="email"
+              placeholder="Type your e-mail here..."
+              required
+            />
+          </div>
+          <div className="required-text">
+            <label htmlFor="password" className="required-title">
+              Password
+            </label>
+            <input
+              onChange={(e) => onChange(e)}
+              value={userCredentials.password}
+              type="password"
+              required
+              className="input-box"
+              id="password"
+              name="password"
+              placeholder="Type your password here..."
+            />
+          </div>
+          <div className="checkbox">
+            <input type="checkbox" id="remember" />
+            <label htmlFor="remember">Remember Me</label>
+          </div>
+          <button type="submit" className="btn btn-primary submit-btn">
+            Login
+          </button>
+          <button
+            className="btn btn-light submit-btn"
+            onClick={(e) => {
+              setUserCredentials(testUser);
+              handleSubmit(e, testUser);
+            }}
+          >
+            Login w/ Test Credentials
+          </button>
+          <div className="password-mgmt">
+            <p className="text-section">
+              <span>New User?</span>
+              <Link to={"/signup"} className="link">
+                Signup here
+              </Link>
+            </p>
+            <p className="text-section">
+              <span>Forgot Password?</span>
+              <Link to={"/reset-password"} className="link">
+                Change here
+              </Link>
+            </p>
+          </div>
+        </form>
 
-      <img
-        src="https://res.cloudinary.com/sharath-media-library/image/upload/v1648056558/nothing-store-project/shopping_dfovvp.svg"
-        className="aside-image"
-        alt="shopping-image"
-      />
-    </div>
+        <img
+          src="https://res.cloudinary.com/sharath-media-library/image/upload/v1648056558/nothing-store-project/shopping_dfovvp.svg"
+          className="aside-image"
+          alt="shopping-image"
+        />
+      </div>
     </div>
   );
 };

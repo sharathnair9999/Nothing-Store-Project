@@ -20,7 +20,8 @@ import {
   Orders,
   Order,
   ResetPass,
-  userDetails,
+  RequiredAuth,
+  RedirectLoggedUser,
 } from "./index/index";
 
 function App() {
@@ -30,26 +31,103 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="login" element={<Login />} />
-          <Route path="signup" element={<Signup />} />
-          <Route path="reset-password" element={<ResetPass />} />
+          <Route
+            path="login"
+            element={
+              <RedirectLoggedUser>
+                <Login />
+              </RedirectLoggedUser>
+            }
+          />
+          <Route
+            path="signup"
+            element={
+              <RedirectLoggedUser>
+                <Signup />
+              </RedirectLoggedUser>
+            }
+          />
+          <Route
+            path="reset-password"
+            element={
+              <RedirectLoggedUser>
+                <ResetPass />
+              </RedirectLoggedUser>
+            }
+          />
           <Route path="products" element={<Products />} />
           <Route path="products">
             <Route path=":productId" element={<Product />} />
             <Route path="*" element={<ErrorPage />} />
           </Route>
-          <Route path="user" element={<Profile />}>
-            <Route path=":userId" element={<UserInfo />} />
-            <Route path="orders" element={<Orders />} />
+          <Route
+            path="user"
+            element={
+              <RequiredAuth>
+                <Profile />
+              </RequiredAuth>
+            }
+          >
+            <Route
+              path=":userId"
+              element={
+                <RequiredAuth>
+                  <UserInfo />
+                </RequiredAuth>
+              }
+            />
+            <Route
+              path="orders"
+              element={
+                <RequiredAuth>
+                  <Orders />
+                </RequiredAuth>
+              }
+            />
             <Route path="orders">
-              <Route path=":orderId" element={<Order />} />
+              <Route
+                path=":orderId"
+                element={
+                  <RequiredAuth>
+                    <Order />
+                  </RequiredAuth>
+                }
+              />
             </Route>
-            <Route path="addresses" element={<Addresses />} />
+            <Route
+              path="addresses"
+              element={
+                <RequiredAuth>
+                  <Addresses />
+                </RequiredAuth>
+              }
+            />
             <Route path="addresses">
-              <Route path=":addressId" element={<Address />} />
+              <Route
+                path=":addressId"
+                element={
+                  <RequiredAuth>
+                    <Address />
+                  </RequiredAuth>
+                }
+              />
             </Route>
-            <Route path="wishlist" element={<Wishlist />}></Route>
-            <Route path="cart" element={<Cart />}></Route>
+            <Route
+              path="wishlist"
+              element={
+                <RequiredAuth>
+                  <Wishlist />
+                </RequiredAuth>
+              }
+            ></Route>
+            <Route
+              path="cart"
+              element={
+                <RequiredAuth>
+                  <Cart />
+                </RequiredAuth>
+              }
+            ></Route>
           </Route>
           <Route path="*" element={<ErrorPage />} />
           <Route path="mockapi" element={<Mockman />} />
