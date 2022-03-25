@@ -10,7 +10,7 @@ const Product = () => {
   const { productId } = useParams();
   const { productState, productDispatch } = useProducts();
   const { product, loading, error } = productState;
-  const [openDialog, setOpenDialog] = useState(false)
+  const [openDialog, setOpenDialog] = useState(false);
 
   const getProduct = async (id) => {
     try {
@@ -28,8 +28,7 @@ const Product = () => {
   };
 
   useEffect(() => {
-
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
     getProduct(productId);
   }, [productId]);
 
@@ -57,7 +56,7 @@ const Product = () => {
                   src={product.imgUrl}
                   alt={product.title}
                   className="responsive-img"
-                  onClick={()=>setOpenDialog(true)}
+                  onClick={() => setOpenDialog(true)}
                 />
                 <div className="absolute corner-btns">
                   <button className="btn flex-and-center">
@@ -101,7 +100,9 @@ const Product = () => {
               <h3>Manufactured at</h3>
               <p>{product.company}</p>
             </div>
-            {openDialog && <ImageDialog setOpenDialog={setOpenDialog} img={product.imgUrl}  />}
+            {openDialog && (
+              <ImageDialog setOpenDialog={setOpenDialog} img={product.imgUrl} />
+            )}
           </main>
         )}
       </div>
