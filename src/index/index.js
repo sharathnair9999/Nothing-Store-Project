@@ -36,6 +36,7 @@ import Loader from "../components/Loader/Loader";
 import EmptyData from "../components/ProductsSection/EmptyData";
 import ResetPass from "../pages/ResetPass/ResetPass";
 import { testUser } from "../contexts/User/utils";
+import { capitalize } from "../pages/Login/utils";
 
 export {
   HomePage,
@@ -72,5 +73,6 @@ export {
   Loader,
   EmptyData,
   ResetPass,
-  testUser
+  testUser,
+  capitalize
 };

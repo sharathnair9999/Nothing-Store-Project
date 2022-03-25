@@ -5,6 +5,7 @@ import "./Login.css";
 import { testUser, userDetails } from "../../index/index";
 import axios from "axios";
 import Alert from "../../components/Alert/Alert";
+import { capitalize } from "./utils";
 
 const Login = () => {
   const { userDispatch } = userDetails();
@@ -36,7 +37,7 @@ const Login = () => {
       const { firstName, lastName } = foundUser;
       setAlert({
         type: "success",
-        message: `Hi ${firstName} ${lastName} !! You are successfully logged in.`,
+        message: `Hi ${capitalize(firstName)} ${capitalize(lastName)} !! You are successfully logged in.`,
         showAlert: true,
       });
       localStorage.setItem(

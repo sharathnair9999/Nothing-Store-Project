@@ -4,6 +4,7 @@ import { useState } from "react";
 import "../Login/Login.css";
 import axios from "axios";
 import Alert from "../../components/Alert/Alert";
+import { capitalize } from "../../index/index"
 
 const Signup = () => {
   const [credentials, setCredentials] = useState({
@@ -57,7 +58,7 @@ const Signup = () => {
       const { createdUser } = data;
       setAlert({
         type: "success",
-        message: `Welcome ${createdUser.firstName} ${createdUser.lastName}`,
+        message: `Welcome ${capitalize(createdUser.firstName)} ${capitalize(createdUser.lastName)}`,
         showAlert: true,
       });
       setTimeout(() => {
