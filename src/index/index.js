@@ -6,8 +6,8 @@ import Navbar from "../components/Navbar/Navbar";
 import Login from "../pages/Login/Login";
 import Signup from "../pages/Signup/Signup";
 import Wishlist from "../pages/Wishlist";
-import Cart from "../pages/Cart";
-import Profile from "../pages/Profile";
+import Cart from "../pages/Cart/Cart";
+import Profile from "../pages/Profile/Profile";
 import UserInfo from "../components/UserInfo/UserInfo";
 import Addresses from "../components/Address/Addresses";
 import Address from "../components/Address/Address";
@@ -37,6 +37,7 @@ import EmptyData from "../components/ProductsSection/EmptyData";
 import ResetPass from "../pages/ResetPass/ResetPass";
 import { testUser } from "../contexts/User/utils";
 import { capitalize } from "../pages/Login/utils";
+import { RequiredAuth, RedirectLoggedUser } from "../contexts/User/user-context";
 
 export {
   HomePage,
@@ -74,5 +75,7 @@ export {
   EmptyData,
   ResetPass,
   testUser,
-  capitalize
+  capitalize,
+  RequiredAuth, 
+  RedirectLoggedUser
 };
