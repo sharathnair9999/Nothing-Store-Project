@@ -38,6 +38,8 @@ import ResetPass from "../pages/ResetPass/ResetPass";
 import { testUser } from "../contexts/User/utils";
 import { capitalize } from "../pages/Login/utils";
 import { RequiredAuth, RedirectLoggedUser } from "../contexts/User/user-context";
+import UserSideNav from "../components/UserPage/UserSideNav";
+import ProfileIndex from "../components/UserPage/ProfileIndex";
 
 export {
   HomePage,
@@ -77,5 +79,7 @@ export {
   testUser,
   capitalize,
   RequiredAuth, 
-  RedirectLoggedUser
+  RedirectLoggedUser,
+  UserSideNav,
+  ProfileIndex
 };

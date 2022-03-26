@@ -1,0 +1,16 @@
+.cart-container{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  padding: 0 1rem;
+}
+
+.header{
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.blue{
+  color: var(--sky-400);
+}

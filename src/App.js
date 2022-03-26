@@ -22,6 +22,7 @@ import {
   ResetPass,
   RequiredAuth,
   RedirectLoggedUser,
+  ProfileIndex,
 } from "./index/index";
 
 function App() {
@@ -68,6 +69,7 @@ function App() {
               </RequiredAuth>
             }
           >
+            <Route index element={<ProfileIndex/>}/>
             <Route
               path=":userId"
               element={

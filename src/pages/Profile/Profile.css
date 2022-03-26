@@ -1,0 +1,151 @@
+.profile-page {
+  display: flex;
+  padding: 2px;
+  height: 85vh;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.user-sidenav {
+  background-color: var(--sky-50);
+  border-radius: 10px;
+  max-width: 15rem;
+  min-width: 10rem;
+  width: 100%;
+  padding: 10px;
+  height: 100%;
+}
+
+.user-sidenav .heading {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.user-option-section {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 10px;
+}
+
+/* USER PROFILE INDEX PAGE */
+
+.profile-index {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.image-container{
+  max-width: 30rem;
+  width: 100%;
+}
+
+.user-sidenav li {
+  list-style: none;
+  margin: 2rem 0;
+  padding: 5px 10px;
+}
+
+.user-sidenav a {
+  color: black;
+}
+
+.profile-index .welcome {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.profile-index .welcome .name {
+  color: var(--sky-400);
+}
+
+.welcome-text{
+  line-height: 2rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  max-width: 50rem;
+}
+
+#toggle-user-sidenav[type="checkbox"] {
+  -webkit-appearance: none;
+  opacity: 0;
+}
+.toggle-icon {
+  display: none;
+}
+.toggle-icon:after {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f0c9";
+  font-size: 1.4rem;
+}
+
+.toggle-section {
+  display: none;
+}
+
+@media screen and (max-width: 786px) {
+
+  .user-option-section{
+    margin-top: 0.5rem;
+    margin-left: 0.5rem;
+  }
+  .profile-page {
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    gap: 0;
+    height: auto;
+  }
+  .toggle-section {
+    display: block;
+    text-align: right;
+  }
+
+  .profile-index .welcome {
+    font-size: 2rem;
+  }
+
+  .profile-index {
+    max-width: 20rem;
+  }
+
+  .user-sidenav li{
+    text-align: center;
+  }
+
+  .user-sidenav > ul{
+    margin-top: 2rem;
+  }
+
+  .toggle-icon {
+    display: block;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+  }
+
+  #toggle-user-sidenav:checked ~ .toggle-icon:after {
+    content: "\f00d";
+  }
+
+  .user-sidenav{
+    height: max-content;
+  }
+
+  #toggle-user-sidenav[type="checkbox"]:not(:checked) ~ .user-sidenav {
+    display: none;
+    max-width: 100%;
+  }
+  #toggle-user-sidenav[type="checkbox"]:checked ~ .user-sidenav {
+    display: block;
+    max-width: 100%;
+  }
+}
