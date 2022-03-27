@@ -6,8 +6,6 @@ import {
   useCart,
   userDetails,
   ProductRate,
-  constants,
-  Loader,
 } from "../../index/index";
 
 const ProductCard = ({ product }) => {
@@ -27,7 +25,7 @@ const ProductCard = ({ product }) => {
 
   const { isLoggedUser } = userDetails();
   const { addToCart, cartState, removeFromCart } = useCart();
-  const { isLoading, cartItems } = cartState;
+  const { cartItems } = cartState;
   const productInCart = (prod) => {
     let prodInCart = cartItems.find((item) => item._id === prod._id);
     if (prodInCart) return true;
