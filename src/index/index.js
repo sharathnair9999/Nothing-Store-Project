@@ -47,11 +47,14 @@ import { useCart, CartProvider } from "../contexts/Cart/cart-context";
 import CartCard from "../components/CartCard/CartCard";
 import ProductRate from "../components/ProductRate/ProductRate";
 import CartSummary from "../components/CartPriceSection.js/CartSummary";
+import WishlistCard from "../components/WishlistCard/WishlistCard";
+import { useWishlist, WishListProvider } from "../contexts/Wishlist/wishlist-context";
 
 const constants = {
   loading_svg:
     "https://res.cloudinary.com/sharath-media-library/image/upload/v1647527764/nothing-store-project/Spinner-1.4s-110px_h5xvoz.svg",
-    empty_cart: "https://res.cloudinary.com/sharath-media-library/image/upload/v1648385329/nothing-store-project/empty_cart_azsh1o.svg"
+    empty_cart: "https://res.cloudinary.com/sharath-media-library/image/upload/v1648385329/nothing-store-project/empty_cart_azsh1o.svg",
+    void: "https://res.cloudinary.com/sharath-media-library/image/upload/v1648400460/nothing-store-project/void_kpbmzm.svg"
 };
 
 export {
@@ -100,5 +103,8 @@ export {
   CartCard,
   ProductRate,
   CartSummary,
-  constants
+  constants,
+  WishlistCard,
+  useWishlist,
+  WishListProvider
 };

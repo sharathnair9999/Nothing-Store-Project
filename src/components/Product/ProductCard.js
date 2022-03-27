@@ -6,6 +6,7 @@ import {
   useCart,
   userDetails,
   ProductRate,
+  useWishlist,
 } from "../../index/index";
 
 const ProductCard = ({ product }) => {
@@ -25,17 +26,24 @@ const ProductCard = ({ product }) => {
 
   const { isLoggedUser } = userDetails();
   const { addToCart, cartState, removeFromCart } = useCart();
+  const { addToWishlist, removeFromWishlist, wishlistState } = useWishlist();
+  const { wishlistItems } = wishlistState;
+  const productInWishlist = (prod) => {
+    let prodInWishlist = wishlistItems?.find((item) => item._id === prod._id);
+    if (prodInWishlist) return true;
+    return false;
+  };
+  const inWishlist = productInWishlist(product);
   const { cartItems } = cartState;
   const productInCart = (prod) => {
     let prodInCart = cartItems.find((item) => item._id === prod._id);
     if (prodInCart) return true;
     return false;
   };
-
   const inCart = productInCart(product);
 
   return (
-    <div className={`product vertical-card`}>
+    <div className={`product ${inWishlist && 'saved'} vertical-card`}>
       <div className="image-container">
         <Link to={`/products/${_id}`}>
           <img
@@ -50,9 +58,17 @@ const ProductCard = ({ product }) => {
             <span className="flag">{`Only ${unitsLeft} left!`}</span>
           )}
           <div className="corner-btns">
-            <button className="btn flex-and-center">
-              <i className="fas fa-heart save"></i>
-            </button>
+            {isLoggedUser ? (
+              <button className="btn flex-and-center" onClick={() => {
+                inWishlist ? removeFromWishlist(_id) : addToWishlist({product})
+              }}>
+                <i className="fas fa-heart save"></i>
+              </button>
+            ) : (
+              <button className="btn flex-and-center" onClick={() => {navigate("/login")}}>
+                <i className="fas fa-heart save"></i>
+              </button>
+            )}
           </div>
         </div>
       </div>
