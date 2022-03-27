@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Rating, ProductRate, useCart } from "../../index/index";
+import { Rating, ProductRate, useCart, useWishlist } from "../../index/index";
 
-const CartCard = ({ item }) => {
+const CartCard = ({ product }) => {
   const { removeFromCart, changeQty } = useCart();
-  const { _id, rating, title, imgUrl, price, discountPercent, qty } = item;
+  const { addToWishlist } = useWishlist();
+  const { _id, rating, title, imgUrl, price, discountPercent, qty } = product;
   return (
     <div className="product horizontal-card cart-card w-100">
       <div className="card-body flex">
@@ -48,7 +49,15 @@ const CartCard = ({ item }) => {
         >
           Remove from Cart
         </button>
-        <button className="action-btn secondary">Move to wishlist</button>
+        <button
+          className="action-btn secondary"
+          onClick={() => {
+            addToWishlist({ product });
+            removeFromCart(_id);
+          }}
+        >
+          Move to wishlist
+        </button>
       </div>
     </div>
   );

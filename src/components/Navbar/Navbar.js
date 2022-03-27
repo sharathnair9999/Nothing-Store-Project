@@ -1,14 +1,20 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useCart, useProducts, userDetails } from "../../index/index";
+import {
+  useCart,
+  useProducts,
+  userDetails,
+  useWishlist,
+} from "../../index/index";
 import "./Navbar.css";
 import UserInitials from "./UserInitials";
 
 const Navbar = () => {
   const { productDispatch } = useProducts();
-  const { userState , logoutUser} = userDetails();
+  const { userState, logoutUser } = userDetails();
   const { encodedToken, firstName, lastName } = userState;
-  const {cartState} = useCart()
+  const { cartState } = useCart();
+  const { wishlistState } = useWishlist();
 
   return (
     <div className="top-navbar">
@@ -41,9 +47,11 @@ const Navbar = () => {
               <Link to="/user/cart">
                 <div className="badge-container mx-1">
                   <i className="fas fa-cart-shopping fa-lg"></i>
-                 {cartState?.cartItems?.length>0&& <span className="icon-badge green-badge flex-and-center">
-                    {cartState?.cartItems?.length}
-                  </span>}
+                  {cartState?.cartItems?.length > 0 && (
+                    <span className="icon-badge green-badge flex-and-center">
+                      {cartState?.cartItems?.length}
+                    </span>
+                  )}
                 </div>
               </Link>
             </li>
@@ -51,17 +59,26 @@ const Navbar = () => {
               <Link to="/user/wishlist">
                 <div className="badge-container mx-1">
                   <i className="fa-solid fa-heart fa-lg"></i>
-                  <span className="icon-badge green-badge flex-and-center">
-                    2
-                  </span>
+                  {wishlistState?.wishlistItems?.length > 0 && (
+                    <span className="icon-badge green-badge flex-and-center">
+                      {wishlistState?.wishlistItems?.length}
+                    </span>
+                  )}
                 </div>
               </Link>
             </li>
             <li className="user-icon flex-col">
               <Link to="/user">
-              <UserInitials firstName={firstName} lastName={lastName}/>
+                <UserInitials firstName={firstName} lastName={lastName} />
               </Link>
-              <button onClick={()=>{logoutUser()}} className="logout-btn btn btn-primary">Logout</button>
+              <button
+                onClick={() => {
+                  logoutUser();
+                }}
+                className="logout-btn btn btn-primary"
+              >
+                Logout
+              </button>
             </li>
           </ol>
         ) : (
