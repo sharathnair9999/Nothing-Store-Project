@@ -51,6 +51,7 @@ import CartSummary from "../components/CartPriceSection.js/CartSummary";
 const constants = {
   loading_svg:
     "https://res.cloudinary.com/sharath-media-library/image/upload/v1647527764/nothing-store-project/Spinner-1.4s-110px_h5xvoz.svg",
+    empty_cart: "https://res.cloudinary.com/sharath-media-library/image/upload/v1648385329/nothing-store-project/empty_cart_azsh1o.svg"
 };
 
 export {
