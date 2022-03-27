@@ -5,7 +5,7 @@ import ErrorPage from "../pages/ErrorPage";
 import Navbar from "../components/Navbar/Navbar";
 import Login from "../pages/Login/Login";
 import Signup from "../pages/Signup/Signup";
-import Wishlist from "../pages/Wishlist";
+import Wishlist from "../pages/Wishlist/Wishlist";
 import Cart from "../pages/Cart/Cart";
 import Profile from "../pages/Profile/Profile";
 import UserInfo from "../components/UserInfo/UserInfo";

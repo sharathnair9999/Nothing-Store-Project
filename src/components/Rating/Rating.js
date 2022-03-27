@@ -2,7 +2,7 @@ import React from 'react'
 
 const Rating = ({rating}) => {
   return (
-    <div className="rating-section">
+    <div className="rating-section w-100">
     {[...Array(5)].map((_, id) => (
       <i
         key={id}
