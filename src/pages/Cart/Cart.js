@@ -1,13 +1,28 @@
 import React from "react";
-import "./Cart.css"
+import { CartCard, CartSummary, useCart } from "../../index/index";
+import "./Cart.css";
 
 const Cart = () => {
+
+  const {cartState , cartPriceSummary} = useCart()
+  const {cartItems} = cartState
+
+  const currSummary = cartPriceSummary(cartItems)
   return (
-    <div className="cart-container">
-       <p className="header">
-        <span className="blue">C</span>
-        <span className="black">art</span>
-      </p>
+    <div>
+      <header className="flex-and-center gap-2">
+        <p className="cart-header">
+          <span className="blue">C</span>
+          <span className="black">art&nbsp;</span>
+        </p>
+        <span className="count">Total Items - {cartItems?.length}</span>
+      </header>
+      <div className="cart-container flex gap-2">
+        <div className="flex flex-col gap-2 mt-1">
+          {cartItems?.map((item)=> <CartCard key={item._id} item={item} />  )}                                                        
+        </div>
+       <CartSummary cartItems={cartItems} currSummary={currSummary}/>
+      </div>
     </div>
   );
 };

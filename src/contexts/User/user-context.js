@@ -1,6 +1,5 @@
-import axios from "axios";
 import { createContext, useContext, useReducer } from "react";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import { initialState, userReducer} from "./utils";
 
 
@@ -10,11 +9,18 @@ const UserProvider = ({children}) => {
 
   const [userState, userDispatch] = useReducer(userReducer, initialState)
 
+  const isLoggedIn = () => userState.encodedToken!==null
 
+  const isLoggedUser = isLoggedIn()
+
+  const logoutUser = () => {
+    localStorage.removeItem("authToken")
+    userDispatch({type:"LOGOUT"}) 
+  }
 
 
   return (
-    <UserContext.Provider value={{initialState, userState, userDispatch}}>
+    <UserContext.Provider value={{initialState, userState, userDispatch, isLoggedUser, logoutUser}}>
       {children}
     </UserContext.Provider>
   )

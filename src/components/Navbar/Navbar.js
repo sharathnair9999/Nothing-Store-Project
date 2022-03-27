@@ -1,18 +1,14 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useProducts, userDetails } from "../../index/index";
+import { useCart, useProducts, userDetails } from "../../index/index";
 import "./Navbar.css";
 import UserInitials from "./UserInitials";
 
 const Navbar = () => {
   const { productDispatch } = useProducts();
-  const { userState , userDispatch} = userDetails();
+  const { userState , logoutUser} = userDetails();
   const { encodedToken, firstName, lastName } = userState;
-  const navigate = useNavigate()
-  const logoutUser = () => {
-    localStorage.removeItem("authToken")
-    userDispatch({type:"LOGOUT"}) 
-  }
+  const {cartState} = useCart()
 
   return (
     <div className="top-navbar">
@@ -45,9 +41,9 @@ const Navbar = () => {
               <Link to="/user/cart">
                 <div className="badge-container mx-1">
                   <i className="fas fa-cart-shopping fa-lg"></i>
-                  <span className="icon-badge green-badge flex-and-center">
-                    10
-                  </span>
+                 {cartState?.cartItems?.length>0&& <span className="icon-badge green-badge flex-and-center">
+                    {cartState?.cartItems?.length}
+                  </span>}
                 </div>
               </Link>
             </li>

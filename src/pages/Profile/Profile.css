@@ -1,20 +1,18 @@
 .profile-page {
   display: flex;
   padding: 2px;
-  height: 85vh;
+  height: 100%;
   width: 100%;
   justify-content: flex-start;
   align-items: flex-start;
+  min-height: 100vh;
 }
 
 .user-sidenav {
-  background-color: var(--sky-50);
-  border-radius: 10px;
   max-width: 15rem;
   min-width: 10rem;
   width: 100%;
   padding: 10px;
-  height: 100%;
 }
 
 .user-sidenav .heading {

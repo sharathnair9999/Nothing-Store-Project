@@ -40,6 +40,10 @@ import { capitalize } from "../pages/Login/utils";
 import { RequiredAuth, RedirectLoggedUser } from "../contexts/User/user-context";
 import UserSideNav from "../components/UserPage/UserSideNav";
 import ProfileIndex from "../components/UserPage/ProfileIndex";
+import { useCart, CartProvider } from "../contexts/Cart/cart-context";
+import CartCard from "../components/CartCard/CartCard";
+import ProductRate from "../components/ProductRate/ProductRate";
+import CartSummary from "../components/CartPriceSection.js/CartSummary";
 
 export {
   HomePage,
@@ -81,5 +85,11 @@ export {
   RequiredAuth, 
   RedirectLoggedUser,
   UserSideNav,
-  ProfileIndex
+  ProfileIndex,
+  useCart,
+  CartProvider,
+  CartCard,
+  ProductRate,
+  CartSummary
+
 };
