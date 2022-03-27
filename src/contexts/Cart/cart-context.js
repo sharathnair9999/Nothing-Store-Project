@@ -28,9 +28,11 @@ const CartProvider = ({ children }) => {
 
   const addToCart = async (prod) => {
     try {
+      cartDispatch({type:"LOADING", payload:true})
       const { data } = await axios.post("/api/user/cart", prod, {
         headers: { authorization: encodedToken },
       });
+      cartDispatch({type:"LOADING", payload:false})
       const { cart } = data;
       cartDispatch({ type: "ADD_TO_CART", payload: cart });
     } catch (error) {
@@ -40,30 +42,56 @@ const CartProvider = ({ children }) => {
       });
     }
   };
-
+  
   const removeFromCart = async (id) => {
     try {
-      const { data } = await axios.delete(`/api/user/cart/${id}`, {
+      cartDispatch({type:"LOADING", payload:true})
+      const {data} = await axios.delete(`/api/user/cart/${id}`, {
         headers: { authorization: encodedToken },
       });
-      console.log(data);
+      cartDispatch({type:"LOADING", payload:false})
+      const {cart} = data
+      cartDispatch({type:"REMOVE_FROM_CART", payload:cart})
     } catch (error) {
-      console.log(error);
+      cartDispatch({
+        type: "ERROR",
+        payload: "Could not remove item from the cart!",
+      });
     }
   };
+  
+  const changeQty = async (id, action) => {
+    try {
+      cartDispatch({type:"LOADING", payload:true})
+      const {data} = await axios.post(`/api/user/cart/${id}`, { action: { type: action }}, {
+        headers: { authorization: encodedToken },
+      });
+      cartDispatch({type:"LOADING", payload:false})
+      const {cart} = data
+      cartDispatch({type:`${action==="increment" ?"INCREMENT_QTY":"DECREMENT_QTY"}`, payload:cart})
+      
+    } catch (error) {
+      cartDispatch({
+        type: "ERROR",
+        payload: "Some error occurred!"
+      });
+    }
+  }
 
   const cartPriceSummary = (cartProducts) => {
     const ans = cartProducts.reduce(
       (acc, curr) => {
         return {
           ...acc,
-          cartPrice: acc.cartPrice + curr.price + (curr.price * curr.discountPercent) / 100,
-          totalDiscount: acc.totalDiscount + (curr.price * curr.discountPercent)/100,
+          cartPrice: acc.cartPrice + curr.qty*(curr.price + (curr.price * curr.discountPercent) / 100),
+          totalDiscount: acc.totalDiscount + curr.qty*((curr.price * curr.discountPercent)/100),
           deliveryCharges : acc.cartPrice!==0 && curr.price>5000? 0:499,
-          finalTotal : acc.finalTotal + curr.price
+          finalTotal : acc.finalTotal + curr.qty*curr.price,
+          totalQty : acc.totalQty + curr.qty
         };
       },
       {
+        totalQty:0,
         cartPrice: 0,
         totalDiscount: 0,
         deliveryCharges: 0,
@@ -83,6 +111,7 @@ const CartProvider = ({ children }) => {
     addToCart,
     removeFromCart,
     cartPriceSummary,
+    changeQty
   };
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };

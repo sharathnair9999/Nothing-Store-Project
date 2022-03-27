@@ -20,7 +20,6 @@ const Login = () => {
     showAlert: false,
   });
 
-  const navigate = useNavigate();
 
   const onChange = (e) => {
     setUserCredentials((details) => {

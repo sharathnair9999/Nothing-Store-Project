@@ -147,6 +147,10 @@ nav .nav-actions {
   align-items: center;
 }
 
+.badge-container .icon-badge{
+  top: -20px;
+}
+
 @media screen and (max-width: 1050px) {
   .header {
     height: 6rem;

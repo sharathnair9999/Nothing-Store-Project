@@ -1,7 +1,14 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./ProductCard.css";
-import { Rating, useCart, userDetails, ProductRate } from "../../index/index";
+import {
+  Rating,
+  useCart,
+  userDetails,
+  ProductRate,
+  constants,
+  Loader,
+} from "../../index/index";
 
 const ProductCard = ({ product }) => {
   const {
@@ -20,8 +27,9 @@ const ProductCard = ({ product }) => {
 
   const { isLoggedUser } = userDetails();
   const { addToCart, cartState, removeFromCart } = useCart();
+  const { isLoading, cartItems } = cartState;
   const productInCart = (prod) => {
-    let prodInCart = cartState.cartItems.find((item) => item._id === prod._id);
+    let prodInCart = cartItems.find((item) => item._id === prod._id);
     if (prodInCart) return true;
     return false;
   };
@@ -57,22 +65,17 @@ const ProductCard = ({ product }) => {
         <small>{company}</small>
       </div>
       <Rating rating={rating} />
-     <ProductRate price={price} discountPercent={discountPercent} />
+      <ProductRate price={price} discountPercent={discountPercent} />
       <div className="card-action-btns">
         {/* <button className="action-btn primary">Buy now</button> */}
-
-        {/* {encoded} */}
-
         {isLoggedUser ? (
           <button
             className={`${!inStock ? "secondary" : "primary"} action-btn`}
             disabled={!inStock}
             onClick={() => {
               if (inStock && inCart) {
-                console.log("remove");
                 removeFromCart(_id);
               } else if (inStock && !inCart) {
-                console.log("add");
                 addToCart({ product });
               }
             }}
@@ -89,12 +92,15 @@ const ProductCard = ({ product }) => {
             onClick={() => navigate("/login")}
             className={`${!inStock ? "secondary" : "primary"} action-btn`}
           >
-            {!inStock
-              ? "Out of Stock"
-              : <span>Sign In to <i className="fa-solid fa-cart-shopping"></i></span> }
+            {!inStock ? (
+              "Out of Stock"
+            ) : (
+              <span>
+                Sign In to <i className="fa-solid fa-cart-shopping"></i>
+              </span>
+            )}
           </button>
         )}
-       
       </div>
     </div>
   );

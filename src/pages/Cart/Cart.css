@@ -15,16 +15,13 @@
   font-size: 1.2rem;
 }
 
-.cart-section {
-  min-height: 90vh;
-}
-
 .cart-container {
   justify-content: center;
   align-items: flex-start;
   position: relative;
   width: 100%;
 }
+
 
 .price-details {
   padding: 1rem;
@@ -36,9 +33,9 @@
   top: 1rem;
 }
 
-@media screen and (max-width: 1050px) {
+@media screen and (min-width: 1050px) {
   .price-details {
-    top: 20vh;
+    top: 1rem;
   }
 }
 
@@ -68,8 +65,7 @@
 }
 
 .product.horizontal-card {
-  min-width: 20rem;
-  max-width: 25rem;
+  min-width: 25rem;
   width: 100%;
 }
 
@@ -84,6 +80,19 @@
     justify-content: center;
     transition: all 0.3s ease-in;
   }
+  .horizontal-card .card-action-btns{
+    gap: 10px;
+    padding-bottom: 10px;
+  } 
+  .horizontal-card .card-action-btns .action-btn{
+    padding: 5px;
+  }
+
+  .product.horizontal-card{
+    max-width: 22rem;
+    min-width: 20rem;
+    width: 100%;
+  }
 
   .price-details {
     font-size: 0.8rem;
@@ -92,7 +101,8 @@
   }
 
   .price-details .btn {
-    font-size: 0.7rem;
+    font-size: 0.6rem;
+
   }
 
   .price-details section input {

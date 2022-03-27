@@ -6,6 +6,7 @@
   justify-content: flex-start;
   align-items: flex-start;
   min-height: 100vh;
+  margin-bottom: 1rem;
 }
 
 .user-sidenav {

@@ -18,7 +18,7 @@ const Cart = () => {
         <span className="count">Total Items - {cartItems?.length}</span>
       </header>
       <div className="cart-container flex gap-2">
-        <div className="flex flex-col gap-2 mt-1">
+        <div className="cart-items flex flex-col gap-2 mt-1 w-100">
           {cartItems?.map((item)=> <CartCard key={item._id} item={item} />  )}                                                        
         </div>
        <CartSummary cartItems={cartItems} currSummary={currSummary}/>

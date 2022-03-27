@@ -1,10 +1,11 @@
 import React from 'react'
-
+import { constants } from '../../index/index'
 const Loader = () => {
+
   return (
     <div className="loader flex-and-center w-100">
     <img
-      src="https://res.cloudinary.com/sharath-media-library/image/upload/v1647527764/nothing-store-project/Spinner-1.4s-110px_h5xvoz.svg"
+      src={constants.loading_svg}
       alt="loading"
     />
   </div>
