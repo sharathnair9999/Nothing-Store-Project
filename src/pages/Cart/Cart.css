@@ -1,0 +1,111 @@
+.cart-header {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.blue {
+  color: var(--sky-400);
+}
+
+.action-btn.primary:hover{
+  background-color: var(--sky-400);
+}
+
+.count {
+  font-size: 1.2rem;
+}
+
+.cart-container {
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+  width: 100%;
+}
+
+
+.price-details {
+  padding: 1rem;
+  min-width: 20rem;
+  transition: all 0.3s;
+  border-radius: 8px;
+  box-shadow: 2px 4px 8px 6px rgb(216, 216, 216);
+  position: sticky;
+  top: 1rem;
+}
+
+@media screen and (min-width: 1050px) {
+  .price-details {
+    top: 1rem;
+  }
+}
+
+.price-details section {
+  justify-content: space-between;
+}
+
+.price-details section input {
+  padding: 0;
+  height: auto;
+  outline: none;
+  border-radius: 4px;
+}
+
+.price-details .btn {
+  margin: 0;
+  padding: 4px 8px;
+  font-size: 0.8rem;
+}
+
+.price {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.qty-input {
+  text-align: center;
+}
+
+.product.horizontal-card {
+  min-width: 25rem;
+  width: 100%;
+}
+
+.product:hover {
+  box-shadow: 2px 4px 4px 2px var(--box-shadow-color);
+}
+
+@media screen and (max-width: 800px) {
+
+  .cart-container {
+    flex-wrap: wrap-reverse;
+    justify-content: center;
+    transition: all 0.3s ease-in;
+  }
+  .horizontal-card .card-action-btns{
+    gap: 10px;
+    padding-bottom: 10px;
+  } 
+  .horizontal-card .card-action-btns .action-btn{
+    padding: 5px;
+  }
+
+  .product.horizontal-card{
+    max-width: 22rem;
+    min-width: 20rem;
+    width: 100%;
+  }
+
+  .price-details {
+    font-size: 0.8rem;
+    min-width: 18rem;
+    position: static;
+  }
+
+  .price-details .btn {
+    font-size: 0.6rem;
+
+  }
+
+  .price-details section input {
+    width: 6rem;
+  }
+}

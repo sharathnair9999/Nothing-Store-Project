@@ -37,7 +37,22 @@ import EmptyData from "../components/ProductsSection/EmptyData";
 import ResetPass from "../pages/ResetPass/ResetPass";
 import { testUser } from "../contexts/User/utils";
 import { capitalize } from "../pages/Login/utils";
-import { RequiredAuth, RedirectLoggedUser } from "../contexts/User/user-context";
+import {
+  RequiredAuth,
+  RedirectLoggedUser,
+} from "../contexts/User/user-context";
+import UserSideNav from "../components/UserPage/UserSideNav";
+import ProfileIndex from "../components/UserPage/ProfileIndex";
+import { useCart, CartProvider } from "../contexts/Cart/cart-context";
+import CartCard from "../components/CartCard/CartCard";
+import ProductRate from "../components/ProductRate/ProductRate";
+import CartSummary from "../components/CartPriceSection.js/CartSummary";
+
+const constants = {
+  loading_svg:
+    "https://res.cloudinary.com/sharath-media-library/image/upload/v1647527764/nothing-store-project/Spinner-1.4s-110px_h5xvoz.svg",
+    empty_cart: "https://res.cloudinary.com/sharath-media-library/image/upload/v1648385329/nothing-store-project/empty_cart_azsh1o.svg"
+};
 
 export {
   HomePage,
@@ -76,6 +91,14 @@ export {
   ResetPass,
   testUser,
   capitalize,
-  RequiredAuth, 
-  RedirectLoggedUser
+  RequiredAuth,
+  RedirectLoggedUser,
+  UserSideNav,
+  ProfileIndex,
+  useCart,
+  CartProvider,
+  CartCard,
+  ProductRate,
+  CartSummary,
+  constants
 };

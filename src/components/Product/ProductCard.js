@@ -1,7 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./ProductCard.css";
-import {Rating} from "../../index/index"
+import {
+  Rating,
+  useCart,
+  userDetails,
+  ProductRate,
+  constants,
+  Loader,
+} from "../../index/index";
 
 const ProductCard = ({ product }) => {
   const {
@@ -13,13 +20,24 @@ const ProductCard = ({ product }) => {
     price,
     inStock,
     discountPercent,
-    categoryName,
     imgUrl,
   } = product;
+
+  const navigate = useNavigate();
+
+  const { isLoggedUser } = userDetails();
+  const { addToCart, cartState, removeFromCart } = useCart();
+  const { isLoading, cartItems } = cartState;
+  const productInCart = (prod) => {
+    let prodInCart = cartItems.find((item) => item._id === prod._id);
+    if (prodInCart) return true;
+    return false;
+  };
+
+  const inCart = productInCart(product);
+
   return (
-    <div
-      className={`product vertical-card`}
-    >
+    <div className={`product vertical-card`}>
       <div className="image-container">
         <Link to={`/products/${_id}`}>
           <img
@@ -45,18 +63,44 @@ const ProductCard = ({ product }) => {
           <h4>{title}</h4>
         </Link>
         <small>{company}</small>
-      </div>  
-        <Rating rating = {rating}/>
-      <div className="rate-section">
-        <span className="curr-price">{`₹ ${price.toLocaleString()}`}</span>
-        <span className="mrp-price">{`₹ ${
-          (price + (price * discountPercent) / 100
-          ).toLocaleString()} `}</span>
-        <span className="percent-off">{`(${discountPercent}% off)`}</span>
       </div>
+      <Rating rating={rating} />
+      <ProductRate price={price} discountPercent={discountPercent} />
       <div className="card-action-btns">
         {/* <button className="action-btn primary">Buy now</button> */}
-        <button className={`${!inStock ? "secondary":"primary"} action-btn`} disabled={!inStock} onClick={()=>console.log("click")}>{inStock ? 'Add to Cart':"Out of Stock"}</button>
+        {isLoggedUser ? (
+          <button
+            className={`${!inStock ? "secondary" : "primary"} action-btn`}
+            disabled={!inStock}
+            onClick={() => {
+              if (inStock && inCart) {
+                removeFromCart(_id);
+              } else if (inStock && !inCart) {
+                addToCart({ product });
+              }
+            }}
+          >
+            {!inCart
+              ? !inStock
+                ? "Out of Stock"
+                : "Add to Cart"
+              : "Remove from Cart"}
+          </button>
+        ) : (
+          <button
+            disabled={!inStock}
+            onClick={() => navigate("/login")}
+            className={`${!inStock ? "secondary" : "primary"} action-btn`}
+          >
+            {!inStock ? (
+              "Out of Stock"
+            ) : (
+              <span>
+                Sign In to <i className="fa-solid fa-cart-shopping"></i>
+              </span>
+            )}
+          </button>
+        )}
       </div>
     </div>
   );

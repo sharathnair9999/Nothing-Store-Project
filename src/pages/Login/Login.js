@@ -20,7 +20,6 @@ const Login = () => {
     showAlert: false,
   });
 
-  const navigate = useNavigate();
 
   const onChange = (e) => {
     setUserCredentials((details) => {
@@ -28,9 +27,14 @@ const Login = () => {
     });
   };
 
+  const closeAlert = () => {
+    setAlert((alert) => {
+      return { ...alert, showAlert: !alert.showAlert };
+    });
+  };
+
   const handleSubmit = async (event, credentials) => {
     event.preventDefault();
-    let from = location.state?.from?.pathname || "/";
 
     try {
       const { data } = await axios.post("/api/auth/login", credentials);
@@ -51,27 +55,20 @@ const Login = () => {
         type: "SET_USER",
         payload: { firstName, lastName, encodedToken },
       });
-      setTimeout(() => {
-        setAlert({ type: "", message: "", showAlert: false });
-      }, 1500);
-      setTimeout(() => {
-        navigate(from, { replace: true });
-      }, 3000);
     } catch (error) {
       setAlert({
         type: "danger",
-        message: "Something is wrong. Try again!",
+        message: "Invalid Credentials. Please try again!",
         showAlert: true,
       });
-      setTimeout(() => {
-        setAlert({ type: "", message: "", showAlert: false });
-      }, 3000);
     }
   };
 
   return (
     <div className="relative">
-      {alert.showAlert && <Alert type={alert.type} message={alert.message} />}
+      {alert.showAlert && (
+        <Alert type={alert.type} message={alert.message} close={closeAlert} />
+      )}
 
       <div className="login-container flex-and-center">
         <form
