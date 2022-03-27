@@ -90,6 +90,10 @@
 
 .rate-section{
   font-size: 1.3rem;
+  display: flex;
+  justify-content:flex-start;
+  align-items: center;
+  gap: 1rem;
 }
 
 @media screen and (max-width: 800px) {
