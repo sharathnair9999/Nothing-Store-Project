@@ -13,7 +13,6 @@ const WishListProvider = ({ children }) => {
     initialWishlistState
   );
 
-  console.log(wishlistState.wishlistItems)
 
   const getWishlistItems = async () => {
     try {
@@ -55,13 +54,20 @@ const WishListProvider = ({ children }) => {
     }
   }
 
+  const { wishlistItems } = wishlistState;
+  const productInWishlist = (prod) => {
+    let prodInWishlist = wishlistItems?.find((item) => item._id === prod._id);
+    if (prodInWishlist) return true;
+    return false;
+  };
+
   useEffect(() => {
     getWishlistItems(encodedToken)
   }, [])
   
 
 
-  const value = { wishlistState, wishlistDispatch, addToWishlist, removeFromWishlist };
+  const value = { wishlistState, wishlistDispatch, addToWishlist, removeFromWishlist, productInWishlist };
   return (
     <WishlistContext.Provider value={value}>
       {children}

@@ -2,14 +2,24 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-import { Loader, Rating, useProducts, EmptyData } from "../../index/index";
+import {
+  Loader,
+  Rating,
+  useProducts,
+  EmptyData,
+  useCart,
+  userDetails,
+} from "../../index/index";
 import ImageDialog from "./ImageDialog";
 import "./Product.css";
 
 const Product = () => {
   const { productId } = useParams();
   const { productState, productDispatch } = useProducts();
+  const { addToCart, productInCart } = useCart();
   const { product, loading, error } = productState;
+  const inCart = productInCart(product);
+  const { isLoggedUser } = userDetails();
   const [openDialog, setOpenDialog] = useState(false);
 
   const getProduct = async (id) => {
@@ -47,7 +57,7 @@ const Product = () => {
               className="back_to_home mr-auto flex-and-center gap-sm"
               to={"/products"}
             >
-              <i className="fa-solid fa-angle-left"></i>{" "}
+              <i className="fa-solid fa-angle-left"></i>
               <span>Back To Products</span>
             </Link>
             <div className="product-main-info justify-fs items-fs flex gap-2">
@@ -82,10 +92,44 @@ const Product = () => {
                 </div>
                 <Rating rating={product.rating} />
                 <div className="action-btns flex-and-center flex-col gap-sm">
-                  <button className="btn btn-primary w-100">Buy Now</button>
-                  <button className="btn btn-secondary w-100">
-                    Add to Cart
-                  </button>
+                  {/* {isLoggedUser ? (
+                    <button
+                      className={`${
+                        !product?.inStock ? "secondary" : "primary"
+                      } action-btn`}
+                      disabled={!product?.inStock}
+                      onClick={() => {
+                        if (product?.inStock && inCart) {
+                          removeFromCart(_id);
+                        } else if (product?.inStock && !inCart) {
+                          addToCart({ product });
+                        }
+                      }}
+                    >
+                      {!inCart
+                        ? !inStock
+                          ? "Out of Stock"
+                          : "Add to Cart"
+                        : "Remove from Cart"}
+                    </button>
+                  ) : (
+                    <button
+                      disabled={!product?.inStock}
+                      onClick={() => navigate("/login")}
+                      className={`${
+                        !product?.inStock ? "secondary" : "primary"
+                      } action-btn`}
+                    >
+                      {!inStock ? (
+                        "Out of Stock"
+                      ) : (
+                        <span>
+                          Sign In to
+                          <i className="fa-solid fa-cart-shopping"></i>
+                        </span>
+                      )}
+                    </button>
+                  )} */}
                 </div>
               </div>
             </div>

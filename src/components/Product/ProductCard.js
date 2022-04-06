@@ -25,25 +25,13 @@ const ProductCard = ({ product }) => {
   const navigate = useNavigate();
 
   const { isLoggedUser } = userDetails();
-  const { addToCart, cartState, removeFromCart } = useCart();
-  const { addToWishlist, removeFromWishlist, wishlistState } = useWishlist();
-  const { wishlistItems } = wishlistState;
-  const productInWishlist = (prod) => {
-    let prodInWishlist = wishlistItems?.find((item) => item._id === prod._id);
-    if (prodInWishlist) return true;
-    return false;
-  };
+  const { addToCart, removeFromCart, productInCart } = useCart();
+  const { addToWishlist, removeFromWishlist, productInWishlist } = useWishlist();
   const inWishlist = productInWishlist(product);
-  const { cartItems } = cartState;
-  const productInCart = (prod) => {
-    let prodInCart = cartItems.find((item) => item._id === prod._id);
-    if (prodInCart) return true;
-    return false;
-  };
   const inCart = productInCart(product);
 
   return (
-    <div className={`product ${inWishlist && 'saved'} vertical-card`}>
+    <div className={`product ${isLoggedUser && inWishlist && "saved"} vertical-card`}>
       <div className="image-container">
         <Link to={`/products/${_id}`}>
           <img
@@ -59,13 +47,23 @@ const ProductCard = ({ product }) => {
           )}
           <div className="corner-btns">
             {isLoggedUser ? (
-              <button className="btn flex-and-center" onClick={() => {
-                inWishlist ? removeFromWishlist(_id) : addToWishlist({product})
-              }}>
+              <button
+                className="btn flex-and-center"
+                onClick={() => {
+                  inWishlist
+                    ? removeFromWishlist(_id)
+                    : addToWishlist({ product });
+                }}
+              >
                 <i className="fas fa-heart save"></i>
               </button>
             ) : (
-              <button className="btn flex-and-center" onClick={() => {navigate("/login")}}>
+              <button
+                className="btn flex-and-center"
+                onClick={() => {
+                  navigate("/login");
+                }}
+              >
                 <i className="fas fa-heart save"></i>
               </button>
             )}
@@ -81,7 +79,6 @@ const ProductCard = ({ product }) => {
       <Rating rating={rating} />
       <ProductRate price={price} discountPercent={discountPercent} />
       <div className="card-action-btns">
-        {/* <button className="action-btn primary">Buy now</button> */}
         {isLoggedUser ? (
           <button
             className={`${!inStock ? "secondary" : "primary"} action-btn`}
