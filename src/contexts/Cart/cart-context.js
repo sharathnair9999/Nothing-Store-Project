@@ -101,6 +101,13 @@ const CartProvider = ({ children }) => {
     return ans;
   };
 
+  const { cartItems } = cartState;
+  const productInCart = (prod) => {
+    let prodInCart = cartItems.find((item) => item._id === prod._id);
+    if (prodInCart) return true;
+    return false;
+  };
+
   useEffect(() => {
     getCartItems(encodedToken);
   }, []);
@@ -111,7 +118,8 @@ const CartProvider = ({ children }) => {
     addToCart,
     removeFromCart,
     cartPriceSummary,
-    changeQty
+    changeQty,
+    productInCart
   };
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };

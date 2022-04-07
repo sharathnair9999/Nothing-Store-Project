@@ -10,6 +10,7 @@ const WishlistCard = ({ product }) => {
     price,
     discountPercent,
     imgUrl,
+    inStock
   } = product;
 
   const { removeFromWishlist } = useWishlist();
@@ -38,13 +39,14 @@ const WishlistCard = ({ product }) => {
       <ProductRate price={price} discountPercent={discountPercent} />
       <div className="card-action-btns">
         <button
-          className="action-btn primary"
+        disabled={!inStock}
+          className={`action-btn ${inStock ?"primary" : "secondary"}`}
           onClick={() => {
             addToCart({ product });
             removeFromWishlist(_id);
           }}
         >
-          Move to Cart
+          {!inStock ? 'Out of Stock':"Move To Cart"}
         </button>
       </div>
     </div>
