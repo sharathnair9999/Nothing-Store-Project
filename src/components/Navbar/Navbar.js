@@ -1,5 +1,5 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import {
   useCart,
   useProducts,
@@ -10,11 +10,33 @@ import "./Navbar.css";
 import UserInitials from "./UserInitials";
 
 const Navbar = () => {
-  const { productDispatch } = useProducts();
+  const {
+    productDispatch,
+    searchProduct,
+    productState: { products },
+  } = useProducts();
   const { userState, logoutUser } = userDetails();
-  const { encodedToken, firstName, lastName } = userState;
+  const { isLoggedIn, firstName, lastName } = userState;
   const { cartState } = useCart();
   const { wishlistState } = useWishlist();
+  const [searchInput, setSearchInput] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const searchForProduct = (e, searchInput) => {
+    e.preventDefault();
+    if (searchInput.length === 0) {
+      productDispatch({ type: "PRODUCTS", payload: products });
+    }
+    navigate("/products");
+    searchProduct(searchInput);
+  };
+
+  useEffect(() => {
+    if (location.pathname !== "/products") {
+      setSearchInput("");
+    }
+  }, [location?.pathname]);
 
   return (
     <div className="top-navbar">
@@ -35,12 +57,26 @@ const Navbar = () => {
             <span>Store</span>
           </Link>
         </div>
-        <div className="search_box">
-          <input type="search" placeholder="Search Here..." />
-          <span className="fa-solid fa-magnifying-glass"></span>
-        </div>
 
-        {encodedToken ? (
+        {location.pathname === "/products" && (
+          <form
+            onSubmit={(e) => searchForProduct(e, searchInput)}
+            className="search_box"
+          >
+            <input
+              type="search"
+              placeholder="Search Here..."
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+            />
+            <button
+              type="submit"
+              className="fa-solid fa-magnifying-glass btn search-btn"
+            ></button>
+          </form>
+        )}
+
+        {isLoggedIn ? (
           <ol className="nav-actions flex-and-center pr-1">
             {" "}
             <li>

@@ -92,44 +92,6 @@ const Product = () => {
                 </div>
                 <Rating rating={product.rating} />
                 <div className="action-btns flex-and-center flex-col gap-sm">
-                  {/* {isLoggedUser ? (
-                    <button
-                      className={`${
-                        !product?.inStock ? "secondary" : "primary"
-                      } action-btn`}
-                      disabled={!product?.inStock}
-                      onClick={() => {
-                        if (product?.inStock && inCart) {
-                          removeFromCart(_id);
-                        } else if (product?.inStock && !inCart) {
-                          addToCart({ product });
-                        }
-                      }}
-                    >
-                      {!inCart
-                        ? !inStock
-                          ? "Out of Stock"
-                          : "Add to Cart"
-                        : "Remove from Cart"}
-                    </button>
-                  ) : (
-                    <button
-                      disabled={!product?.inStock}
-                      onClick={() => navigate("/login")}
-                      className={`${
-                        !product?.inStock ? "secondary" : "primary"
-                      } action-btn`}
-                    >
-                      {!inStock ? (
-                        "Out of Stock"
-                      ) : (
-                        <span>
-                          Sign In to
-                          <i className="fa-solid fa-cart-shopping"></i>
-                        </span>
-                      )}
-                    </button>
-                  )} */}
                 </div>
               </div>
             </div>

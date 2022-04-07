@@ -37,7 +37,7 @@ export const products = [
       ["Industry-leading noise canceling with Dual Noise Sensor technology","Next-level music with Edge-AI, co-developed with Sony Music Studios Tokyo","Up to 30-hour battery life with quick charging (10 min charge for 5 hours of playback)","Touch Sensor controls to pause/play/skip tracks, control volume, activate your voice assistant, and answer phone calls","Speak-to-chat technology automatically reduces volume during conversations","Superior call quality with precise voice pickup","Wearing detection pauses playback when headphones are removed","Seamless multiple-device pairing","Adaptive Sound Control provides a personalized listening experience"],
   },
   {
-    _id: 1113,
+    _id: "1113",
     title: "iPhone XR 64GB",
     company: "Apple",
     rating: 3,

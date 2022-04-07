@@ -29,7 +29,7 @@ const UserProvider = ({children}) => {
 const RequiredAuth = ({children}) => {
   const {userState} = userDetails()
   let location = useLocation();
-  if(!userState.encodedToken){
+  if(!userState.isLoggedIn){
     return <Navigate to="/login" state={{ from: location }} replace />
   }
   return children;
@@ -38,7 +38,7 @@ const RequiredAuth = ({children}) => {
 const RedirectLoggedUser = ({children})=>{
   const {userState} = userDetails()
   let location = useLocation();
-  if(userState.encodedToken){
+  if(userState.isLoggedIn){
     return <Navigate to="/products" state={{ from: location }} replace />
   }
   return children;

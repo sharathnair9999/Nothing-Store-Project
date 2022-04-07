@@ -1,16 +1,22 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
-import { Filters, Footer } from "../../index/index";
+import React, { useEffect } from "react";
+import { Filters } from "../../index/index";
 import "../../components/Filters/Filters.css";
 import "./Products.css";
 import { ProductSection } from "../../index/index";
 import { useProducts } from "../../index/index";
 
 const Products = () => {
-
   const { productState, productDispatch, sortData, filterData } = useProducts();
 
-  const { products, loading, filters, error } = productState;
+  const {
+    products,
+    searchedProducts,
+    loading,
+    filters,
+    error,
+    currSearchString,
+  } = productState;
 
   const {
     priceSort,
@@ -33,7 +39,10 @@ const Products = () => {
     }
   };
 
-  const sortedData = sortData(products, priceSort);
+  const actualProducts =
+    searchedProducts.length > 0 ? searchedProducts : products;
+
+  const sortedData = sortData(actualProducts, priceSort);
 
   const filteredData = filterData(
     sortedData,
@@ -49,15 +58,8 @@ const Products = () => {
 
   return (
     <div className="products-section">
-      <input
-        type="checkbox"
-        name="filter-toggle"
-        id="filter-toggle"
-      />
-      <label
-        htmlFor="filter-toggle"
-        className="btn filter-btn"
-      >
+      <input type="checkbox" name="filter-toggle" id="filter-toggle" />
+      <label htmlFor="filter-toggle" className="btn filter-btn">
         <span id="flex-and-center">
           <i className="fa-solid fa-arrow-down-short-wide fa-lg pr-1"></i>
           <span id="filter-btn-text"></span>
