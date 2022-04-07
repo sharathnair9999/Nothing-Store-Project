@@ -12,6 +12,9 @@ const UserSideNav = () => {
         <li>
           <NavLink to={"/user/cart"}>Cart</NavLink>
         </li>
+        <li>
+          <NavLink to={"/products"}>Explore Products</NavLink>
+        </li>
       </ul>
     </div>
   );

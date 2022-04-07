@@ -86,7 +86,8 @@ nav .search_box input {
   height: 100%;
   padding: 5px 10px;
   font-size: 20px;
-  max-width: 25rem;
+  max-width: 30rem;
+  width: 100%;
 }
 
 nav .search_box span {
@@ -311,3 +312,11 @@ box-shadow: none;
   border-radius: 50%;
 }
 
+.btn.search-btn{
+  margin: 0;
+  box-shadow: none;
+  height: 100%;
+  border-radius: 0;
+  background-color: var(--sky-600);
+  color: var(--all-white);
+}
