@@ -16,7 +16,7 @@ const Navbar = () => {
     productState: { products },
   } = useProducts();
   const { userState, logoutUser } = userDetails();
-  const { encodedToken, firstName, lastName } = userState;
+  const { isLoggedIn, firstName, lastName } = userState;
   const { cartState } = useCart();
   const { wishlistState } = useWishlist();
   const [searchInput, setSearchInput] = useState("");
@@ -76,7 +76,7 @@ const Navbar = () => {
           </form>
         )}
 
-        {encodedToken ? (
+        {isLoggedIn ? (
           <ol className="nav-actions flex-and-center pr-1">
             {" "}
             <li>
