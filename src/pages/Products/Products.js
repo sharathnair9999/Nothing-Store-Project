@@ -53,7 +53,7 @@ const Products = () => {
   );
 
   useEffect(() => {
-    getProducts();
+    productState?.products?.length === 0 && getProducts();
   }, []);
 
   return (

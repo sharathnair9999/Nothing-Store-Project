@@ -2,6 +2,7 @@ import React from "react";
 import { Rating, ProductRate, useWishlist, useCart } from "../../index/index";
 
 const WishlistCard = ({ product }) => {
+  console.log(product);
   const {
     _id,
     title,
