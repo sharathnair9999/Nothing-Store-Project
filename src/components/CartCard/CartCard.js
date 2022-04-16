@@ -4,8 +4,11 @@ import { Rating, ProductRate, useCart, useWishlist } from "../../index/index";
 
 const CartCard = ({ product }) => {
   const { removeFromCart, changeQty } = useCart();
-  const { addToWishlist } = useWishlist();
+  const { addToWishlist, wishlistState } = useWishlist();
   const { _id, rating, title, imgUrl, price, discountPercent, qty } = product;
+  const inWishlist = wishlistState?.wishlistItems?.find(
+    (item) => item._id === _id
+  );
   return (
     <div className="product horizontal-card cart-card w-100">
       <div className="card-body flex">
@@ -50,13 +53,16 @@ const CartCard = ({ product }) => {
           Remove from Cart
         </button>
         <button
-          className="action-btn secondary"
+          className={`action-btn secondary`}
+          disabled={inWishlist}
           onClick={() => {
-            addToWishlist({ product });
-            removeFromCart(_id);
+            if (!inWishlist) {
+              addToWishlist({ product });
+              removeFromCart(_id);
+            }
           }}
         >
-          Move to wishlist
+          {`${inWishlist ? "In Wishlist" : "Move to wishlist"}`}
         </button>
       </div>
     </div>

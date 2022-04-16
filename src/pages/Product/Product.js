@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
-import { Link } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import {
   Loader,
   Rating,
@@ -9,15 +8,20 @@ import {
   EmptyData,
   useCart,
   userDetails,
+  useWishlist,
 } from "../../index/index";
 import ImageDialog from "./ImageDialog";
 import "./Product.css";
 
 const Product = () => {
   const { productId } = useParams();
+  const navigate = useNavigate();
   const { productState, productDispatch } = useProducts();
   const { addToCart, productInCart } = useCart();
+  const { addToWishlist, removeFromWishlist, productInWishlist } =
+    useWishlist();
   const { product, loading, error } = productState;
+  const inWishlist = productInWishlist(product);
   const inCart = productInCart(product);
   const { isLoggedUser } = userDetails();
   const [openDialog, setOpenDialog] = useState(false);
@@ -35,6 +39,16 @@ const Product = () => {
       });
       productDispatch({ type: "LOADING", payload: false });
     }
+  };
+
+  const wishlistAction = (prod) => {
+    console.log(isLoggedUser);
+    if (!isLoggedUser) {
+      navigate("/login");
+      return;
+    }
+    console.log("click");
+    inWishlist ? removeFromWishlist(prod._id) : addToWishlist({ prod });
   };
 
   useEffect(() => {
@@ -69,7 +83,10 @@ const Product = () => {
                   onClick={() => setOpenDialog(true)}
                 />
                 <div className="absolute corner-btns">
-                  <button className="btn flex-and-center">
+                  <button
+                    className="btn flex-and-center"
+                    onClick={() => wishlistAction(product)}
+                  >
                     <i className="fas fa-heart save"></i>
                   </button>
                   <button className="btn flex-and-center">
@@ -91,8 +108,7 @@ const Product = () => {
                   <span className="percent-off">{`(${product.discountPercent}% off)`}</span>
                 </div>
                 <Rating rating={product.rating} />
-                <div className="action-btns flex-and-center flex-col gap-sm">
-                </div>
+                <div className="action-btns flex-and-center flex-col gap-sm"></div>
               </div>
             </div>
             <div className="product-info flex justify-center items-fs flex-col mb-1">
