@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createContext, useReducer, useEffect, useContext } from "react";
+import { useProducts } from "../Products/product-context";
 import { userDetails } from "../User/user-context";
 
 import { cartReducer, initialCartState } from "./utils";
@@ -8,6 +9,7 @@ const CartContext = createContext(initialCartState);
 
 const CartProvider = ({ children }) => {
   const { userState } = userDetails();
+  const {showAlert} = useProducts()
   const { encodedToken } = userState;
   const [cartState, cartDispatch] = useReducer(cartReducer, initialCartState);
 
@@ -19,10 +21,7 @@ const CartProvider = ({ children }) => {
       const { cart } = data;
       cartDispatch({ type: "SET_CART_ITEMS", payload: cart });
     } catch (error) {
-      cartDispatch({
-        type: "ERROR",
-        payload: "Could not retrieve the cart items!",
-      });
+      showAlert("danger", "Error occurred while retrieving cart items")
     }
   };
 
@@ -33,13 +32,11 @@ const CartProvider = ({ children }) => {
         headers: { authorization: encodedToken },
       });
       cartDispatch({type:"LOADING", payload:false})
+      showAlert("success", `${prod?.product?.title} added to Cart Successfully`)
       const { cart } = data;
       cartDispatch({ type: "ADD_TO_CART", payload: cart });
     } catch (error) {
-      cartDispatch({
-        type: "ERROR",
-        payload: "Could not add item to the cart!",
-      });
+      showAlert("danger", "Could not add item to the cart!")
     }
   };
   
@@ -52,11 +49,9 @@ const CartProvider = ({ children }) => {
       cartDispatch({type:"LOADING", payload:false})
       const {cart} = data
       cartDispatch({type:"REMOVE_FROM_CART", payload:cart})
+      showAlert("success", `Removed Product from Cart Successfully`)
     } catch (error) {
-      cartDispatch({
-        type: "ERROR",
-        payload: "Could not remove item from the cart!",
-      });
+      showAlert("danger", "Could not remove item from cart!")
     }
   };
   
@@ -71,10 +66,7 @@ const CartProvider = ({ children }) => {
       cartDispatch({type:`${action==="increment" ?"INCREMENT_QTY":"DECREMENT_QTY"}`, payload:cart})
       
     } catch (error) {
-      cartDispatch({
-        type: "ERROR",
-        payload: "Some error occurred!"
-      });
+      showAlert("danger", "Could not perform the action at the moment")
     }
   }
 

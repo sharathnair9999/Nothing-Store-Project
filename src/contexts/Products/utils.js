@@ -1,3 +1,9 @@
+const initialAlertState = {
+  type: null,
+  message: null,
+  show: false,
+};
+
 const initialState = {
   product: {},
   products: [],
@@ -10,7 +16,7 @@ const initialState = {
     filterByRating: 0,
     filterByRange: 2000,
   },
-  error: null,
+  alert: initialAlertState,
 };
 
 const productsReducer = (state, action) => {
@@ -23,8 +29,8 @@ const productsReducer = (state, action) => {
       return { ...state, product: action.payload };
     case "LOADING":
       return { ...state, loading: action.payload };
-    case "ERROR_MSG":
-      return { ...state, error: action.payload };
+    case "SHOW_ALERT":
+      return { ...state, alert: action.payload };
     case "PRICE_SORT":
       return {
         ...state,
@@ -105,4 +111,4 @@ const filterData = (
     );
 };
 
-export { initialState, sortData, filterData, productsReducer };
+export { initialState, sortData, filterData, productsReducer, initialAlertState };

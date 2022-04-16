@@ -20,9 +20,9 @@ const Wishlist = () => {
         </p>
         <span className="count">{`Total Items - ${wishlistItems?.length}`}</span>
       </header>
-      <div className="wishlist-container flex">
-        <div className="products grid gap-2">
-          {wishlistItems?.length>0 ? (
+      <div className="wishlist-container">
+        <div className="wishlist-products grid">
+          {wishlistItems?.length > 0 ? (
             wishlistItems.map((product) => (
               <WishlistCard key={product._id} product={product} />
             ))

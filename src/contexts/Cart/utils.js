@@ -1,7 +1,6 @@
 export const initialCartState = {
   cartItems: [],
   isLoading: false,
-  error: null,
 };
 
 export const cartReducer = (state, action) => {
@@ -18,8 +17,6 @@ export const cartReducer = (state, action) => {
       return { ...state, cartItems: payload };
     case "DECREMENT_QTY":
       return { ...state, cartItems: payload };
-    case "ERROR":
-      return { ...state, error: payload };
     case "LOADING":
       return { ...state, isLoading: payload };
     default:

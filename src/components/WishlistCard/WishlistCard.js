@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Rating, ProductRate, useWishlist, useCart } from "../../index/index";
 
 const WishlistCard = ({ product }) => {
@@ -10,16 +11,22 @@ const WishlistCard = ({ product }) => {
     price,
     discountPercent,
     imgUrl,
-    inStock
+    inStock,
   } = product;
 
   const { removeFromWishlist } = useWishlist();
-  const { addToCart } = useCart();
+  const {
+    addToCart,
+    cartState: { cartItems },
+  } = useCart();
+  const inCart = cartItems.find((item) => item._id === _id);
 
   return (
     <div className="product vertical-card">
       <div className="image-container">
-        <img src={imgUrl} alt={title} className="card-image" />
+        <Link to={`/products/${_id}`}>
+          <img src={imgUrl} alt={title} className="card-image" />
+        </Link>
         <div className="corner-btns">
           <button
             className="btn flex-and-center"
@@ -39,14 +46,18 @@ const WishlistCard = ({ product }) => {
       <ProductRate price={price} discountPercent={discountPercent} />
       <div className="card-action-btns">
         <button
-        disabled={!inStock}
-          className={`action-btn ${inStock ?"primary" : "secondary"}`}
+          disabled={!inStock && inCart}
+          className={`action-btn ${
+            inStock && !inCart ? "primary" : "secondary"
+          }`}
           onClick={() => {
-            addToCart({ product });
-            removeFromWishlist(_id);
+            if (!inCart) {
+              addToCart({ product });
+              removeFromWishlist(_id);
+            }
           }}
         >
-          {!inStock ? 'Out of Stock':"Move To Cart"}
+          {!inStock ? "Out of Stock" : inCart ? "In Cart" : "Move To Cart"}
         </button>
       </div>
     </div>

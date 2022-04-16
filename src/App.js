@@ -23,12 +23,14 @@ import {
   RequiredAuth,
   RedirectLoggedUser,
   ProfileIndex,
+  Alert
 } from "./index/index";
 
 function App() {
   return (
     <>
       <div className="relative">
+        <Alert/>
         <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />

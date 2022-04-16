@@ -49,6 +49,7 @@ import ProductRate from "../components/ProductRate/ProductRate";
 import CartSummary from "../components/CartPriceSection.js/CartSummary";
 import WishlistCard from "../components/WishlistCard/WishlistCard";
 import { useWishlist, WishListProvider } from "../contexts/Wishlist/wishlist-context";
+import Alert from "../components/Alert/Alert";
 
 const constants = {
   loading_svg:
@@ -106,5 +107,6 @@ export {
   constants,
   WishlistCard,
   useWishlist,
-  WishListProvider
+  WishListProvider,
+  Alert
 };
