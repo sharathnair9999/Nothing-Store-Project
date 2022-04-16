@@ -122,9 +122,8 @@ const Product = () => {
               <h3>Manufactured at</h3>
               <p>{product.company}</p>
             </div>
-            {openDialog && (
-              <ImageDialog setOpenDialog={setOpenDialog} img={product.imgUrl} />
-            )}
+
+            <ImageDialog setOpenDialog={setOpenDialog} openDialog={openDialog} img={product.imgUrl} />
           </main>
         )}
       </div>
