@@ -51,6 +51,10 @@ const Product = () => {
     inWishlist ? removeFromWishlist(prod?.product._id) : addToWishlist(prod);
   };
 
+  const sendProduct = () => {
+    
+  }
+
   useEffect(() => {
     window.scrollTo(0, 0);
     getProduct(productId);
@@ -68,7 +72,7 @@ const Product = () => {
         ) : (
           <main
             className={`product-section  flex-and-center flex-col w-100 py-1 relative ${
-              inWishlist ? "saved":""
+              inWishlist ? "saved" : ""
             } `}
           >
             <Link
@@ -93,7 +97,12 @@ const Product = () => {
                   >
                     <i className="fas fa-heart save"></i>
                   </button>
-                  <button className="btn flex-and-center">
+                  <button
+                    className="btn flex-and-center"
+                    onClick={() => {
+                      sendProduct();
+                    }}
+                  >
                     <i className="fas fa-share send"></i>
                   </button>
                 </div>
