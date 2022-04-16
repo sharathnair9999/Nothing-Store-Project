@@ -57,6 +57,7 @@ const CartCard = ({ product }) => {
           disabled={inWishlist}
           onClick={() => {
             if (!inWishlist) {
+              console.log(product, "from cart card");
               addToWishlist({ product });
               removeFromCart(_id);
             }

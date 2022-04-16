@@ -3,8 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "../Login/Login.css";
 import axios from "axios";
-import Alert from "../../components/Alert/Alert";
-import { capitalize } from "../../index/index";
+import { capitalize, useProducts } from "../../index/index";
 
 const Signup = () => {
   const initialCredentialState = {
@@ -17,11 +16,7 @@ const Signup = () => {
   };
   const [credentials, setCredentials] = useState(initialCredentialState);
 
-  const [alert, setAlert] = useState({
-    type: "",
-    message: "",
-    showAlert: false,
-  });
+  const { showAlert } = useProducts();
 
   const handleChange = (e) => {
     setCredentials((details) => {
@@ -29,53 +24,39 @@ const Signup = () => {
     });
   };
 
-  const closeAlert = () => {
-    setAlert(alert=>{return {...alert, showAlert:!alert.showAlert}})
-  }
-
-  const navigate = useNavigate();
-
   const submitUser = async (e, details) => {
     e.preventDefault();
     if (details.password !== details.confirmPassword) {
-      setAlert({
-        type: "danger",
-        message: "Password Doesn't Match. Enter same password in both fields.",
-        showAlert: true,
-      });
+      showAlert(
+        "danger",
+        "Password Doesn't Match. Enter same password in both fields.",
+        1500
+      );
       return;
     }
     if (!details.agreed) {
-      setAlert({
-        type: "danger",
-        message: "Please agree to the Terms & Conditions",
-        showAlert: true,
-      });
+      showAlert("danger", "Please agree to the Terms & Conditions", 1500);
       return;
     }
     try {
+      console.log("trying");
       const { data } = await axios.post("/api/auth/signup", details);
       const { createdUser } = data;
-      setAlert({
-        type: "success",
-        message: `Welcome ${capitalize(createdUser.firstName)} ${capitalize(
+      showAlert(
+        "success",
+        `Welcome ${capitalize(createdUser.firstName)} ${capitalize(
           createdUser.lastName
         )}`,
-        showAlert: true,
-      });
+        1500
+      );
     } catch (error) {
-      setAlert({
-        type: "danger",
-        message: "This user already exists",
-        showAlert: true,
-      });
+      showAlert("danger", "This user already exists", 1500);
       setCredentials(initialCredentialState);
     }
   };
 
   return (
     <div className="relative">
-      {alert.showAlert && <Alert type={alert.type} message={alert.message} close={closeAlert} />}
       <main className="signup-container flex-and-center ">
         <form
           onSubmit={(e) => submitUser(e, credentials)}

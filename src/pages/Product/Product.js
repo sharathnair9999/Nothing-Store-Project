@@ -16,7 +16,7 @@ import "./Product.css";
 const Product = () => {
   const { productId } = useParams();
   const navigate = useNavigate();
-  const { productState, productDispatch } = useProducts();
+  const { productState, productDispatch, showAlert } = useProducts();
   const { addToCart, productInCart } = useCart();
   const { addToWishlist, removeFromWishlist, productInWishlist } =
     useWishlist();
@@ -34,7 +34,7 @@ const Product = () => {
       productDispatch({ type: "LOADING", payload: false });
     } catch (error) {
       productDispatch({
-        type: "ERROR_MSG",
+        type: "SHOW_ALERT",
         payload: "Error Loading Product Information",
       });
       productDispatch({ type: "LOADING", payload: false });
@@ -42,13 +42,13 @@ const Product = () => {
   };
 
   const wishlistAction = (prod) => {
-    console.log(isLoggedUser);
+    console.log(prod, "from product page");
     if (!isLoggedUser) {
+      showAlert("danger", "Authentication is required", 1500);
       navigate("/login");
       return;
     }
-    console.log("click");
-    inWishlist ? removeFromWishlist(prod._id) : addToWishlist({ prod });
+    inWishlist ? removeFromWishlist(prod?.product._id) : addToWishlist(prod);
   };
 
   useEffect(() => {
@@ -66,7 +66,11 @@ const Product = () => {
         ) : !product ? (
           <EmptyData message={"Error Loading Product Information"} />
         ) : (
-          <main className="product-section flex-and-center flex-col w-100 py-1 relative">
+          <main
+            className={`product-section  flex-and-center flex-col w-100 py-1 relative ${
+              inWishlist ? "saved":""
+            } `}
+          >
             <Link
               className="back_to_home mr-auto flex-and-center gap-sm"
               to={"/products"}
@@ -85,7 +89,7 @@ const Product = () => {
                 <div className="absolute corner-btns">
                   <button
                     className="btn flex-and-center"
-                    onClick={() => wishlistAction(product)}
+                    onClick={() => wishlistAction({ product })}
                   >
                     <i className="fas fa-heart save"></i>
                   </button>
@@ -123,7 +127,11 @@ const Product = () => {
               <p>{product.company}</p>
             </div>
 
-            <ImageDialog setOpenDialog={setOpenDialog} openDialog={openDialog} img={product.imgUrl} />
+            <ImageDialog
+              setOpenDialog={setOpenDialog}
+              openDialog={openDialog}
+              img={product.imgUrl}
+            />
           </main>
         )}
       </div>

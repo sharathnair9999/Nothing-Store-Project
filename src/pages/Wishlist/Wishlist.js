@@ -11,7 +11,6 @@ import {
 const Wishlist = () => {
   const { wishlistState } = useWishlist();
   const { wishlistItems } = wishlistState;
-  console.log(wishlistItems);
   return (
     <main className="wishlist-section flex items-center justify-fs flex-col">
       <header className="flex-and-center gap-2">
@@ -23,7 +22,7 @@ const Wishlist = () => {
       </header>
       <div className="wishlist-container">
         <div className="wishlist-products grid">
-          {wishlistItems?.length>0 ? (
+          {wishlistItems?.length > 0 ? (
             wishlistItems.map((product) => (
               <WishlistCard key={product._id} product={product} />
             ))
