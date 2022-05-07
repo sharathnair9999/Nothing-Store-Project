@@ -69,12 +69,7 @@ const productsReducer = (state, action) => {
     case "RESET_FILTERS":
       return {
         ...state,
-        filters: {
-          priceSort: "LOW_TO_HIGH",
-          filterByBrand: [],
-          filterByCategory: [],
-          filterByRange: 2000,
-        },
+        filters: { ...initialState.filters },
       };
     default:
       return state;
@@ -111,4 +106,10 @@ const filterData = (
     );
 };
 
-export { initialState, sortData, filterData, productsReducer, initialAlertState };
+export {
+  initialState,
+  sortData,
+  filterData,
+  productsReducer,
+  initialAlertState,
+};

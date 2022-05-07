@@ -15,12 +15,12 @@ const NewLaunches = () => {
   ];
   return (
     <div>
-     <Heading text={"New Launches"}/>
+      <Heading text={"New Launches"} />
 
       <div className="new-launches flex">
         {newLaunches.map(({ product, url }) => {
           return (
-            <Link key={url} to="/">
+            <Link key={url} to="/products">
               <div className="launch flex-and-center">
                 <img src={url} alt={product} className="launch-image" />
                 <section>

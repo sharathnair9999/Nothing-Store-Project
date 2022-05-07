@@ -1,50 +1,54 @@
 import { createContext, useContext, useReducer } from "react";
 import { Navigate, useLocation } from "react-router-dom";
-import { initialState, userReducer} from "./utils";
+import { initialState, userReducer } from "./utils";
 
+const UserContext = createContext(initialState);
 
-const UserContext = createContext(initialState)
+const UserProvider = ({ children }) => {
+  const [userState, userDispatch] = useReducer(userReducer, initialState);
 
-const UserProvider = ({children}) => {
+  const isLoggedIn = () => userState.encodedToken !== null;
 
-  const [userState, userDispatch] = useReducer(userReducer, initialState)
-
-  const isLoggedIn = () => userState.encodedToken!==null
-
-  const isLoggedUser = isLoggedIn()
+  const isLoggedUser = isLoggedIn();
 
   const logoutUser = () => {
-    localStorage.removeItem("authToken")
-    userDispatch({type:"LOGOUT"}) 
-  }
-
+    localStorage.removeItem("authToken");
+    userDispatch({ type: "LOGOUT" });
+  };
 
   return (
-    <UserContext.Provider value={{initialState, userState, userDispatch, isLoggedUser, logoutUser}}>
+    <UserContext.Provider
+      value={{
+        initialState,
+        userState,
+        userDispatch,
+        isLoggedUser,
+        logoutUser,
+      }}
+    >
       {children}
     </UserContext.Provider>
-  )
-}
+  );
+};
 
-const RequiredAuth = ({children}) => {
-  const {userState} = userDetails()
+const RequiredAuth = ({ children }) => {
+  const { userState } = userDetails();
   let location = useLocation();
-  if(!userState.isLoggedIn){
-    return <Navigate to="/login" state={{ from: location }} replace />
+  if (!userState.isLoggedIn) {
+    return <Navigate to="/login" state={{ from: location }} replace />;
   }
   return children;
-}
+};
 
-const RedirectLoggedUser = ({children})=>{
-  const {userState} = userDetails()
+const RedirectLoggedUser = ({ children }) => {
+  const { userState } = userDetails();
   let location = useLocation();
-  if(userState.isLoggedIn){
-    return <Navigate to="/products" state={{ from: location }} replace />
+  if (userState.isLoggedIn) {
+    return <Navigate to="/products" state={{ from: location }} replace />;
   }
   return children;
-}
+};
 
+const userDetails = () => useContext(UserContext);
 
-const userDetails = () => useContext(UserContext)
-
-export {userDetails , UserProvider, RequiredAuth, RedirectLoggedUser}
+export { userDetails, UserProvider, RequiredAuth, RedirectLoggedUser };
