@@ -1,14 +1,16 @@
-.alert{
-  position: absolute;
-  top: 96px;  
-  z-index: 1;
+.alert {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
 }
 
-.show{
-  display: flex;
-  transition: all 0.2s ease;
+.show-alert {
+  visibility: initial;
+  transition: visibility 0.1s ease;
 }
-.hide{
-  display: none;
-  transition: all 0.2s ease;
+.hide-alert {
+  visibility: hidden;
+  transition: visibility 0.1s ease;
 }

@@ -39,7 +39,6 @@ const Signup = () => {
       return;
     }
     try {
-      console.log("trying");
       const { data } = await axios.post("/api/auth/signup", details);
       const { createdUser } = data;
       showAlert(

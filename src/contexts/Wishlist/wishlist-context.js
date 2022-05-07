@@ -26,12 +26,10 @@ const WishListProvider = ({ children }) => {
       const { wishlist } = data;
       wishlistDispatch({ type: "SET_WISHLIST_ITEMS", payload: wishlist });
     } catch (error) {
-      console.log(error);
       showAlert("danger", "Error occured in retieving Wishlist Items");
     }
   };
   const addToWishlist = async (prod) => {
-    console.log(prod," from context");
     try {
       const { data } = await axios.post(`/api/user/wishlist`, prod, {
         headers: {

@@ -10,7 +10,9 @@ const Alert = () => {
     productDispatch,
   } = useProducts();
   return (
-    <div className={`alert alert-${type} ${message ? "show" : "hide"}`}>
+    <div
+      className={`alert alert-${type} ${message ? "show-alert" : "hide-alert"}`}
+    >
       <p className="alert-message">{message}</p>
       <i
         className="far fa-times-circle alert-close fa-lg flex-and-center"
