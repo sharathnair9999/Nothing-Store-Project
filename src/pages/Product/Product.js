@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
-import { Link } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import {
   Loader,
   Rating,
@@ -9,15 +8,20 @@ import {
   EmptyData,
   useCart,
   userDetails,
+  useWishlist,
 } from "../../index/index";
 import ImageDialog from "./ImageDialog";
 import "./Product.css";
 
 const Product = () => {
   const { productId } = useParams();
-  const { productState, productDispatch } = useProducts();
+  const navigate = useNavigate();
+  const { productState, productDispatch, showAlert } = useProducts();
   const { addToCart, productInCart } = useCart();
+  const { addToWishlist, removeFromWishlist, productInWishlist } =
+    useWishlist();
   const { product, loading, error } = productState;
+  const inWishlist = productInWishlist(product);
   const inCart = productInCart(product);
   const { isLoggedUser } = userDetails();
   const [openDialog, setOpenDialog] = useState(false);
@@ -30,12 +34,26 @@ const Product = () => {
       productDispatch({ type: "LOADING", payload: false });
     } catch (error) {
       productDispatch({
-        type: "ERROR_MSG",
+        type: "SHOW_ALERT",
         payload: "Error Loading Product Information",
       });
       productDispatch({ type: "LOADING", payload: false });
     }
   };
+
+  const wishlistAction = (prod) => {
+    console.log(prod, "from product page");
+    if (!isLoggedUser) {
+      showAlert("danger", "Authentication is required", 1500);
+      navigate("/login");
+      return;
+    }
+    inWishlist ? removeFromWishlist(prod?.product._id) : addToWishlist(prod);
+  };
+
+  const sendProduct = () => {
+    
+  }
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -52,7 +70,11 @@ const Product = () => {
         ) : !product ? (
           <EmptyData message={"Error Loading Product Information"} />
         ) : (
-          <main className="product-section flex-and-center flex-col w-100 py-1 relative">
+          <main
+            className={`product-section  flex-and-center flex-col w-100 py-1 relative ${
+              inWishlist ? "saved" : ""
+            } `}
+          >
             <Link
               className="back_to_home mr-auto flex-and-center gap-sm"
               to={"/products"}
@@ -69,10 +91,18 @@ const Product = () => {
                   onClick={() => setOpenDialog(true)}
                 />
                 <div className="absolute corner-btns">
-                  <button className="btn flex-and-center">
+                  <button
+                    className="btn flex-and-center"
+                    onClick={() => wishlistAction({ product })}
+                  >
                     <i className="fas fa-heart save"></i>
                   </button>
-                  <button className="btn flex-and-center">
+                  <button
+                    className="btn flex-and-center"
+                    onClick={() => {
+                      sendProduct();
+                    }}
+                  >
                     <i className="fas fa-share send"></i>
                   </button>
                 </div>
@@ -91,8 +121,7 @@ const Product = () => {
                   <span className="percent-off">{`(${product.discountPercent}% off)`}</span>
                 </div>
                 <Rating rating={product.rating} />
-                <div className="action-btns flex-and-center flex-col gap-sm">
-                </div>
+                <div className="action-btns flex-and-center flex-col gap-sm"></div>
               </div>
             </div>
             <div className="product-info flex justify-center items-fs flex-col mb-1">
@@ -106,9 +135,12 @@ const Product = () => {
               <h3>Manufactured at</h3>
               <p>{product.company}</p>
             </div>
-            {openDialog && (
-              <ImageDialog setOpenDialog={setOpenDialog} img={product.imgUrl} />
-            )}
+
+            <ImageDialog
+              setOpenDialog={setOpenDialog}
+              openDialog={openDialog}
+              img={product.imgUrl}
+            />
           </main>
         )}
       </div>

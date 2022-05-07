@@ -1,35 +1,23 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 import "./Login.css";
-import { testUser, userDetails } from "../../index/index";
+import { testUser, useProducts, userDetails } from "../../index/index";
 import axios from "axios";
-import Alert from "../../components/Alert/Alert";
 import { capitalize } from "./utils";
 
 const Login = () => {
+  const { showAlert } = useProducts();
+
   const { userDispatch } = userDetails();
   const [userCredentials, setUserCredentials] = useState({
     email: "",
     password: "",
   });
 
-  const [alert, setAlert] = useState({
-    type: "",
-    message: "",
-    showAlert: false,
-  });
-
-
   const onChange = (e) => {
     setUserCredentials((details) => {
       return { ...details, [e.target.name]: e.target.value };
-    });
-  };
-
-  const closeAlert = () => {
-    setAlert((alert) => {
-      return { ...alert, showAlert: !alert.showAlert };
     });
   };
 
@@ -40,13 +28,13 @@ const Login = () => {
       const { data } = await axios.post("/api/auth/login", credentials);
       const { encodedToken, foundUser } = data;
       const { firstName, lastName } = foundUser;
-      setAlert({
-        type: "success",
-        message: `Hi ${capitalize(firstName)} ${capitalize(
+      showAlert(
+        "success",
+        `Hi ${capitalize(firstName)} ${capitalize(
           lastName
         )} !! You are successfully logged in.`,
-        showAlert: true,
-      });
+        1500
+      );
       localStorage.setItem(
         "authToken",
         JSON.stringify({ encodedToken, firstName, lastName })
@@ -56,20 +44,12 @@ const Login = () => {
         payload: { firstName, lastName, encodedToken },
       });
     } catch (error) {
-      setAlert({
-        type: "danger",
-        message: "Invalid Credentials. Please try again!",
-        showAlert: true,
-      });
+      showAlert("danger", "Invalid Credentials. Please try again!", 1500);
     }
   };
 
   return (
     <div className="relative">
-      {alert.showAlert && (
-        <Alert type={alert.type} message={alert.message} close={closeAlert} />
-      )}
-
       <div className="login-container flex-and-center">
         <form
           className="form-controls"

@@ -1,13 +1,18 @@
 import React from "react";
-import { CartCard, CartSummary, EmptyData, useCart, constants } from "../../index/index";
+import {
+  CartCard,
+  CartSummary,
+  EmptyData,
+  useCart,
+  constants,
+} from "../../index/index";
 import "./Cart.css";
 
 const Cart = () => {
+  const { cartState, cartPriceSummary } = useCart();
+  const { cartItems } = cartState;
 
-  const {cartState , cartPriceSummary} = useCart()
-  const {cartItems} = cartState
-
-  const currSummary = cartPriceSummary(cartItems)
+  const currSummary = cartPriceSummary(cartItems);
   return (
     <div>
       <header className="flex-and-center gap-2">
@@ -19,9 +24,18 @@ const Cart = () => {
       </header>
       <div className="cart-container flex gap-2">
         <div className="cart-items flex flex-col gap-2 mt-1 w-100">
-          {currSummary.totalQty>0 ? cartItems.map((item)=> <CartCard key={item._id} product={item} />) : <EmptyData message={"Nothing in your Cart yet!"} imgUrl={constants.empty_cart}/>  }                                                        
+          {currSummary.totalQty > 0 ? (
+            cartItems.map((item) => <CartCard key={item._id} product={item} />)
+          ) : (
+            <EmptyData
+              message={"Nothing in your Cart yet!"}
+              imgUrl={constants.empty_cart}
+            />
+          )}
         </div>
-       <CartSummary cartItems={cartItems} currSummary={currSummary}/>
+        {cartItems.length>0 && (
+          <CartSummary cartItems={cartItems} currSummary={currSummary} />
+        )}
       </div>
     </div>
   );

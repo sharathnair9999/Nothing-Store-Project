@@ -9,6 +9,10 @@
   align-items: center;
 }
 
+.landing-section .btn{
+  box-shadow: none;
+}
+
 .landing-text{
   background:var(--landing-text-bg);
   padding: 1rem;

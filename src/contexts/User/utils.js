@@ -3,7 +3,7 @@ const initialState = {
   encodedToken: userData ? userData.encodedToken : null,
   firstName: userData ? userData.firstName : null,
   lastName: userData ? userData.lastName : null,
-  isLoggedIn : false
+  isLoggedIn : userData?.encodedToken ? true : false
 };
 
 const testUser = {

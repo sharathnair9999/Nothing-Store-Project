@@ -1,5 +1,11 @@
 import { createContext, useContext, useReducer } from "react";
-import { initialState, sortData, filterData, productsReducer } from "./utils";
+import {
+  initialState,
+  sortData,
+  filterData,
+  productsReducer,
+  initialAlertState,
+} from "./utils";
 
 const ProductContext = createContext(initialState.products);
 
@@ -8,6 +14,15 @@ const ProductProvider = ({ children }) => {
     productsReducer,
     initialState
   );
+  const showAlert = (type, message, delay=1500) => {
+    productDispatch({
+      type: "SHOW_ALERT",
+      payload: { type: type, message: message, show: true },
+    });
+    setTimeout(() => {
+      productDispatch({ type: "SHOW_ALERT", payload: initialAlertState });
+    }, delay);
+  };
   const findProduct = (id, products) =>
     products?.find((product) => product._id === id);
 
@@ -29,6 +44,7 @@ const ProductProvider = ({ children }) => {
         sortData,
         filterData,
         searchProduct,
+        showAlert,
       }}
     >
       {children}

@@ -1,6 +1,5 @@
 const initialWishlistState = {
   wishlistItems : [],
-  error:null,
   isLoading:false
 }
 
@@ -13,8 +12,6 @@ const wishlistReducer = (state, action) => {
       return {...state, wishlistItems : payload}
     case "REMOVE_FROM_WISHLIST":
       return {...state, wishlistItems : payload}
-    case "ERROR":
-      return {...state, error: payload}
     case "LOADING":
       return {...state, loading: payload}
   }

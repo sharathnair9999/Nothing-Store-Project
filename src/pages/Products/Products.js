@@ -9,14 +9,7 @@ import { useProducts } from "../../index/index";
 const Products = () => {
   const { productState, productDispatch, sortData, filterData } = useProducts();
 
-  const {
-    products,
-    searchedProducts,
-    loading,
-    filters,
-    error,
-    currSearchString,
-  } = productState;
+  const { products, searchedProducts, loading, filters, error } = productState;
 
   const {
     priceSort,
@@ -32,10 +25,10 @@ const Products = () => {
       const data = await axios.get("/api/products");
       productDispatch({ type: "PRODUCTS", payload: data.data.products });
       productDispatch({ type: "LOADING", payload: false });
-      productDispatch({ type: "ERROR_MSG", payload: "" });
+      productDispatch({ type: "SHOW_ALERT", payload: "" });
     } catch (err) {
       productDispatch({ type: "LOADING", payload: false });
-      productDispatch({ type: "ERROR_MSG", payload: "Loading Failed" });
+      productDispatch({ type: "SHOW_ALERT", payload: "Loading Failed" });
     }
   };
 
@@ -53,7 +46,7 @@ const Products = () => {
   );
 
   useEffect(() => {
-    getProducts();
+    productState?.products?.length === 0 && getProducts();
   }, []);
 
   return (

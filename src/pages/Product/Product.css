@@ -34,6 +34,10 @@
   width: 100%;
 }
 
+.product-section.saved .save{
+  color: var(--danger-300);
+}
+
 .action-btns .btn{
   width: 100%;
   min-width: 100%;
