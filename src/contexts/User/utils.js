@@ -3,7 +3,7 @@ const initialState = {
   encodedToken: userData ? userData.encodedToken : null,
   firstName: userData ? userData.firstName : null,
   lastName: userData ? userData.lastName : null,
-  isLoggedIn : userData?.encodedToken ? true : false
+  isLoggedIn: userData?.encodedToken ? true : false,
 };
 
 const testUser = {
@@ -20,10 +20,15 @@ const userReducer = (state, action) => {
         encodedToken: payload.encodedToken,
         firstName: payload.firstName,
         lastName: payload.lastName,
-        isLoggedIn : true
+        isLoggedIn: true,
       };
     case "LOGOUT":
-      return { encodedToken: null, firstName: null, lastName: null, isLoggedIn:false };
+      return {
+        encodedToken: null,
+        firstName: null,
+        lastName: null,
+        isLoggedIn: false,
+      };
     case "SIGNUP":
       return {
         firstName: payload.firstName,

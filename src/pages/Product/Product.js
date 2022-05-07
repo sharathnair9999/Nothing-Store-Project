@@ -42,7 +42,6 @@ const Product = () => {
   };
 
   const wishlistAction = (prod) => {
-    console.log(prod, "from product page");
     if (!isLoggedUser) {
       showAlert("danger", "Authentication is required", 1500);
       navigate("/login");

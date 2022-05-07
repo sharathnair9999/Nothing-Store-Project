@@ -14,7 +14,7 @@ const ProductProvider = ({ children }) => {
     productsReducer,
     initialState
   );
-  const showAlert = (type, message, delay=1500) => {
+  const showAlert = (type, message, delay = 3000) => {
     productDispatch({
       type: "SHOW_ALERT",
       payload: { type: type, message: message, show: true },
