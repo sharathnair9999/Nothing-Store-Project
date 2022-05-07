@@ -9,13 +9,7 @@ import { useProducts } from "../../index/index";
 const Products = () => {
   const { productState, productDispatch, sortData, filterData } = useProducts();
 
-  const {
-    products,
-    searchedProducts,
-    loading,
-    filters,
-    error,
-  } = productState;
+  const { products, searchedProducts, loading, filters, error } = productState;
 
   const {
     priceSort,

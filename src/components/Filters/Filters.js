@@ -28,9 +28,7 @@ const Filters = ({ products }) => {
     .filter(uniqueElements);
 
   return (
-    <aside
-      className={`filter-section sticky p-1 top-0`}
-    >
+    <aside className={`filter-section sticky p-1 top-0`}>
       <div className="flex items-center">
         <h3 className="property-header">Filter</h3>
         <span
@@ -43,14 +41,14 @@ const Filters = ({ products }) => {
       <section className="pt-1">
         <section className="flex justify-space-btw items-center w-100">
           <h4 className="property-header">Price</h4>
-          <p>{filterByRange}</p>
+          <p>{`${filterByRange} - 500000`}</p>
         </section>
         <input
           type="range"
           name="price-filter"
           id="price-filter"
           min={2000}
-          max={500000}
+          max={499000}
           step={500}
           value={filterByRange}
           onChange={(e) =>
