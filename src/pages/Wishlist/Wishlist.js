@@ -6,7 +6,7 @@ import {
   EmptyData,
   useWishlist,
   WishlistCard,
-} from "../../imports/index";
+} from "../../index/index";
 
 const Wishlist = () => {
   const { wishlistState } = useWishlist();
@@ -20,22 +20,21 @@ const Wishlist = () => {
         </p>
         <span className="count">{`Total Items - ${wishlistItems?.length}`}</span>
       </header>
-      <div className="wishlist-container">
-        <div className="wishlist-products grid">
-          {wishlistItems?.length > 0 ? (
-            wishlistItems.map((product) => (
-              <WishlistCard key={product._id} product={product} />
-            ))
-          ) : (
-            <EmptyData
-              message={
-                "You haven't loved anything from us yet. Go find something interesting"
-              }
-              imgUrl={constants.void}
-            />
-          )}
+
+      {wishlistItems?.length > 0 ? (
+        <div className="wishlist-products grid w-100">
+          {wishlistItems.map((product) => (
+            <WishlistCard key={product._id} product={product} />
+          ))}
         </div>
-      </div>
+      ) : (
+        <EmptyData
+          message={
+            "You haven't loved anything from us yet. Go find something interesting"
+          }
+          imgUrl={constants.void}
+        />
+      )}
     </main>
   );
 };
