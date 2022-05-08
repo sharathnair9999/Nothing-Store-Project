@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
-import { UserSideNav } from "../../index/index";
+import { UserSideNav } from "../../imports/index";
 import "./Profile.css";
 
 const Profile = () => {

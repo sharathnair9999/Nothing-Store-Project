@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Rating, ProductRate, useCart, useWishlist } from "../../index/index";
+import { Rating, ProductRate, useCart, useWishlist } from "../../imports/index";
 
 const CartCard = ({ product }) => {
   const { removeFromCart, changeQty } = useCart();

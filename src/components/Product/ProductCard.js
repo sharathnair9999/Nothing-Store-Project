@@ -7,7 +7,8 @@ import {
   userDetails,
   ProductRate,
   useWishlist,
-} from "../../index/index";
+} from "../../imports/index";
+import CartActionButton from "../CartButton/CartActionButton";
 
 const ProductCard = ({ product }) => {
   const {
@@ -25,13 +26,18 @@ const ProductCard = ({ product }) => {
   const navigate = useNavigate();
 
   const { isLoggedUser } = userDetails();
-  const { addToCart, removeFromCart, productInCart } = useCart();
-  const { addToWishlist, removeFromWishlist, productInWishlist } = useWishlist();
+  const { productInCart } = useCart();
+  const { addToWishlist, removeFromWishlist, productInWishlist } =
+    useWishlist();
   const inWishlist = productInWishlist(product);
   const inCart = productInCart(product);
 
   return (
-    <div className={`product ${isLoggedUser && inWishlist && "saved"} vertical-card`}>
+    <div
+      className={`product ${
+        isLoggedUser && inWishlist && "saved"
+      } vertical-card`}
+    >
       <div className="image-container">
         <Link to={`/products/${_id}`}>
           <img
@@ -79,39 +85,12 @@ const ProductCard = ({ product }) => {
       <Rating rating={rating} />
       <ProductRate price={price} discountPercent={discountPercent} />
       <div className="card-action-btns">
-        {isLoggedUser ? (
-          <button
-            className={`${!inStock ? "secondary" : "primary"} action-btn`}
-            disabled={!inStock}
-            onClick={() => {
-              if (inStock && inCart) {
-                removeFromCart(_id);
-              } else if (inStock && !inCart) {
-                addToCart({ product });
-              }
-            }}
-          >
-            {!inCart
-              ? !inStock
-                ? "Out of Stock"
-                : "Add to Cart"
-              : "Remove from Cart"}
-          </button>
-        ) : (
-          <button
-            disabled={!inStock}
-            onClick={() => navigate("/login")}
-            className={`${!inStock ? "secondary" : "primary"} action-btn`}
-          >
-            {!inStock ? (
-              "Out of Stock"
-            ) : (
-              <span>
-                Sign In to <i className="fa-solid fa-cart-shopping"></i>
-              </span>
-            )}
-          </button>
-        )}
+        <CartActionButton
+          isLoggedUser={isLoggedUser}
+          inStock={inStock}
+          inCart={inCart}
+          product={product}
+        />
       </div>
     </div>
   );

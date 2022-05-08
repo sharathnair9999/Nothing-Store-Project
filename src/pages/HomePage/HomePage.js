@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Categories, Footer, NewLaunches } from "../../index/index";
+import { Categories, Footer, NewLaunches } from "../../imports/index";
 import "./HomePage.css"
 
 const HomePage = () => {

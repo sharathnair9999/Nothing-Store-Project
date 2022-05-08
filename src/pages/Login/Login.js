@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import "./Login.css";
-import { testUser, useProducts, userDetails } from "../../index/index";
+import { testUser, useProducts, userDetails } from "../../imports/index";
 import axios from "axios";
 import { capitalize } from "./utils";
 

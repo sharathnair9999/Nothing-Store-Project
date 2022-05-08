@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Rating, ProductRate, useWishlist, useCart } from "../../index/index";
+import { Rating, ProductRate, useWishlist, useCart } from "../../imports/index";
 
 const WishlistCard = ({ product }) => {
   const {

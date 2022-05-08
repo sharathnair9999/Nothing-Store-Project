@@ -8,6 +8,7 @@ const initialState = {
   product: {},
   products: [],
   searchedProducts: [],
+  categories: [],
   loading: false,
   filters: {
     priceSort: "LOW_TO_HIGH",
@@ -23,6 +24,8 @@ const productsReducer = (state, action) => {
   switch (action.type) {
     case "PRODUCTS":
       return { ...state, products: action.payload, searchedProducts: [] };
+    case "CATEGORIES":
+      return { ...state, categories: action.payload };
     case "SEARCHED_PRODUCTS":
       return { ...state, searchedProducts: action.payload };
     case "PRODUCT":

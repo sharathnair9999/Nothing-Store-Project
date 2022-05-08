@@ -1,10 +1,10 @@
 import axios from "axios";
 import React, { useEffect } from "react";
-import { Filters } from "../../index/index";
+import { Filters } from "../../imports/index";
 import "../../components/Filters/Filters.css";
 import "./Products.css";
-import { ProductSection } from "../../index/index";
-import { useProducts } from "../../index/index";
+import { ProductSection } from "../../imports/index";
+import { useProducts } from "../../imports/index";
 
 const Products = () => {
   const { productState, productDispatch, sortData, filterData } = useProducts();

@@ -1,5 +1,5 @@
 import React from "react";
-import { userDetails } from "../../index/index";
+import { userDetails } from "../../imports/index";
 
 const ProfileIndex = () => {
   const { userState } = userDetails();

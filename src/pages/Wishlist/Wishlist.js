@@ -6,7 +6,7 @@ import {
   EmptyData,
   useWishlist,
   WishlistCard,
-} from "../../index/index";
+} from "../../imports/index";
 
 const Wishlist = () => {
   const { wishlistState } = useWishlist();

@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "../Login/Login.css";
 import axios from "axios";
-import { capitalize, useProducts } from "../../index/index";
+import { capitalize, useProducts } from "../../imports/index";
 
 const Signup = () => {
   const initialCredentialState = {

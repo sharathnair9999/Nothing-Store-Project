@@ -1,9 +1,9 @@
 import React from "react";
-import { FiltersApplied } from "../../index/index";
-import { ProductCard } from "../../index/index";
+import { FiltersApplied } from "../../imports/index";
+import { ProductCard } from "../../imports/index";
 import EmptyData from "./EmptyData";
 import "./ProductsSection.css";
-import { Loader } from "../../index/index";
+import { Loader } from "../../imports/index";
 
 const ProductSection = ({ products, isLoading, error }) => {
   return (
