@@ -7,6 +7,7 @@ import {
   userDetails,
   ProductRate,
   useWishlist,
+  useProducts,
 } from "../../imports/index";
 import CartActionButton from "../CartButton/CartActionButton";
 
@@ -24,7 +25,7 @@ const ProductCard = ({ product }) => {
   } = product;
 
   const navigate = useNavigate();
-
+  const { sendProduct } = useProducts();
   const { isLoggedUser } = userDetails();
   const { productInCart } = useCart();
   const { addToWishlist, removeFromWishlist, productInWishlist } =
@@ -73,6 +74,14 @@ const ProductCard = ({ product }) => {
                 <i className="fas fa-heart save"></i>
               </button>
             )}
+            <button
+              className="btn flex-and-center"
+              onClick={() => {
+                sendProduct(_id);
+              }}
+            >
+              <i className="fas fa-share send"></i>
+            </button>
           </div>
         </div>
       </div>

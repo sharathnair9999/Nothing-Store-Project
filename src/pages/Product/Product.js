@@ -17,7 +17,8 @@ import "./Product.css";
 const Product = () => {
   const { productId } = useParams();
   const navigate = useNavigate();
-  const { productState, productDispatch, showAlert } = useProducts();
+  const { productState, productDispatch, showAlert, sendProduct } =
+    useProducts();
   const { addToCart, productInCart } = useCart();
   const { addToWishlist, removeFromWishlist, productInWishlist } =
     useWishlist();
@@ -49,10 +50,6 @@ const Product = () => {
       return;
     }
     inWishlist ? removeFromWishlist(prod?.product._id) : addToWishlist(prod);
-  };
-
-  const sendProduct = () => {
-    showAlert("success", "Copied Link to Clipboard");
   };
 
   useEffect(() => {

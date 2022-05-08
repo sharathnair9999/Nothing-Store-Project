@@ -48,6 +48,11 @@ const ProductProvider = ({ children }) => {
     );
     productDispatch({ type: "SEARCHED_PRODUCTS", payload: products });
   };
+
+  const sendProduct = (id = "") => {
+    navigator.clipboard.writeText(window.location.href + `/${id}`);
+    showAlert("success", "Copied Link to Clipboard");
+  };
   useEffect(() => {
     productState?.categories.length === 0 && getCategories();
   }, []);
@@ -61,6 +66,7 @@ const ProductProvider = ({ children }) => {
         filterData,
         searchProduct,
         showAlert,
+        sendProduct,
       }}
     >
       {children}
