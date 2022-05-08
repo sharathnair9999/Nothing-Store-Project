@@ -1,4 +1,5 @@
-import { createContext, useContext, useReducer } from "react";
+import axios from "axios";
+import { createContext, useContext, useReducer, useEffect } from "react";
 import {
   initialState,
   sortData,
@@ -23,6 +24,18 @@ const ProductProvider = ({ children }) => {
       productDispatch({ type: "SHOW_ALERT", payload: initialAlertState });
     }, delay);
   };
+
+  const getCategories = async () => {
+    try {
+      const {
+        data: { categories },
+      } = await axios.get("/api/categories");
+      productDispatch({ type: "CATEGORIES", payload: categories });
+    } catch (error) {
+      showAlert("error", "Could not retrieve categories");
+    }
+  };
+
   const findProduct = (id, products) =>
     products?.find((product) => product._id === id);
 
@@ -35,6 +48,14 @@ const ProductProvider = ({ children }) => {
     );
     productDispatch({ type: "SEARCHED_PRODUCTS", payload: products });
   };
+
+  const sendProduct = (id = "") => {
+    navigator.clipboard.writeText(window.location.href + `/${id}`);
+    showAlert("success", "Copied Link to Clipboard");
+  };
+  useEffect(() => {
+    productState?.categories.length === 0 && getCategories();
+  }, []);
   return (
     <ProductContext.Provider
       value={{
@@ -45,6 +66,7 @@ const ProductProvider = ({ children }) => {
         filterData,
         searchProduct,
         showAlert,
+        sendProduct,
       }}
     >
       {children}

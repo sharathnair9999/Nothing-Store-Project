@@ -7,7 +7,7 @@ const ImageDialog = ({ setOpenDialog, img, openDialog }) => {
       className={`image-modal flex-and-center flex-col ${
         openDialog ? "show" : "hide"
       } `}
-      onClick={(e) => setOpenDialog(false)}
+      onClick={() => setOpenDialog(false)}
     >
       <div className="relative">
         <img src={img} alt="test" onClick={(e) => e.stopPropagation()} />

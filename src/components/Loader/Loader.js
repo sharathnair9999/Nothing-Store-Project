@@ -1,5 +1,5 @@
 import React from 'react'
-import { constants } from '../../index/index'
+import { constants } from '../../imports/index'
 const Loader = () => {
 
   return (

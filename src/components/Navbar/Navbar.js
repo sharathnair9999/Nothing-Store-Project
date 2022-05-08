@@ -5,7 +5,7 @@ import {
   useProducts,
   userDetails,
   useWishlist,
-} from "../../index/index";
+} from "../../imports/index";
 import "./Navbar.css";
 import UserInitials from "./UserInitials";
 

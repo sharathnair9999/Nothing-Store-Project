@@ -5,7 +5,7 @@ import {
   EmptyData,
   useCart,
   constants,
-} from "../../index/index";
+} from "../../imports/index";
 import "./Cart.css";
 
 const Cart = () => {

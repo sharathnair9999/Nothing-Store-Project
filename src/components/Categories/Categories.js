@@ -1,54 +1,35 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useProducts } from "../../index/index";
+import { useProducts } from "../../imports/index";
 import Heading from "../Heading";
 
 const Categories = () => {
-  
-  const { productDispatch} = useProducts()
+  const {
+    productDispatch,
+    productState: { categories },
+  } = useProducts();
 
-  const categoryURLs = [
-    {
-      category: "Smartphone",
-      url: "https://res.cloudinary.com/sharath-media-library/image/upload/v1647877224/nothing-store-project/phone-min1_eya8h3.jpg",
-    },
-    {
-      category: "Desktop",
-      url: "https://res.cloudinary.com/sharath-media-library/image/upload/v1647877097/nothing-store-project/laptop-min_towiqk.jpg",
-    },
-    {
-      category: "Laptop",
-      url: "https://res.cloudinary.com/sharath-media-library/image/upload/v1647875506/nothing-store-project/laptop-min_rte74b.jpg",
-    },
-    {
-      category: "Audio",
-      url: "https://res.cloudinary.com/sharath-media-library/image/upload/v1647522801/nothing-store-project/sony-xm4_b534or.png",
-    },
-    {
-      category: "Accessories",
-      url: "https://res.cloudinary.com/sharath-media-library/image/upload/v1647875631/nothing-store-project/accessories_igz18f.jpg",
-    },
-    {
-      category: "Gaming",
-      url: "https://res.cloudinary.com/sharath-media-library/image/upload/v1647875427/nothing-store-project/ps5_cgta4o.jpg",
-    },
-  ];
+
   return (
     <div>
-     <Heading text={"Categories"}/>
+      <Heading text={"Categories"} />
       <div className="categories-container flex-and-center">
-        {categoryURLs.map(({category, url}) => {
+        {categories?.map(({ categoryName, url }) => {
           return (
-            <div key={category} className="category flex-and-center phone">
-              <img
-                src={url}
-                alt={category}
-                className="category-image"
-              />
+            <div key={categoryName} className="category flex-and-center phone">
+              <img src={url} alt={categoryName} className="category-image" />
               <div className="category-text-overlay flex-and-center">
-                <Link to={`/products`} 
-                onClick={()=>{productDispatch({type:"FILTER_BY_CATEGORY", payload:category})}}
-                >{category}</Link>
+                <Link
+                  to={`/products`}
+                  onClick={() => {
+                    productDispatch({
+                      type: "FILTER_BY_CATEGORY",
+                      payload: categoryName,
+                    });
+                  }}
+                >
+                  {categoryName}
+                </Link>
               </div>
             </div>
           );

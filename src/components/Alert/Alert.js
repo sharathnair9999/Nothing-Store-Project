@@ -1,6 +1,6 @@
 import React from "react";
 import { initialAlertState } from "../../contexts/Products/utils";
-import { useProducts } from "../../index/index";
+import { useProducts } from "../../imports/index";
 import "./Alert.css";
 const Alert = () => {
   const {

@@ -24,7 +24,7 @@ import {
   RedirectLoggedUser,
   ProfileIndex,
   Alert,
-} from "./index/index";
+} from "./imports/index";
 
 function App() {
   return (
