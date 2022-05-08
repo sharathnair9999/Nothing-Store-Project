@@ -34,7 +34,7 @@ const UserSideNav = () => {
             className={({ isActive }) =>
               `${isActive ? "active-link" : "inactive-link"} link`
             }
-            to={"/products"}
+            to={"/user/addresses"}
           >
             My Addresses
           </NavLink>
