@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
+import CartActionButton from "../../components/CartButton/CartActionButton";
 import {
   Loader,
   Rating,
@@ -9,7 +10,7 @@ import {
   useCart,
   userDetails,
   useWishlist,
-} from "../../index/index";
+} from "../../imports/index";
 import ImageDialog from "./ImageDialog";
 import "./Product.css";
 
@@ -51,8 +52,8 @@ const Product = () => {
   };
 
   const sendProduct = () => {
-    
-  }
+    showAlert("success", "Copied Link to Clipboard");
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -120,7 +121,14 @@ const Product = () => {
                   <span className="percent-off">{`(${product.discountPercent}% off)`}</span>
                 </div>
                 <Rating rating={product.rating} />
-                <div className="action-btns flex-and-center flex-col gap-sm"></div>
+                <div className="action-btns card-action-btns flex-and-center flex-col gap-sm">
+                  <CartActionButton
+                    product={product}
+                    inStock={product.inStock}
+                    inCart={inCart}
+                    isLoggedUser={isLoggedUser}
+                  />
+                </div>
               </div>
             </div>
             <div className="product-info flex justify-center items-fs flex-col mb-1">
