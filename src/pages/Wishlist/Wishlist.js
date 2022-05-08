@@ -6,14 +6,14 @@ import {
   EmptyData,
   useWishlist,
   WishlistCard,
-} from "../../index/index";
+} from "../../imports/index";
 
 const Wishlist = () => {
   const { wishlistState } = useWishlist();
   const { wishlistItems } = wishlistState;
   return (
     <main className="wishlist-section flex items-center justify-fs flex-col">
-      <header className="flex-and-center gap-2">
+      <header className="flex justify-fs items-center gap-1">
         <p className="cart-header">
           <span className="blue">Wish</span>
           <span className="black">list&nbsp;</span>

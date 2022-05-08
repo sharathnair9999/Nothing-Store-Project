@@ -29,10 +29,10 @@ const Filters = ({ products }) => {
 
   return (
     <aside className={`filter-section sticky p-1 top-0`}>
-      <div className="flex items-center">
+      <div className="flex-and-center">
         <h3 className="property-header">Filter</h3>
         <span
-          className="link clear-btn"
+          className=" clear-btn pointer btn p-sm"
           onClick={() => productDispatch({ type: "RESET_FILTERS" })}
         >
           Clear

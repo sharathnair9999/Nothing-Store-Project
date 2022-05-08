@@ -39,14 +39,14 @@
   gap: 1rem;
 }
 
-.image-container{
+.image-container {
   max-width: 30rem;
   width: 100%;
 }
 
 .user-sidenav li {
   list-style: none;
-  margin: 2rem 0;
+  margin: 1rem 0;
   padding: 5px 10px;
 }
 
@@ -63,7 +63,7 @@
   color: var(--sky-400);
 }
 
-.welcome-text{
+.welcome-text {
   line-height: 2rem;
   font-size: 1.1rem;
   font-weight: 500;
@@ -89,8 +89,7 @@
 }
 
 @media screen and (max-width: 786px) {
-
-  .user-option-section{
+  .user-option-section {
     margin-top: 0.5rem;
     margin-left: 0.5rem;
   }
@@ -116,12 +115,14 @@
     max-width: 20rem;
   }
 
-  .user-sidenav li{
+  .user-sidenav li {
+    width: 100%;
     text-align: center;
   }
 
-  .user-sidenav > ul{
+  .user-sidenav > ul {
     margin-top: 2rem;
+    width: 100%;
   }
 
   .toggle-icon {
@@ -135,7 +136,7 @@
     content: "\f00d";
   }
 
-  .user-sidenav{
+  .user-sidenav {
     height: max-content;
   }
 
