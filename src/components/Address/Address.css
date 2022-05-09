@@ -1,7 +1,106 @@
 .show-modal {
-  display: block;
+  transform: scale(1);
+  visibility: initial;
+  transition: transform 0.2s ease-in-out;
 }
 
 .hide-modal {
-  display: none;
+  visibility: hidden;
+  transform: scale(0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.address-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 20rem));
+  gap: 1rem;
+  place-items: center;
+  margin-top: 1rem;
+}
+
+.address-modal-container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  padding-top: 2rem;
+  z-index: 5;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.address-modal {
+  width: 100%;
+  transition: all 0.2s ease-in-out;
+  background-color: rgba(0, 0, 0, 0.7);
+  max-width: 500px;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.5);
+}
+
+.input-fieldset {
+  border-radius: 5px;
+  color: var(--all-white);
+  margin: 2px 0;
+  border-color: var(--all-white);
+}
+
+.input-legend {
+  padding: 0 5px;
+
+  margin-left: 10px;
+}
+
+.address-input {
+  background: transparent;
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  padding: 5px;
+  color: var(--all-white);
+}
+
+.address-card {
+  background-color: rgb(241, 241, 241);
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px 0 rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.address-action-btns .btn,
+.address-modal-container .btn {
+  padding: 4px 8px;
+  font-size: 12px;
+}
+
+.address-modal-container .btn {
+  box-shadow: none;
+}
+
+@media screen and (max-width: 768px) {
+  .address-modal {
+    max-width: 300px;
+    transition: all 0.2s ease-in-out;
+    padding: 8px;
+  }
+
+  .address-input {
+    font-size: 12px;
+    padding: 2px 5px;
+  }
+  .input-legend {
+    font-size: 12px;
+  }
 }
