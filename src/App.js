@@ -16,7 +16,6 @@ import {
   Profile,
   UserInfo,
   Addresses,
-  Address,
   Orders,
   Order,
   ResetPass,
@@ -105,16 +104,6 @@ function App() {
               </RequiredAuth>
             }
           />
-          <Route path="addresses">
-            <Route
-              path=":addressId"
-              element={
-                <RequiredAuth>
-                  <Address />
-                </RequiredAuth>
-              }
-            />
-          </Route>
           <Route
             path="wishlist"
             element={

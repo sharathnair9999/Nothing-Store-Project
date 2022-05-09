@@ -10,7 +10,6 @@ import Cart from "../pages/Cart/Cart";
 import Profile from "../pages/Profile/Profile";
 import UserInfo from "../components/UserInfo/UserInfo";
 import Addresses from "../components/Address/Addresses";
-import Address from "../components/Address/Address";
 import Orders from "../components/Orders/Orders";
 import Order from "../components/Orders/Order";
 import NewLaunches from "../components/NewLaunches/NewLaunches";
@@ -71,7 +70,6 @@ export {
   Profile,
   UserInfo,
   Addresses,
-  Address,
   Orders,
   Order,
   ProductProvider,
