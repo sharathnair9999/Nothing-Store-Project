@@ -1,0 +1,14 @@
+.link.active-link {
+  background-color: var(--sky-600);
+  color: var(--white-100);
+}
+.link.active-link {
+  background-color: var(--sky-600);
+  color: var(--white-100);
+}
+
+.link {
+  border-radius: 4px;
+  text-decoration: none;
+  width: 100%;
+}

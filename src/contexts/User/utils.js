@@ -4,6 +4,7 @@ const initialState = {
   firstName: userData ? userData.firstName : null,
   lastName: userData ? userData.lastName : null,
   isLoggedIn: userData?.encodedToken ? true : false,
+  addresses: [],
 };
 
 const testUser = {
@@ -34,6 +35,11 @@ const userReducer = (state, action) => {
         firstName: payload.firstName,
         lastName: payload.lastName,
         password: payload.password,
+      };
+    case "ALL_ADDRESSES":
+      return {
+        ...state,
+        addresses: payload,
       };
     default:
       return state;

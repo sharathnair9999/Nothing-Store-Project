@@ -13,29 +13,28 @@ const Wishlist = () => {
   const { wishlistItems } = wishlistState;
   return (
     <main className="wishlist-section flex items-center justify-fs flex-col">
-      <header className="flex-and-center gap-2">
+      <header className="flex justify-fs items-center gap-1">
         <p className="cart-header">
           <span className="blue">Wish</span>
           <span className="black">list&nbsp;</span>
         </p>
         <span className="count">{`Total Items - ${wishlistItems?.length}`}</span>
       </header>
-      <div className="wishlist-container">
-        <div className="wishlist-products grid">
-          {wishlistItems?.length > 0 ? (
-            wishlistItems.map((product) => (
-              <WishlistCard key={product._id} product={product} />
-            ))
-          ) : (
-            <EmptyData
-              message={
-                "You haven't loved anything from us yet. Go find something interesting"
-              }
-              imgUrl={constants.void}
-            />
-          )}
+
+      {wishlistItems?.length > 0 ? (
+        <div className="wishlist-products grid w-100">
+          {wishlistItems.map((product) => (
+            <WishlistCard key={product._id} product={product} />
+          ))}
         </div>
-      </div>
+      ) : (
+        <EmptyData
+          message={
+            "You haven't loved anything from us yet. Go find something interesting"
+          }
+          imgUrl={constants.void}
+        />
+      )}
     </main>
   );
 };

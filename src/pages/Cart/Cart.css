@@ -7,7 +7,7 @@
   color: var(--sky-400);
 }
 
-.action-btn.primary:hover{
+.action-btn.primary:hover {
   background-color: var(--sky-400);
 }
 
@@ -15,7 +15,7 @@
   font-size: 1.2rem;
 }
 
-.horizontal-card .rate-section{
+.horizontal-card .rate-section {
   flex-direction: row;
   align-items: flex-end;
   gap: 10px;
@@ -27,7 +27,6 @@
   position: relative;
   width: 100%;
 }
-
 
 .price-details {
   padding: 1rem;
@@ -80,21 +79,20 @@
 }
 
 @media screen and (max-width: 800px) {
-
   .cart-container {
     flex-wrap: wrap-reverse;
     justify-content: center;
     transition: all 0.3s ease-in;
   }
-  .horizontal-card .card-action-btns{
+  .horizontal-card .card-action-btns {
     gap: 10px;
     padding-bottom: 10px;
-  } 
-  .horizontal-card .card-action-btns .action-btn{
+  }
+  .horizontal-card .card-action-btns .action-btn {
     padding: 5px;
   }
 
-  .product.horizontal-card{
+  .product.horizontal-card {
     max-width: 22rem;
     min-width: 20rem;
     width: 100%;
@@ -108,10 +106,17 @@
 
   .price-details .btn {
     font-size: 0.6rem;
-
   }
 
   .price-details section input {
     width: 6rem;
+  }
+
+  .cart-header {
+    font-size: 1.2rem;
+  }
+
+  .count {
+    font-size: 1rem;
   }
 }

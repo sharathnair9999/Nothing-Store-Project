@@ -15,7 +15,7 @@ const Cart = () => {
   const currSummary = cartPriceSummary(cartItems);
   return (
     <div>
-      <header className="flex-and-center gap-2">
+      <header className="flex justify-fs items-center gap-1">
         <p className="cart-header">
           <span className="blue">C</span>
           <span className="black">art&nbsp;</span>

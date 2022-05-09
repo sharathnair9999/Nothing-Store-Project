@@ -1,28 +1,28 @@
-.wishlist-section{
+.wishlist-section {
   min-height: 90vh;
 }
 
-.wishlist-container{
+.wishlist-container {
   justify-content: flex-start;
   align-items: center;
   width: 100%;
 }
 
-.wishlist-container .save{
+.wishlist-container .save {
   color: var(--danger-300);
 }
 
-.vertical-card .rate-section{
+.vertical-card .rate-section {
   font-size: 1.2rem;
   display: flex;
-  justify-content:flex-start;
+  justify-content: flex-start;
   align-items: center;
   gap: 1rem;
   width: 100%;
 }
 
-.wishlist-products{
+.wishlist-products {
   padding: 1rem;
-  grid-template-columns: repeat(auto-fill , minmax(18rem ,1fr));
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  width: 100%;
 }
-
