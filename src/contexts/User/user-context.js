@@ -52,6 +52,7 @@ const UserProvider = ({ children }) => {
         data: { address: address },
       });
       userDispatch({ type: "ALL_ADDRESSES", payload: addressList });
+      showAlert("success", "Added Address Successfully");
     } catch (error) {
       console.log(error);
       showAlert("danger", "Could not add the address.");
@@ -74,6 +75,7 @@ const UserProvider = ({ children }) => {
       });
       console.log(addressList);
       userDispatch({ type: "ALL_ADDRESSES", payload: addressList });
+      showAlert("success", "Updated Address Successfully");
     } catch (error) {
       console.log(error);
       showAlert("danger", "Could not update the address.");
@@ -93,6 +95,7 @@ const UserProvider = ({ children }) => {
         headers: { authorization: userState.encodedToken },
       });
       userDispatch({ type: "ALL_ADDRESSES", payload: addressList });
+      showAlert("success", "Deleted Address Successfully");
     } catch (error) {
       console.log(error);
       showAlert("danger", "Could not delete the address.");
