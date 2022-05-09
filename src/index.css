@@ -3,11 +3,11 @@
 :root {
   --sky-600: #0284c7;
   --sky-400: #0ea5e9;
-  --sky-700:#0369a1;
+  --sky-700: #0369a1;
   --nav-bar-res: #dfdede;
-  --white-100:#f7f7f7;
+  --white-100: #f7f7f7;
   --sky-200: #bae6fd;
-  --sky-100:#e0f2fe;
+  --sky-100: #e0f2fe;
   --sky-50: #f0f9ff;
   --black: #000000;
   --nav-hover: #cfcfcf4d;
@@ -20,37 +20,38 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
-a{
+a {
   text-decoration: none;
 }
 ol li {
   list-style: none;
- }
+}
 
- ::-webkit-scrollbar {
-   width: 10px;
-   height: 5px;
- }
- 
- /* Track */
- ::-webkit-scrollbar-track {
-   background: #f1f1f1;
- }
- 
- /* Handle */
- ::-webkit-scrollbar-thumb {
-   background:  linear-gradient(0deg, var(--sky-400) 0%, var(--sky-600) 100%);
-   border-radius: 10px;
- }
- 
- /* Handle on hover */
- ::-webkit-scrollbar-thumb:hover {
-   background: var(--sky-200);
- }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 5px;
+}
 
- main{
-   flex-grow: 1;
- }
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
 
- 
- 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(0deg, var(--sky-400) 0%, var(--sky-600) 100%);
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--sky-200);
+}
+
+main {
+  flex-grow: 1;
+}
+
+.btn {
+  margin: 0;
+}

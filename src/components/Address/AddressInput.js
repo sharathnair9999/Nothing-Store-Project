@@ -1,5 +1,5 @@
 import React from "react";
-import "./Address.css"
+import "./Address.css";
 
 const AddressInput = ({ type, legend, setAddress, ...others }) => {
   const handleChange = (e) => {
@@ -8,9 +8,14 @@ const AddressInput = ({ type, legend, setAddress, ...others }) => {
     });
   };
   return (
-    <fieldset>
-      <legend>{legend}</legend>
-      <input type={type} {...others} onChange={handleChange} />
+    <fieldset className="input-fieldset">
+      <legend className="input-legend">{legend}</legend>
+      <input
+        className="address-input"
+        type={type}
+        {...others}
+        onChange={handleChange}
+      />
     </fieldset>
   );
 };
