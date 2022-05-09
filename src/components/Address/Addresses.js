@@ -1,36 +1,13 @@
 import React, { useEffect } from "react";
 import { userDetails } from "../../imports";
+import AddressModal from "./AddressModal";
 
 const Addresses = () => {
   const {
     userState: { addresses },
     getAddresses,
-    addNewAddress,
     deleteAddress,
-    updateAddress,
   } = userDetails();
-
-  const newAddress = {
-    name: "new",
-    house: "new",
-    street: "new",
-    city: "Hyderabad",
-    state: "Telangana",
-    country: "India",
-    pincode: "500067",
-    phone: "9876543210",
-  };
-
-  const updater = {
-    name: "new updated",
-    house: "new updated",
-    street: "new",
-    city: "Hyderabad",
-    state: "Telangana",
-    country: "India",
-    pincode: "500067",
-    phone: "9876543210",
-  };
 
   useEffect(() => {
     getAddresses();
@@ -44,18 +21,12 @@ const Addresses = () => {
           <span className="black">Addresses&nbsp;</span>
         </p>
       </header>
-      <button onClick={() => addNewAddress(newAddress)}>Add</button>
+      <AddressModal newAddress={true} />
       <div>
         {addresses.map((address) => (
           <div key={address._id}>
             <pre>{JSON.stringify(address, null, 2)}</pre>
-            <button
-              onClick={() =>
-                updateAddress({ ...address, name: "Sharath NAir" })
-              }
-            >
-              Update
-            </button>
+            <AddressModal editExisting={true} existingAddress={address} />
             <button onClick={() => deleteAddress(address._id)}>Delete</button>
           </div>
         ))}
