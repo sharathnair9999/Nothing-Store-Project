@@ -32,7 +32,6 @@ const UserProvider = ({ children }) => {
         headers: { authorization: userState.encodedToken },
       });
       userDispatch({ type: "ALL_ADDRESSES", payload: addressList });
-      console.log(addressList);
     } catch (error) {
       showAlert("danger", "Could not retrieve address list.");
     }
@@ -54,7 +53,6 @@ const UserProvider = ({ children }) => {
       userDispatch({ type: "ALL_ADDRESSES", payload: addressList });
       showAlert("success", "Added Address Successfully");
     } catch (error) {
-      console.log(error);
       showAlert("danger", "Could not add the address.");
     }
   };
@@ -64,7 +62,6 @@ const UserProvider = ({ children }) => {
       return;
     }
     try {
-      console.log(address);
       const {
         data: { addressList },
       } = await axios({
@@ -73,11 +70,9 @@ const UserProvider = ({ children }) => {
         headers: { authorization: userState.encodedToken },
         data: { address },
       });
-      console.log(addressList);
       userDispatch({ type: "ALL_ADDRESSES", payload: addressList });
       showAlert("success", "Updated Address Successfully");
     } catch (error) {
-      console.log(error);
       showAlert("danger", "Could not update the address.");
     }
   };
@@ -97,7 +92,6 @@ const UserProvider = ({ children }) => {
       userDispatch({ type: "ALL_ADDRESSES", payload: addressList });
       showAlert("success", "Deleted Address Successfully");
     } catch (error) {
-      console.log(error);
       showAlert("danger", "Could not delete the address.");
     }
   };

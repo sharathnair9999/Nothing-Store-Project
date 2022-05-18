@@ -26,7 +26,6 @@ const AddressModal = ({ editExisting, newAddress, existingAddress }) => {
 
   const addAddressHandler = (e) => {
     e.preventDefault();
-    console.log(address);
     editExisting && updateAddress(address);
     newAddress && addNewAddress(address);
     setAddress(initialAddressState);
