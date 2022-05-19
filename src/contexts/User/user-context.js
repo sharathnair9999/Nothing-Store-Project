@@ -96,6 +96,46 @@ const UserProvider = ({ children }) => {
     }
   };
 
+  const getAllOrders = async () => {
+    if (!userState.isLoggedIn) {
+      return;
+    }
+    try {
+      const {
+        data: { orders },
+      } = axios({
+        method: "GET",
+        url: `/api/user/orders`,
+        headers: { authorization: userState.encodedToken },
+      });
+      userDispatch({ type: "SET_ORDERS", payload: orders });
+    } catch (error) {
+      console.log("could not retrieve your orders");
+    }
+  };
+
+  const addToOrders = async (order) => {
+    console.log(order);
+   try {
+    const {
+      data: { orders },
+    } = await axios({
+      method: "POST",
+      url: "/api/user/orders",
+      data: { ...order },
+      headers: { authorization: userState.encodedToken },
+    });
+    userDispatch({ type: "SET_ORDERS", payload: orders });
+   } catch (error) {
+     console.log(error);
+   }
+  };
+
+  const completeAddress = (address) => {
+    if (!address) return null;
+    return ` ${address.house}, ${address.street}, ${address.city}, ${address.state}, ${address.country}, ${address.pincode}`;
+  };
+
   useEffect(() => {
     getAddresses();
   }, [userState.isLoggedIn]);
@@ -112,6 +152,9 @@ const UserProvider = ({ children }) => {
         addNewAddress,
         deleteAddress,
         updateAddress,
+        getAllOrders,
+        addToOrders,
+        completeAddress,
       }}
     >
       {children}

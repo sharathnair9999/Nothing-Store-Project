@@ -5,6 +5,13 @@ const initialState = {
   lastName: userData ? userData.lastName : null,
   isLoggedIn: userData?.encodedToken ? true : false,
   addresses: [],
+  orders: [],
+  orderDetails: {
+    cartItemsTotal: "",
+    cartItemsDiscountTotal: "",
+    orderAddress: "",
+    orderId: "",
+  },
 };
 
 const testUser = {
@@ -40,6 +47,40 @@ const userReducer = (state, action) => {
       return {
         ...state,
         addresses: payload,
+      };
+    case "SELECT_ADDRESS":
+      return {
+        ...state,
+        selectedAddress: payload,
+      };
+
+    case "SET_ORDERS":
+      return {
+        ...state,
+        orders: payload,
+      };
+
+    case "SET_ORDER_DETAILS":
+      return {
+        ...state,
+        orderDetails: {
+          ...state.orderDetails,
+          ...payload.orderDetails,
+        },
+      };
+    case "RESET":
+      return {
+        cartProducts: [],
+        wishlistProducts: [],
+        addressList: [],
+        ordersDetails: {
+          cartItemsTotal: "",
+          cartItemsDiscountTotal: "",
+          couponDiscountTotal: "",
+          orderAddress: "",
+          orderId: "",
+        },
+        orders: [],
       };
     default:
       return state;
