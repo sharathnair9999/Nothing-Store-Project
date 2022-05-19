@@ -1,9 +1,20 @@
-import React from 'react'
+import React, { useEffect } from "react";
+import { userDetails } from "../../imports";
+import "./Order.css";
 
 const Orders = () => {
-  return (
-    <div>Orders</div>
-  )
-}
+  const {
+    userState: { orders, orderDetails },
+    getAllOrders,
+  } = userDetails();
 
-export default Orders
+  useEffect(() => {
+    orders.length === 0 && getAllOrders();
+  }, []);
+  console.log(orders);
+  console.log(orderDetails);
+
+  return <div>Orders</div>;
+};
+
+export default Orders;

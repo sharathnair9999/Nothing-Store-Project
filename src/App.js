@@ -23,6 +23,7 @@ import {
   RedirectLoggedUser,
   ProfileIndex,
   Alert,
+  Checkout,
 } from "./imports/index";
 
 function App() {
@@ -70,6 +71,7 @@ function App() {
           }
         >
           <Route index element={<ProfileIndex />} />
+          <Route path="orderSummary" element={<Order />} />
           <Route
             path=":userId"
             element={
@@ -85,8 +87,8 @@ function App() {
                 <Orders />
               </RequiredAuth>
             }
-          />
-          <Route path="orders">
+          >
+            <Route index element={<h1>Your Orders Here</h1>} />
             <Route
               path=":orderId"
               element={
@@ -101,6 +103,14 @@ function App() {
             element={
               <RequiredAuth>
                 <Addresses />
+              </RequiredAuth>
+            }
+          />
+          <Route
+            path="checkout"
+            element={
+              <RequiredAuth>
+                <Checkout />
               </RequiredAuth>
             }
           />

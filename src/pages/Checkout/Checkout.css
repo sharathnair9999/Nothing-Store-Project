@@ -1,0 +1,38 @@
+.checkout-container .address-card > * {
+  max-width: 12rem;
+  font-size: 14px;
+}
+
+.address-select {
+  height: calc(100vh - 7rem);
+  width: fit-content;
+  padding: 0 10px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+
+.btn-small{
+  padding: 4px 8px;
+  font-size: 12px;
+  margin-left: 1rem;
+  margin-top: 1rem;
+}
+
+.items-summary{
+  height: calc(100vh - 8rem);
+  overflow-y: auto;
+}
+
+.checkout-card{
+  max-height: 15rem;
+  max-width: 100%;
+}
+
+.cart-image{
+  max-width: 10rem;
+}
