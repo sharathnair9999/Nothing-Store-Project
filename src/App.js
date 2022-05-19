@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import "./App.css";
+
 import Mockman from "mockman-js";
 
 import {
@@ -25,6 +25,7 @@ import {
   Alert,
   Checkout,
 } from "./imports/index";
+import { ProtectOrderSummary } from "./contexts/User/user-context";
 
 function App() {
   return (
@@ -71,7 +72,14 @@ function App() {
           }
         >
           <Route index element={<ProfileIndex />} />
-          <Route path="orderSummary" element={<Order />} />
+          <Route
+            path="orderSummary"
+            element={
+              <ProtectOrderSummary>
+                <Order />
+              </ProtectOrderSummary>
+            }
+          />
           <Route
             path=":userId"
             element={
@@ -87,17 +95,7 @@ function App() {
                 <Orders />
               </RequiredAuth>
             }
-          >
-            <Route index element={<h1>Your Orders Here</h1>} />
-            <Route
-              path=":orderId"
-              element={
-                <RequiredAuth>
-                  <Order />
-                </RequiredAuth>
-              }
-            />
-          </Route>
+          />
           <Route
             path="addresses"
             element={
