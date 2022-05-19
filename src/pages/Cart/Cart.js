@@ -9,8 +9,10 @@ import {
 import "./Cart.css";
 
 const Cart = () => {
-  const { cartState, cartPriceSummary } = useCart();
-  const { cartItems } = cartState;
+  const {
+    cartState: { cartItems },
+    cartPriceSummary,
+  } = useCart();
 
   const currSummary = cartPriceSummary(cartItems);
   return (
@@ -33,9 +35,7 @@ const Cart = () => {
             />
           )}
         </div>
-        {cartItems.length>0 && (
-          <CartSummary cartItems={cartItems} currSummary={currSummary} />
-        )}
+        {cartItems.length > 0 && <CartSummary currSummary={currSummary} />}
       </div>
     </div>
   );
