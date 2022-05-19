@@ -55,3 +55,11 @@ main {
 .btn {
   margin: 0;
 }
+
+.btn-transparent {
+  border: none;
+}
+
+.btn-small {
+  font-size: 10px;
+}
