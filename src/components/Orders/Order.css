@@ -18,7 +18,7 @@
 .imp-details {
   border-bottom: 1px solid var(--pure-gray);
   padding: 10px 0;
-  gap: 5px;
+  gap: 2rem;
   place-items: center;
 }
 
@@ -72,6 +72,7 @@
   }
   .imp-details {
     font-size: 75%;
+    gap: 1rem;
   }
 
   .latest-order-page > section {
