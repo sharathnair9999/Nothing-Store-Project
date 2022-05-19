@@ -76,9 +76,8 @@
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
-  gap: 4px;
-  max-width: 20rem;
-  min-height: 13rem;
+  gap: 2px;
+  max-width: 18rem;
 }
 
 .address-action-btns .btn,
