@@ -116,19 +116,19 @@ const UserProvider = ({ children }) => {
 
   const addToOrders = async (order) => {
     console.log(order);
-   try {
-    const {
-      data: { orders },
-    } = await axios({
-      method: "POST",
-      url: "/api/user/orders",
-      data: { ...order },
-      headers: { authorization: userState.encodedToken },
-    });
-    userDispatch({ type: "SET_ORDERS", payload: orders });
-   } catch (error) {
-     console.log(error);
-   }
+    try {
+      const {
+        data: { orders },
+      } = await axios({
+        method: "POST",
+        url: "/api/user/orders",
+        data: { ...order },
+        headers: { authorization: userState.encodedToken },
+      });
+      userDispatch({ type: "SET_ORDERS", payload: orders });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const completeAddress = (address) => {
@@ -170,6 +170,16 @@ const RequiredAuth = ({ children }) => {
   }
   return children;
 };
+const ProtectOrderSummary = ({ children }) => {
+  const {
+    userState: { orders, orderDetails },
+  } = userDetails();
+  let location = useLocation();
+  if (orders.length === 0 ) {
+    return <Navigate to="/products" state={{ from: location }} replace />;
+  }
+  return children;
+};
 
 const RedirectLoggedUser = ({ children }) => {
   const { userState } = userDetails();
@@ -182,4 +192,4 @@ const RedirectLoggedUser = ({ children }) => {
 
 const userDetails = () => useContext(UserContext);
 
-export { userDetails, UserProvider, RequiredAuth, RedirectLoggedUser };
+export { userDetails, UserProvider, RequiredAuth, RedirectLoggedUser, ProtectOrderSummary };

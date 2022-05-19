@@ -61,8 +61,6 @@ const Checkout = () => {
           deliveryAddress: { ...orderAddress },
         };
 
-        console.log(JSON.stringify(order));
-
         await addToOrders(order);
         await clearCartItems();
 
@@ -70,7 +68,9 @@ const Checkout = () => {
           type: "SET_ORDER_DETAILS",
           payload: { orderDetails: { orderId } },
         });
-        navigate("/user/orderSummary", { state: { orderId } });
+        navigate("/user/orderSummary", {
+          state: { orderId },
+        });
       },
       prefill: {
         name: orderAddress.name,
@@ -87,43 +87,62 @@ const Checkout = () => {
   };
 
   return (
-    <div className="checkout-container flex justify-fs items-fs gap-sm w-100">
-      <aside className="address-select">
-        <p className="title">Select Address</p>
-        {addresses?.map((address, id) => (
-          <div key={id} className="flex justify-center gap-sm items-fs">
-            <input
-              type="radio"
-              name="address"
-              id={id}
-              className="mt-1"
-              checked={
-                completeAddress(address) === completeAddress(orderAddress)
-              }
-              onChange={() => {
-                userDispatch({ type: "SELECT_ADDRESS", payload: address });
-              }}
-            />
-            <label htmlFor={id}>
-              <AddressCard address={address} key={address._id} />
-            </label>
-          </div>
-        ))}
-        <Link className="btn btn-primary btn-small" to={"/user/addresses"}>
-          {"Add / Update Address"}
+    <div className="checkout-page flex justify-fs items-fs flex-col w-100">
+      <section className="flex-and-center w-100">
+        <Link
+          className="mr-auto link-primary border-rounded-sm "
+          to={"/user/orders"}
+        >
+          All Orders
         </Link>
-      </aside>
-      <div className="items-summary flex-grow-1 flex justify-fs items-fs h-100 flex-col">
-        <p className="title">Items Summary</p>
-        <div>
-          {cartItems.map((item, id) => (
-            <CheckoutCard sNo={id + 1} key={id} item={item} />
-          ))}
-        </div>
-        <div className="cart-summary">
-          <button className={`btn btn-primary`} onClick={placeOrderHandler}>
-            Proceed to pay
-          </button>
+        <h1 className="mr-auto">Checkout</h1>
+      </section>
+      <div className="checkout-container flex justify-fs items-fs gap-1 w-100">
+        <aside className="address-select">
+          <p className="pb-1">
+            <span className="title"> Select Address</span>
+            <Link
+              className="p-sm border-rounded-xsm font-sm-1 ml-1 tex-center mx-auto mt-1 btn-secondary "
+              to={"/user/addresses"}
+            >
+              {"Add"}
+            </Link>
+          </p>
+          <div className="address-select-container gap-1">
+            {addresses?.map((address, id) => (
+              <div key={id} className="flex justify-center gap-sm items-fs">
+                <input
+                  type="radio"
+                  name="address"
+                  id={id}
+                  className="mt-1"
+                  checked={
+                    completeAddress(address) === completeAddress(orderAddress)
+                  }
+                  onChange={() => {
+                    userDispatch({ type: "SELECT_ADDRESS", payload: address });
+                  }}
+                />
+                <label htmlFor={id}>
+                  <AddressCard address={address} key={address._id} />
+                </label>
+              </div>
+            ))}
+          </div>
+        </aside>
+        <div className="items-summary flex-grow-1 flex justify-fs items-fs h-100 flex-col">
+          <p className="title">Items Summary</p>
+          <div className="checkout-items w-100 flex flex-col justify-fs items-fs gap-sm">
+            {cartItems.map((item, id) => (
+              <CheckoutCard sNo={id + 1} key={id} item={item} />
+            ))}
+          </div>
+          <div className="cart-summary mt-1 w-100 flex justify-space-btw items-center mt-1">
+            <p className="font-md-1 bold">{`Cart Total  -  ₹ ${finalTotal.toLocaleString()}`}</p>
+            <button className={` btn btn-primary`} onClick={placeOrderHandler}>
+              Confirm &amp; Pay
+            </button>
+          </div>
         </div>
       </div>
     </div>

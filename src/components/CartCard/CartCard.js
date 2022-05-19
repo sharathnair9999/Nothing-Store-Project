@@ -13,7 +13,7 @@ const CartCard = ({ product }) => {
     <div className="product horizontal-card cart-card w-100">
       <div className="card-body flex">
         <Link to={`/products/${_id}`}>
-          <img src={imgUrl} alt={title} className="horizontal-img" />
+          <img src={imgUrl} alt={title} className="horizontal-img p-sm" />
         </Link>
         <div className="card-texts">
           <div className="text-section">
