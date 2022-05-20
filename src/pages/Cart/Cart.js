@@ -9,8 +9,10 @@ import {
 import "./Cart.css";
 
 const Cart = () => {
-  const { cartState, cartPriceSummary } = useCart();
-  const { cartItems } = cartState;
+  const {
+    cartState: { cartItems },
+    cartPriceSummary,
+  } = useCart();
 
   const currSummary = cartPriceSummary(cartItems);
   return (
@@ -23,7 +25,7 @@ const Cart = () => {
         <span className="count">Total Items - {currSummary.totalQty}</span>
       </header>
       <div className="cart-container flex gap-2">
-        <div className="cart-items flex flex-col gap-2 mt-1 w-100">
+        <div className="cart-items flex flex-col justify-center items-center gap-2 mt-1 w-100">
           {currSummary.totalQty > 0 ? (
             cartItems.map((item) => <CartCard key={item._id} product={item} />)
           ) : (
@@ -33,9 +35,7 @@ const Cart = () => {
             />
           )}
         </div>
-        {cartItems.length>0 && (
-          <CartSummary cartItems={cartItems} currSummary={currSummary} />
-        )}
+        {cartItems.length > 0 && <CartSummary currSummary={currSummary} />}
       </div>
     </div>
   );

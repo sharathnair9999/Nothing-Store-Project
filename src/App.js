@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import "./App.css";
+
 import Mockman from "mockman-js";
 
 import {
@@ -23,7 +23,9 @@ import {
   RedirectLoggedUser,
   ProfileIndex,
   Alert,
+  Checkout,
 } from "./imports/index";
+import { ProtectOrderSummary } from "./contexts/User/user-context";
 
 function App() {
   return (
@@ -71,6 +73,14 @@ function App() {
         >
           <Route index element={<ProfileIndex />} />
           <Route
+            path="orderSummary"
+            element={
+              <ProtectOrderSummary>
+                <Order />
+              </ProtectOrderSummary>
+            }
+          />
+          <Route
             path=":userId"
             element={
               <RequiredAuth>
@@ -86,21 +96,19 @@ function App() {
               </RequiredAuth>
             }
           />
-          <Route path="orders">
-            <Route
-              path=":orderId"
-              element={
-                <RequiredAuth>
-                  <Order />
-                </RequiredAuth>
-              }
-            />
-          </Route>
           <Route
             path="addresses"
             element={
               <RequiredAuth>
                 <Addresses />
+              </RequiredAuth>
+            }
+          />
+          <Route
+            path="checkout"
+            element={
+              <RequiredAuth>
+                <Checkout />
               </RequiredAuth>
             }
           />

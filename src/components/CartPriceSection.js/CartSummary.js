@@ -1,8 +1,33 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { userDetails } from "../../imports";
 
-const CartSummary = ({ cartItems, currSummary }) => {
+const CartSummary = ({ currSummary }) => {
   const { cartPrice, totalDiscount, deliveryCharges, finalTotal, totalQty } =
     currSummary;
+
+
+  const {
+    userDispatch,
+    userState: { addresses },
+    completeAddress,
+  } = userDetails();
+
+  const navigate = useNavigate();
+
+  const handleOrder = () => {
+    userDispatch({
+      type: "SET_ORDER_DETAILS",
+      payload: {
+        orderDetails: {
+          cartItemsTotal: finalTotal,
+          cartItemsDiscountTotal: totalDiscount,
+          orderAddress: addresses[0],
+        },
+      },
+    });
+    navigate("/user/checkout");
+  };
 
   return (
     <div className="price-details flex flex-col gap-1 mt-1">
@@ -32,7 +57,9 @@ const CartSummary = ({ cartItems, currSummary }) => {
         }`}</b>
       </section>
       <hr />
-      <button className="btn btn-primary">Place Order</button>
+      <button className="btn btn-primary" onClick={handleOrder}>
+        Place Order
+      </button>
     </div>
   );
 };

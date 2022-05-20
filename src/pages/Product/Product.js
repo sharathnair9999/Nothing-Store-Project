@@ -10,7 +10,7 @@ import {
   useCart,
   userDetails,
   useWishlist,
-} from "../../imports/index";
+} from "../../imports";
 import ImageDialog from "./ImageDialog";
 import "./Product.css";
 

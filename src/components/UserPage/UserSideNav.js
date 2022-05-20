@@ -44,6 +44,16 @@ const UserSideNav = () => {
             className={({ isActive }) =>
               `${isActive ? "active-link" : "inactive-link"} link`
             }
+            to={"/user/orders"}
+          >
+            Your Orders
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            className={({ isActive }) =>
+              `${isActive ? "active-link" : "inactive-link"} link`
+            }
             to={"/products"}
           >
             Explore Products

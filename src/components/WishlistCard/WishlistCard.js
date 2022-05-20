@@ -51,7 +51,7 @@ const WishlistCard = ({ product }) => {
             inStock && !inCart ? "primary" : "secondary"
           }`}
           onClick={() => {
-            if (!inCart) {
+            if (!inCart && inStock) {
               addToCart({ product });
               removeFromWishlist(_id);
             }

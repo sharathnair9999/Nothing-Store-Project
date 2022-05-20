@@ -2,12 +2,12 @@ import React, { useEffect } from "react";
 import { userDetails } from "../../imports";
 import AddressModal from "./AddressModal";
 import "./Address.css";
+import AddressCard from "./AddressCard";
 
 const Addresses = () => {
   const {
     userState: { addresses },
     getAddresses,
-    deleteAddress,
   } = userDetails();
 
   useEffect(() => {
@@ -25,21 +25,7 @@ const Addresses = () => {
       <AddressModal newAddress={true} />
       <div className="w-100 address-list">
         {addresses.map((address) => (
-          <div key={address._id} className="address-card">
-            <p className="font-md-2 bold">{address.name.split(" ")?.[0]}</p>
-            <hr className="w-100" />
-            <p>
-              <strong>Name :</strong> {` ${address.name}`}
-            </p>
-            <p>
-              <strong>Address :</strong>
-              {` ${address.house}, ${address.street}, ${address.city}, ${address.state}, ${address.country}, ${address.pincode}`}
-            </p>
-            <p>
-              <strong>Phone : </strong> {`${address.phone}`}
-            </p>
-            <AddressModal editExisting={true} existingAddress={address} />
-          </div>
+          <AddressCard address={address} key={address._id} />
         ))}
       </div>
     </div>

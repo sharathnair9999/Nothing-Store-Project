@@ -1,5 +1,5 @@
 import { Server, Model, RestSerializer } from "miragejs";
-import {v4 as uuid} from "uuid"
+import { v4 as uuid } from "uuid";
 import {
   loginHandler,
   signupHandler,
@@ -9,6 +9,7 @@ import {
   getCartItemsHandler,
   removeItemFromCartHandler,
   updateCartItemHandler,
+  clearCartHandler,
 } from "./backend/controllers/CartController";
 import {
   getAllCategoriesHandler,
@@ -33,8 +34,11 @@ import {
 import { categories } from "./backend/db/categories";
 import { products } from "./backend/db/products";
 import { users } from "./backend/db/users";
+import { getOrderItemsHandler } from "./backend/controllers/OrdersController";
+import { addItemToOrdersHandler } from "./backend/controllers/OrdersController";
 
 export function makeServer({ environment = "development" } = {}) {
+  const Razorpay = require("razorpay");
   return new Server({
     serializers: {
       application: RestSerializer,
@@ -47,6 +51,7 @@ export function makeServer({ environment = "development" } = {}) {
       cart: Model,
       wishlist: Model,
       addressList: Model,
+      orders: Model,
     },
 
     // Runs on the start of the server
@@ -104,6 +109,7 @@ export function makeServer({ environment = "development" } = {}) {
         "/user/cart/:productId",
         removeItemFromCartHandler.bind(this)
       );
+      this.post("/user/cart/clearCart", clearCartHandler.bind(this));
 
       // wishlist routes (private)
       this.get("/user/wishlist", getWishlistItemsHandler.bind(this));
@@ -118,6 +124,34 @@ export function makeServer({ environment = "development" } = {}) {
       this.post("/user/address", addAddressHandler.bind(this));
       this.post("/user/address/:addressId", updateAddressHandler.bind(this));
       this.delete("/user/address/:addressId", removeAddressHandler.bind(this));
+
+      // order routes (private)
+      this.get("/user/orders", getOrderItemsHandler.bind(this));
+      this.post("/user/orders", addItemToOrdersHandler.bind(this));
+
+      // orders
+      this.post("/orders", async (req, res) => {
+        try {
+          const instance = new Razorpay({
+            key_id: process.env.REACT_APP_RAZORPAY_ID,
+            key_secret: process.env.REACT_APP_RAZORPAY_KEY_SECRET,
+          });
+          console.log("instance", instance.orders);
+
+          const options = {
+            amount: 100, // amount in smallest currency unit
+            currency: "INR",
+          };
+
+          const order = instance.orders.create(options);
+
+          // if (!order) return res.status(500).send("Some error occured");
+          console.log("order", order);
+          res.json(order);
+        } catch (error) {
+          console.log(error);
+        }
+      });
     },
   });
 }

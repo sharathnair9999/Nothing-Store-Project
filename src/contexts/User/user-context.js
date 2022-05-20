@@ -32,7 +32,6 @@ const UserProvider = ({ children }) => {
         headers: { authorization: userState.encodedToken },
       });
       userDispatch({ type: "ALL_ADDRESSES", payload: addressList });
-      console.log(addressList);
     } catch (error) {
       showAlert("danger", "Could not retrieve address list.");
     }
@@ -54,7 +53,6 @@ const UserProvider = ({ children }) => {
       userDispatch({ type: "ALL_ADDRESSES", payload: addressList });
       showAlert("success", "Added Address Successfully");
     } catch (error) {
-      console.log(error);
       showAlert("danger", "Could not add the address.");
     }
   };
@@ -64,7 +62,6 @@ const UserProvider = ({ children }) => {
       return;
     }
     try {
-      console.log(address);
       const {
         data: { addressList },
       } = await axios({
@@ -73,11 +70,9 @@ const UserProvider = ({ children }) => {
         headers: { authorization: userState.encodedToken },
         data: { address },
       });
-      console.log(addressList);
       userDispatch({ type: "ALL_ADDRESSES", payload: addressList });
       showAlert("success", "Updated Address Successfully");
     } catch (error) {
-      console.log(error);
       showAlert("danger", "Could not update the address.");
     }
   };
@@ -97,9 +92,48 @@ const UserProvider = ({ children }) => {
       userDispatch({ type: "ALL_ADDRESSES", payload: addressList });
       showAlert("success", "Deleted Address Successfully");
     } catch (error) {
-      console.log(error);
       showAlert("danger", "Could not delete the address.");
     }
+  };
+
+  const getAllOrders = async () => {
+    if (!userState.isLoggedIn) {
+      return;
+    }
+    try {
+      const {
+        data: { orders },
+      } = axios({
+        method: "GET",
+        url: `/api/user/orders`,
+        headers: { authorization: userState.encodedToken },
+      });
+      userDispatch({ type: "SET_ORDERS", payload: orders });
+    } catch (error) {
+      console.log("could not retrieve your orders");
+    }
+  };
+
+  const addToOrders = async (order) => {
+    console.log(order);
+    try {
+      const {
+        data: { orders },
+      } = await axios({
+        method: "POST",
+        url: "/api/user/orders",
+        data: { ...order },
+        headers: { authorization: userState.encodedToken },
+      });
+      userDispatch({ type: "SET_ORDERS", payload: orders });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const completeAddress = (address) => {
+    if (!address) return null;
+    return ` ${address.house}, ${address.street}, ${address.city}, ${address.state}, ${address.country}, ${address.pincode}`;
   };
 
   useEffect(() => {
@@ -118,6 +152,9 @@ const UserProvider = ({ children }) => {
         addNewAddress,
         deleteAddress,
         updateAddress,
+        getAllOrders,
+        addToOrders,
+        completeAddress,
       }}
     >
       {children}
@@ -133,6 +170,16 @@ const RequiredAuth = ({ children }) => {
   }
   return children;
 };
+const ProtectOrderSummary = ({ children }) => {
+  const {
+    userState: { orders, orderDetails },
+  } = userDetails();
+  let location = useLocation();
+  if (orders.length === 0 ) {
+    return <Navigate to="/products" state={{ from: location }} replace />;
+  }
+  return children;
+};
 
 const RedirectLoggedUser = ({ children }) => {
   const { userState } = userDetails();
@@ -145,4 +192,4 @@ const RedirectLoggedUser = ({ children }) => {
 
 const userDetails = () => useContext(UserContext);
 
-export { userDetails, UserProvider, RequiredAuth, RedirectLoggedUser };
+export { userDetails, UserProvider, RequiredAuth, RedirectLoggedUser, ProtectOrderSummary };
