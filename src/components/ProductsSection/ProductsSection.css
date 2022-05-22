@@ -1,16 +1,15 @@
-
-.action-btn.secondary:hover{
+.action-btn.secondary:hover {
   background-color: var(--light-300);
 }
 
-.products-container{
+.products-container {
   width: 100%;
   grid-gap: 1rem;
   place-items: center;
   justify-items: center;
   margin: auto;
   padding: 0 0.8rem;
-  grid-template-columns: repeat(auto-fill , minmax(18rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
   opacity: 0;
   transition: opacity 0.5s ease;
 }
@@ -21,17 +20,17 @@
   align-items: center;
 }
 
-.show-products{
+.show-products {
   opacity: 1;
   transition: opacity 0.5s ease;
 }
 
-.loader{
+.loader {
   height: 90vh;
   width: 100%;
 }
 
-.empty-data-section{
+.empty-data-section {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -40,21 +39,25 @@
   margin-top: 1rem;
   padding: 1rem;
 }
-
-@media screen and (max-width:768px) {
-  .empty-data-section{
-    padding: 5rem;
-  }
-
-  .empty-data-section h3{
-    font-size: 1rem;
-  }
-
-}
-
-.empty-data-section img{
-  max-width: 25rem;
+.empty-data-section img {
+  max-width: 30rem;
+  min-width: 25rem;
   width: 100%;
   height: auto;
 }
 
+@media screen and (max-width: 768px) {
+  .empty-data-section {
+    padding: 5rem;
+  }
+
+  .empty-data-section h3 {
+    font-size: 1rem;
+  }
+}
+
+.empty-data-section img {
+  max-width: 25rem;
+  width: 100%;
+  height: auto;
+}

@@ -118,15 +118,14 @@ const CartProvider = ({ children }) => {
 
   const clearCartItems = async () => {
     try {
-      const { data } = await axios.post(
+      await axios.post(
         "/api/user/cart/clearCart",
         {},
         { headers: { authorization: encodedToken } }
       );
-      console.log(data.cartItems);
       cartDispatch({ type: "SET_CART_ITEMS", payload: [] });
     } catch (error) {
-      console.log(error);
+      showAlert("danger", "Couldn't clear cart items");
     }
   };
 

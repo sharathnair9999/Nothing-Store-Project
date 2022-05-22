@@ -18,7 +18,6 @@ const Order = () => {
 
   React.useEffect(() => {
     if (!latestOrder || Object.entries(latestOrder).length === 0 || !orderId) {
-      console.log("entered");
       navigate("/products");
     }
   }, [latestOrder]);
