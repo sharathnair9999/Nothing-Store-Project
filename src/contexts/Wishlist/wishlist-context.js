@@ -58,6 +58,19 @@ const WishListProvider = ({ children }) => {
     }
   };
 
+  const clearWishlist = async () => {
+    try {
+      await axios.post(
+        "/api/user/wishlist/clearWishlist",
+        {},
+        { headers: { authorization: encodedToken } }
+      );
+      wishlistDispatch({ type: "SET_WISHLIST_ITEMS", payload: [] });
+    } catch (error) {
+      showAlert("danger", "Couldn't clear wishlist items");
+    }
+  };
+
   const { wishlistItems } = wishlistState;
   const productInWishlist = (prod) => {
     let prodInWishlist = wishlistItems?.find((item) => item._id === prod._id);
@@ -75,6 +88,7 @@ const WishListProvider = ({ children }) => {
     addToWishlist,
     removeFromWishlist,
     productInWishlist,
+    clearWishlist,
   };
   return (
     <WishlistContext.Provider value={value}>

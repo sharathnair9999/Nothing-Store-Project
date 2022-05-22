@@ -9,16 +9,23 @@ import {
 } from "../../imports/index";
 
 const Wishlist = () => {
-  const { wishlistState } = useWishlist();
-  const { wishlistItems } = wishlistState;
+  const {
+    wishlistState: { wishlistItems },
+    clearWishlist,
+  } = useWishlist();
   return (
-    <main className="wishlist-section flex items-center justify-fs flex-col">
+    <div className="flex-grow-1">
       <header className="flex justify-fs items-center gap-1">
         <p className="cart-header">
           <span className="blue">Wish</span>
           <span className="black">list&nbsp;</span>
         </p>
         <span className="count">{`Total Items - ${wishlistItems?.length}`}</span>
+        {wishlistItems.length > 0 && (
+          <button onClick={clearWishlist} className="btn-secondary btn">
+            Clear Wishlist
+          </button>
+        )}
       </header>
 
       {wishlistItems?.length > 0 ? (
@@ -35,7 +42,7 @@ const Wishlist = () => {
           imgUrl={constants.void}
         />
       )}
-    </main>
+    </div>
   );
 };
 
