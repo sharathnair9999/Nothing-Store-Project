@@ -20,6 +20,7 @@
 #### Packages Used - 
  - [MockBee](https://www.npmjs.com/package/create-mock-backend) - A mock backend for getting mock APIs to build the functional logic of the application
  - [Axios](https://www.npmjs.com/package/axios) - For making API calls
+ - [npm-razorpay](https://www.npmjs.com/package/razorpay) : for payment integration
 
 #### How To Run in Local - 
 Run these commands in your terminal
@@ -32,10 +33,13 @@ Run these commands in your terminal
 Add `.env` file to the root directory and place a JWT secret key in it like below and save it
 `REACT_APP_JWT_SECRET = <your_secret_code>`
 
-After that Run in your local with this command. 
+To incorporate payment integration, register in [Razorpay](https://razorpay.com/links/payment-gateway-integration/?utm_adgroup=brandsearch_pg&utm_gclid=Cj0KCQjwvqeUBhCBARIsAOdt45bEG-uWIjmB03zvyCZHQY8vzcQPzJeOYIIJuqsRjUsAS3PM-BOlKiYaAlLVEALw_wcB&utm_source=google&utm_medium=cpc&utm_campaign=brandsearch_generic&utm_term=razorpay%20payment%20gateway%20integration&utm_content=text2&hsa_ad=527529475851&hsa_tgt=kwd-273035732538&hsa_acc=9786800965&hsa_grp=127457516310&hsa_src=g&hsa_ver=3&hsa_net=adwords&hsa_mt=p&hsa_kw=razorpay%20payment%20gateway%20integration&hsa_cam=1995263207&gclid=Cj0KCQjwvqeUBhCBARIsAOdt45bEG-uWIjmB03zvyCZHQY8vzcQPzJeOYIIJuqsRjUsAS3PM-BOlKiYaAlLVEALw_wcB#developers) and add your AppID and SecretKey in `.env` file using above convention
 
-`npm start`
-secret_code can be anything of your choice. 
+Refer [this](https://dev.to/soumyadey/integrate-razorpay-in-your-react-app-2nib) blog to understand how to integrate Razorpay in React Application.
+
+After that Run in your local with `npm start` command. 
+
+
 And now this application runs in your local machine too. 
 
 # Features
@@ -70,7 +74,10 @@ And now this application runs in your local machine too.
 	-  Remove from Wishlist
 	- Move to Cart From Wishlist
 - Search with Product Name, Category, Brand
-
-
-# Demo
-![Your Note Demo](https://res.cloudinary.com/sharath-media-library/image/upload/v1649353927/nothing-store-project/ecom-demo_idpo2b.gif "Nothing Store App Demo")
+- Address Management
+	- CRUD operations for address
+- Payment Integration Using Razorpay (Test Mode : Need not pay money from user side)
+- Checkout View after adding products to cart
+- Orders Management
+	- Order Successfull Page
+	- All Orders Page
