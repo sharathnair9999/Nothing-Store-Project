@@ -6,6 +6,7 @@ const initialState = {
   isLoggedIn: userData?.encodedToken ? true : false,
   addresses: [],
   orders: [],
+  ordersLoading: false,
   orderDetails: {
     cartItemsTotal: "",
     cartItemsDiscountTotal: "",
@@ -47,6 +48,11 @@ const userReducer = (state, action) => {
       return {
         ...state,
         addresses: payload,
+      };
+    case "ORDER_LOADER":
+      return {
+        ...state,
+        ordersLoading: payload,
       };
     case "SET_ORDERS":
       return {

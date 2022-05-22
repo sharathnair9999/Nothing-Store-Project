@@ -10,8 +10,6 @@ const Orders = () => {
     getAllOrders,
   } = userDetails();
 
-  console.log(ordersLoading);
-
   useEffect(() => {
     getAllOrders();
   }, []);
