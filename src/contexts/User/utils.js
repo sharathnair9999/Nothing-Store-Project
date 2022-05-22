@@ -48,12 +48,6 @@ const userReducer = (state, action) => {
         ...state,
         addresses: payload,
       };
-    case "SELECT_ADDRESS":
-      return {
-        ...state,
-        selectedAddress: payload,
-      };
-
     case "SET_ORDERS":
       return {
         ...state,

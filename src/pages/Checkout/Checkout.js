@@ -120,7 +120,14 @@ const Checkout = () => {
                     completeAddress(address) === completeAddress(orderAddress)
                   }
                   onChange={() => {
-                    userDispatch({ type: "SELECT_ADDRESS", payload: address });
+                    userDispatch({
+                      type: "SET_ORDER_DETAILS",
+                      payload: {
+                        orderDetails: {
+                          orderAddress: address,
+                        },
+                      },
+                    });
                   }}
                 />
                 <label htmlFor={id}>
