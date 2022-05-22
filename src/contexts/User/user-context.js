@@ -20,9 +20,6 @@ const UserProvider = ({ children }) => {
   };
 
   const getAddresses = async () => {
-    if (!userState.isLoggedIn) {
-      return;
-    }
     try {
       const {
         data: { addressList },
@@ -101,21 +98,21 @@ const UserProvider = ({ children }) => {
       return;
     }
     try {
+      userDispatch({ type: "ORDER_LOADER", payload: true });
       const {
         data: { orders },
-      } = axios({
-        method: "GET",
-        url: `/api/user/orders`,
-        headers: { authorization: userState.encodedToken },
+      } = await axios.get(`/api/user/orders`, {
+        headers: { authorization: userState?.encodedToken },
       });
+      userDispatch({ type: "ORDER_LOADER", payload: false });
       userDispatch({ type: "SET_ORDERS", payload: orders });
     } catch (error) {
-      console.log("could not retrieve your orders");
+      userDispatch({ type: "ORDER_LOADER", payload: false });
+      showAlert("danger", "Could not retrieve your orders");
     }
   };
 
   const addToOrders = async (order) => {
-    console.log(order);
     try {
       const {
         data: { orders },
@@ -125,9 +122,9 @@ const UserProvider = ({ children }) => {
         data: { ...order },
         headers: { authorization: userState.encodedToken },
       });
-      userDispatch({ type: "SET_ORDERS", payload: orders });
+      userDispatch({ type: "SET_ORDERS", payload: [...orders] });
     } catch (error) {
-      console.log(error);
+      showAlert("danger", "Could not place order");
     }
   };
 
@@ -137,7 +134,7 @@ const UserProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    getAddresses();
+    userState.isLoggedIn && getAddresses();
   }, [userState.isLoggedIn]);
 
   return (
@@ -175,7 +172,7 @@ const ProtectOrderSummary = ({ children }) => {
     userState: { orders, orderDetails },
   } = userDetails();
   let location = useLocation();
-  if (orders.length === 0 ) {
+  if (orders.length === 0) {
     return <Navigate to="/products" state={{ from: location }} replace />;
   }
   return children;
@@ -192,4 +189,10 @@ const RedirectLoggedUser = ({ children }) => {
 
 const userDetails = () => useContext(UserContext);
 
-export { userDetails, UserProvider, RequiredAuth, RedirectLoggedUser, ProtectOrderSummary };
+export {
+  userDetails,
+  UserProvider,
+  RequiredAuth,
+  RedirectLoggedUser,
+  ProtectOrderSummary,
+};

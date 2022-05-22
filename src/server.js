@@ -21,6 +21,7 @@ import {
 } from "./backend/controllers/ProductController";
 import {
   addItemToWishlistHandler,
+  clearWishlistHandler,
   getWishlistItemsHandler,
   removeItemFromWishlistHandler,
 } from "./backend/controllers/WishlistController";
@@ -117,6 +118,10 @@ export function makeServer({ environment = "development" } = {}) {
       this.delete(
         "/user/wishlist/:productId",
         removeItemFromWishlistHandler.bind(this)
+      );
+      this.post(
+        "/user/wishlist/clearWishlist",
+        clearWishlistHandler.bind(this)
       );
 
       // addresse routes (private)

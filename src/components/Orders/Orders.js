@@ -2,18 +2,17 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { userDetails, EmptyData } from "../../imports";
 import "./Order.css";
+import Loader from "../Loader/Loader";
 
 const Orders = () => {
   const {
-    userState: { orders, orderDetails },
+    userState: { orders, ordersLoading },
     getAllOrders,
   } = userDetails();
 
   useEffect(() => {
-    orders.length === 0 && getAllOrders();
+    getAllOrders();
   }, []);
-  console.log(orders);
-  console.log(orderDetails);
 
   return (
     <div className="flex-grow-1">
@@ -22,13 +21,12 @@ const Orders = () => {
         <span className="black">Orders&nbsp;</span>
       </p>
       <div className="orders-container mt-1">
-        {orders.length > 0 ? (
-          orders.map((order, id) => (
-            <div key={id} className="each-order w-100 p-sm">
-              <section
-                key={id}
-                className="imp-details flex justify-fs items-center"
-              >
+        {ordersLoading ? (
+          <Loader />
+        ) : orders.length > 0 ? (
+          orders.map((order) => (
+            <div key={order.orderId} className="each-order w-100 p-sm">
+              <section className="imp-details flex justify-fs items-center">
                 <span>{id + 1}</span>
                 <section className="flex flex-col justify-fs items-fs gap-xsm">
                   <span>Delivered To</span>
