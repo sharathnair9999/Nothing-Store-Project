@@ -16,8 +16,8 @@ const initialState = {
 };
 
 const testUser = {
-  email: "adarshbalika@gmail.com",
-  password: "adarshbalika",
+  email: "chandlerbing@friends.com",
+  password: "chandlerbing",
 };
 
 const userReducer = (state, action) => {
