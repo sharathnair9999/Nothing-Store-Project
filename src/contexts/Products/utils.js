@@ -16,6 +16,7 @@ const initialState = {
     filterByCategory: [],
     filterByRating: 0,
     filterByRange: 2000,
+    filterByStock: false,
   },
   alert: initialAlertState,
 };
@@ -69,6 +70,11 @@ const productsReducer = (state, action) => {
         ...state,
         filters: { ...state.filters, filterByRange: action.payload },
       };
+    case "FILTER_BY_STOCK":
+      return {
+        ...state,
+        filters: { ...state.filters, filterByStock: action.payload },
+      };
     case "RESET_FILTERS":
       return {
         ...state,
@@ -92,7 +98,8 @@ const filterData = (
   brandFilter,
   categoryFilter,
   ratingFilter,
-  rangeFilter
+  rangeFilter,
+  includeOutOfStockFilter
 ) => {
   return products
     .filter(({ company }) =>
@@ -106,7 +113,8 @@ const filterData = (
       rangeFilter > 2000
         ? parseInt(price) >= rangeFilter && parseInt(price) <= 500000
         : true
-    );
+    )
+    .filter(({ inStock }) => (includeOutOfStockFilter ? true : inStock));
 };
 
 export const loadScript = async (src) => {

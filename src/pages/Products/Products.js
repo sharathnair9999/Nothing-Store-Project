@@ -17,6 +17,7 @@ const Products = () => {
     filterByCategory,
     filterByRating,
     filterByRange,
+    filterByStock,
   } = filters;
 
   const getProducts = async () => {
@@ -42,7 +43,8 @@ const Products = () => {
     filterByBrand,
     filterByCategory,
     filterByRating,
-    filterByRange
+    filterByRange,
+    filterByStock
   );
 
   useEffect(() => {
