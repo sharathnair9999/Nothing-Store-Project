@@ -24,7 +24,7 @@ const Orders = () => {
         {ordersLoading ? (
           <Loader />
         ) : orders.length > 0 ? (
-          orders.map((order) => (
+          orders.map((order, id) => (
             <div key={order.orderId} className="each-order w-100 p-sm">
               <section className="imp-details flex justify-fs items-center">
                 <span>{id + 1}</span>

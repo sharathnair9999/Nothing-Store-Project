@@ -13,6 +13,7 @@ const Filters = ({ products }) => {
     filterByCategory,
     filterByRating,
     filterByRange,
+    filterByStock,
   } = filters;
 
   const uniqueElements = (value, index, self) => {
@@ -58,6 +59,26 @@ const Filters = ({ products }) => {
             })
           }
         />
+      </section>
+      <section className="w-100 checkbox">
+        <label
+          className="w-100 flex justify-space-btw items-center"
+          htmlFor="stock-filter"
+        >
+          <input
+            type="checkbox"
+            name="filterByStock"
+            checked={filterByStock}
+            onChange={(e) =>
+              productDispatch({
+                type: "FILTER_BY_STOCK",
+                payload: e.target.checked,
+              })
+            }
+            id="stock-filter"
+          />
+          <span>Include Out Of Stock</span>
+        </label>
       </section>
       <section>
         <h4 className="property-header">Category</h4>
