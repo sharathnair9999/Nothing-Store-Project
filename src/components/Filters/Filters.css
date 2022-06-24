@@ -6,6 +6,10 @@
   height: 100vh;
 }
 
+.filter-section::-webkit-scrollbar {
+  display: none;
+}
+
 .filter-section div {
   justify-content: space-between;
   width: 100%;

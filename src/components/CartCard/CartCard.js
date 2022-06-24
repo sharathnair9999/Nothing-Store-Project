@@ -25,6 +25,7 @@ const CartCard = ({ product }) => {
             <span>Quantity: </span>
             <div className="flex qty-btn-section">
               <button
+                disabled={qty <= 1}
                 className="qty-btn flex-and-center"
                 onClick={() => {
                   changeQty(_id, "decrement");

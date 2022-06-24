@@ -1,9 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 
-import Mockman from "mockman-js";
-
 import {
-  Footer,
   HomePage,
   Products,
   Product,
@@ -130,9 +127,7 @@ function App() {
           ></Route>
         </Route>
         <Route path="*" element={<ErrorPage />} />
-        <Route path="mockapi" element={<Mockman />} />
       </Routes>
-      <Footer />
     </div>
   );
 }

@@ -14,7 +14,6 @@ import Orders from "../components/Orders/Orders";
 import Order from "../components/Orders/Order";
 import NewLaunches from "../components/NewLaunches/NewLaunches";
 import Categories from "../components/Categories/Categories";
-import Footer from "../components/Footer/Footer";
 import {
   initialState,
   sortData,
@@ -81,7 +80,6 @@ export {
   UserProvider,
   NewLaunches,
   Categories,
-  Footer,
   initialState,
   sortData,
   filterData,
