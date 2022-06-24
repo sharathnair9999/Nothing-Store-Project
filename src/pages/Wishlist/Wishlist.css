@@ -21,6 +21,10 @@
   width: 100%;
 }
 
+.vertical-card img {
+  object-fit: contain;
+}
+
 .wishlist-products {
   padding: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));

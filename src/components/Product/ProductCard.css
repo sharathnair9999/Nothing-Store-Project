@@ -1,38 +1,39 @@
-.action-btn.primary{
+.action-btn.primary {
   background-color: var(--sky-600);
 }
 
-.action-btn.disabled{
+.action-btn.disabled {
   background-color: var(--nav-hover);
   color: var(--black);
 }
-.action-btn.disabled:hover{
+.action-btn.disabled:hover {
   background-color: var(--nav-hover);
   color: var(--black);
 }
 
-.product.saved .corner-btns .save{
+.product.saved .corner-btns .save {
   color: var(--danger-300);
 }
 
-.product{
+.product {
   width: 18rem;
 }
 
-.product a{
+.product a {
   color: var(--black);
 }
 
-.card-image{
+.card-image {
   width: 100%;
   max-width: 18rem;
   height: 15rem;
 }
 
-.card-action-btns{
+.card-action-btns {
   padding: 0 8px 8px 8px;
+  font-size: 1rem;
 }
 
-.product:hover{
+.product:hover {
   box-shadow: 2px 4px 4px 2px var(--box-shadow-color);
 }

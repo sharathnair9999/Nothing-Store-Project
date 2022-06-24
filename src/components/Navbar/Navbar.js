@@ -39,7 +39,7 @@ const Navbar = () => {
   }, [location?.pathname]);
 
   return (
-    <div className="top-navbar">
+    <>
       <input type="checkbox" id="check" />
       <nav className="header">
         <div className="icon flex-and-center">
@@ -132,7 +132,7 @@ const Navbar = () => {
           <span className="fa-solid fa-times" id="times"></span>
         </label>
       </nav>
-    </div>
+    </>
   );
 };
 

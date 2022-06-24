@@ -44,11 +44,6 @@ ol li {
   border-radius: 10px;
 }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: var(--sky-200);
-}
-
 main {
   flex-grow: 1;
 }
