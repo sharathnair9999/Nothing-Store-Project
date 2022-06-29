@@ -5,11 +5,20 @@ import "../../components/Filters/Filters.css";
 import "./Products.css";
 import { ProductSection } from "../../imports/index";
 import { useProducts } from "../../imports/index";
+import { useLocation } from "react-router-dom";
 
 const Products = () => {
   const { productState, productDispatch, sortData, filterData } = useProducts();
+  const { pathname } = useLocation();
 
   const { products, searchedProducts, loading, filters, error } = productState;
+
+  useEffect(() => {
+    window.scroll({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [pathname]);
 
   const {
     priceSort,
@@ -33,7 +42,7 @@ const Products = () => {
     }
   };
 
-  const actualProducts =
+  let actualProducts =
     searchedProducts.length > 0 ? searchedProducts : products;
 
   const sortedData = sortData(actualProducts, priceSort);
@@ -49,6 +58,7 @@ const Products = () => {
 
   useEffect(() => {
     productState?.products?.length === 0 && getProducts();
+    return () => (actualProducts = products);
   }, []);
 
   return (

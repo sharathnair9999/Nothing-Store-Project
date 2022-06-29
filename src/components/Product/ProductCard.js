@@ -32,6 +32,19 @@ const ProductCard = ({ product }) => {
     useWishlist();
   const inWishlist = productInWishlist(product);
   const inCart = productInCart(product);
+  const [wishlistHandler, setWishlistHandler] = useState(false);
+
+  const wishListHandler = async () => {
+    if (inWishlist) {
+      setWishlistHandler(true);
+      await removeFromWishlist(_id);
+      setWishlistHandler(false);
+    } else {
+      setWishlistHandler(true);
+      addToWishlist({ product });
+      setWishlistHandler(false);
+    }
+  };
 
   return (
     <div
@@ -54,18 +67,12 @@ const ProductCard = ({ product }) => {
           )}
           <div className="corner-btns">
             {isLoggedUser ? (
-              <button
-                className="btn flex-and-center"
-                onClick={() => {
-                  inWishlist
-                    ? removeFromWishlist(_id)
-                    : addToWishlist({ product });
-                }}
-              >
+              <button className="btn flex-and-center" onClick={wishListHandler}>
                 <i className="fas fa-heart save"></i>
               </button>
             ) : (
               <button
+                disabled={wishlistHandler}
                 className="btn flex-and-center"
                 onClick={() => {
                   navigate("/login");
