@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import {
   useCart,
@@ -13,6 +13,7 @@ const Navbar = () => {
   const {
     productDispatch,
     searchProduct,
+    debounce,
     productState: { products },
   } = useProducts();
   const { userState, logoutUser } = userDetails();
@@ -23,18 +24,14 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const searchForProduct = (e, searchInput) => {
-    e.preventDefault();
-    if (searchInput.length === 0) {
-      productDispatch({ type: "PRODUCTS", payload: products });
-    }
-    navigate("/products");
-    searchProduct(searchInput);
-  };
-
+  const debouncedSearch = useCallback(
+    debounce((currValue) => searchProduct(currValue), 1000),
+    []
+  );
   useEffect(() => {
     if (location.pathname !== "/products") {
       setSearchInput("");
+      productDispatch({ type: "SEARCHED_PRODUCTS", payload: products });
     }
   }, [location?.pathname]);
 
@@ -58,23 +55,18 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {location.pathname === "/products" && (
-          <form
-            onSubmit={(e) => searchForProduct(e, searchInput)}
-            className="search_box"
-          >
-            <input
-              type="search"
-              placeholder="Search Here..."
-              value={searchInput}
-              onChange={(e) => setSearchInput(e.target.value)}
-            />
-            <button
-              type="submit"
-              className="fa-solid fa-magnifying-glass btn search-btn"
-            ></button>
-          </form>
-        )}
+        <div className="search_box">
+          <input
+            type="search"
+            placeholder="Search Here..."
+            value={searchInput}
+            onChange={(e) => {
+              setSearchInput(e.target.value);
+              navigate("/products");
+              debouncedSearch(e.target.value);
+            }}
+          />
+        </div>
 
         {isLoggedIn ? (
           <ol className="nav-actions flex-and-center pr-1">

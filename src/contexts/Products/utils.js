@@ -117,6 +117,16 @@ const filterData = (
     .filter(({ inStock }) => (includeOutOfStockFilter ? true : inStock));
 };
 
+const debounce = (cb, delay) => {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      cb(...args);
+    }, delay);
+  };
+};
+
 export const loadScript = async (src) => {
   return new Promise((resolve) => {
     const script = document.createElement("script");
@@ -137,4 +147,5 @@ export {
   filterData,
   productsReducer,
   initialAlertState,
+  debounce,
 };

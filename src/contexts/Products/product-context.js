@@ -6,6 +6,7 @@ import {
   filterData,
   productsReducer,
   initialAlertState,
+  debounce,
 } from "./utils";
 
 const ProductContext = createContext(initialState.products);
@@ -67,6 +68,7 @@ const ProductProvider = ({ children }) => {
         searchProduct,
         showAlert,
         sendProduct,
+        debounce,
       }}
     >
       {children}
