@@ -3,19 +3,25 @@ import { useCart } from "../../imports";
 
 const CartActionButton = ({ inStock, isLoggedUser, inCart, product }) => {
   const { addToCart, removeFromCart } = useCart();
+  const [cartAction, setCartAction] = React.useState(false);
+  const cartHandler = async () => {
+    if (inStock && inCart) {
+      setCartAction(true);
+      await removeFromCart(product._id);
+      setCartAction(false);
+    } else if (inStock && !inCart) {
+      setCartAction(true);
+      addToCart({ product });
+      setCartAction(false);
+    }
+  };
   return (
     <>
       {isLoggedUser ? (
         <button
           className={`${!inStock ? "secondary" : "primary"} action-btn`}
-          disabled={!inStock}
-          onClick={() => {
-            if (inStock && inCart) {
-              removeFromCart(product._id);
-            } else if (inStock && !inCart) {
-              addToCart({ product });
-            }
-          }}
+          disabled={!inStock || cartAction}
+          onClick={cartHandler}
         >
           {!inCart
             ? !inStock
