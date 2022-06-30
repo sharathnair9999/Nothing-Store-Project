@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useProducts } from "../../contexts/Products/product-context";
 import "./Filters.css";
 
@@ -15,17 +15,36 @@ const Filters = ({ products }) => {
     filterByRange,
     filterByStock,
   } = filters;
-
   const uniqueElements = (value, index, self) => {
-    return self.indexOf(value) === index;
+    return self.lastIndexOf(value) === index;
   };
+  const givenBrands = products
+    ?.map((product) => product.company)
+    .filter(uniqueElements);
+  console.log(givenBrands);
+  const [brands, setBrands] = useState({
+    allBrands: givenBrands?.slice(0, 4) ?? [...givenBrands],
+    showAllBrands: false,
+  });
+
+  const toggleBrands = () => {
+    brands.showAllBrands
+      ? setBrands({
+          showAllBrands: false,
+          allBrands: givenBrands.slice(0, 4),
+        })
+      : setBrands({
+          showAllBrands: true,
+          allBrands: givenBrands,
+        });
+  };
+
+  React.useEffect(() => {
+    setBrands((state) => ({ ...state, allBrands: givenBrands.slice(0, 4) }));
+  }, [products]);
 
   const categories = products
     .map((product) => product.categoryName)
-    .filter(uniqueElements);
-
-  const brands = products
-    .map((product) => product.company)
     .filter(uniqueElements);
 
   return (
@@ -102,7 +121,7 @@ const Filters = ({ products }) => {
       </section>
       <section>
         <h4 className="property-header">Brand</h4>
-        {brands.map((brand) => (
+        {brands?.allBrands?.map((brand) => (
           <div key={brand} className="checkbox">
             <input
               type="checkbox"
@@ -116,6 +135,9 @@ const Filters = ({ products }) => {
             <label htmlFor={brand}>{brand}</label>
           </div>
         ))}
+        <button className="show-more" onClick={toggleBrands}>
+          {brands.showAllBrands ? "Show Less" : "Show More"}
+        </button>
       </section>
       <section>
         <h4 className="property-header">Ratings</h4>
