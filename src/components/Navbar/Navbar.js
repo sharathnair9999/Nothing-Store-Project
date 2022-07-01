@@ -24,10 +24,11 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const debouncedSearch = useCallback(
-    debounce((currValue) => searchProduct(currValue), 1000),
-    []
+  const debouncedSearch = debounce(
+    (currValue) => searchProduct(currValue),
+    1000
   );
+
   useEffect(() => {
     if (location.pathname !== "/products") {
       setSearchInput("");

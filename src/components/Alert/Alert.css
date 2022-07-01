@@ -1,16 +1,24 @@
 .alert {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
   z-index: 10;
+  top: 5rem;
+  right: 1rem;
+  width: fit-content;
+  padding: 8px 12px;
 }
 
 .show-alert {
   visibility: initial;
-  transition: visibility 0.1s ease;
+  transition: all 0.1s ease;
 }
 .hide-alert {
   visibility: hidden;
-  transition: visibility 0.1s ease;
+  transition: all 0.1s ease;
+}
+
+@media screen and (max-width: 768px) {
+  .alert {
+    top: 5rem;
+    right: 10px;
+  }
 }

@@ -153,7 +153,6 @@ nav .nav-actions {
 
 @media screen and (max-width: 1050px) {
   .header {
-    height: 6rem;
     padding: 0;
     display: flex;
     justify-content: center;
